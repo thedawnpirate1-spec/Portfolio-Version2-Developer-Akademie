@@ -1,0 +1,70 @@
+// =============================================================================
+//  GLOBALE STYLES
+//  Wird EINMAL fuer die ganze App geladen (siehe angular.json -> styles).
+//  Reihenfolge: Tokens verfuegbar machen -> Reset -> Basis-Typografie.
+// =============================================================================
+@use 'styles/tokens' as *;
+
+// -----------------------------------------------------------------------------
+//  1) Minimaler Reset
+//  Browser bringen unterschiedliche Default-Abstaende mit. Wir setzen sie
+//  auf 0 und schalten box-sizing global auf border-box (Padding zaehlt dann
+//  in die Breite hinein -> Layouts werden viel berechenbarer).
+// -----------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;   // sanftes Scrollen bei Anker-Links (#about ...)
+}
+
+// Wer "reduzierte Bewegung" im OS aktiviert hat, soll keine Animationen sehen.
+// Barrierefreiheit: wir respektieren diese System-Einstellung global.
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+// -----------------------------------------------------------------------------
+//  2) Basis-Typografie & Farben
+// -----------------------------------------------------------------------------
+body {
+  font-family: $font-body;
+  font-size: $fs-body;
+  font-weight: $fw-regular;
+  line-height: 1.6;
+  color: $color-text;
+  background: $color-bg;
+  -webkit-font-smoothing: antialiased;   // glattere Schrift auf macOS/iOS
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-display;
+  line-height: 1.1;
+  font-weight: $fw-bold;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;   // Bilder brechen nie aus ihrem Container aus
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}

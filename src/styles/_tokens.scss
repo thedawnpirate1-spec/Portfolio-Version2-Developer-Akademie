@@ -1,0 +1,89 @@
+// =============================================================================
+//  DESIGN TOKENS
+//  Zentrale Werte fuer das ganze Portfolio. Geaendert wird NUR hier.
+//  Die Werte sind aus dem Figma-Entwurf "Style 2" (Sofia / Frontend Developer)
+//  abgeleitet und werden in der Preview-Phase visuell feinjustiert.
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Farben
+//  Wir benennen Farben nach ROLLE (primary, text, ...), nicht nach Aussehen.
+//  So koennen wir spaeter das Blau tauschen, ohne ueberall "blau" zu suchen.
+// -----------------------------------------------------------------------------
+
+// Markenblau – die kraeftige Hauptfarbe (Links, Headings-Akzent, Buttons)
+$color-primary:        #4f6bfa;   // mittleres Royalblau
+$color-primary-dark:   #3a52d6;   // fuer Hover / gedrueckte Zustaende
+$color-primary-light:  #7e94ff;   // hellere Variante (Kreis-Verlauf oben)
+
+// Hintergruende
+$color-bg:             #ffffff;   // Standard-Seitenhintergrund
+$color-bg-alt:         #f4f6ff;   // ganz helles Blau fuer abgesetzte Bloecke
+
+// Text
+$color-text:           #1c1c28;   // fast-schwarz fuer Fliesstext
+$color-text-muted:     #6b7180;   // graue Sekundaertexte / Beschreibungen
+$color-text-on-dark:   #ffffff;   // Text auf blauem Grund (Skill-Sektion)
+
+// Dekorative Kreis-Verlaeufe (die schwebenden blauen Kugeln im Design)
+$gradient-circle: radial-gradient(circle at 30% 30%, $color-primary-light, $color-primary 70%);
+
+// -----------------------------------------------------------------------------
+//  Typografie
+//  Eine Display-Schrift fuer grosse Headings, eine fuer Fliesstext.
+//  Poppins ist die Schrift dieses Developer-Akademie-Templates.
+// -----------------------------------------------------------------------------
+$font-display: 'Poppins', system-ui, sans-serif;   // Headings
+$font-body:    'Poppins', system-ui, sans-serif;   // Fliesstext (gleiche Familie, leichtere Gewichte)
+
+// Schriftgroessen (rem = relativ zur Root-Schriftgroesse 16px)
+$fs-hero:    clamp(2.75rem, 6vw, 4.5rem);  // "FRONTEND DEVELOPER" – skaliert mit der Breite
+$fs-h2:      clamp(2rem, 4vw, 3rem);       // Sektionsueberschriften ("Skill set", "My work")
+$fs-h3:      1.5rem;                        // Projekttitel
+$fs-body:    1rem;                          // Standardtext
+$fs-small:   0.875rem;                      // Tech-Tags, Footer
+
+// Schriftgewichte (Poppins kann 400/500/600/700/800)
+$fw-regular: 400;
+$fw-medium:  500;
+$fw-semibold:600;
+$fw-bold:    700;
+$fw-black:   800;
+
+// -----------------------------------------------------------------------------
+//  Abstaende (Spacing-Skala)
+//  Eine konsistente Skala statt willkuerlicher Pixelwerte ueberall.
+// -----------------------------------------------------------------------------
+$space-xs:  0.5rem;    //  8px
+$space-sm:  1rem;      // 16px
+$space-md:  2rem;      // 32px
+$space-lg:  4rem;      // 64px
+$space-xl:  8rem;      //128px – grosse Abstaende zwischen Sektionen
+
+// Maximale Inhaltsbreite (der Content liegt zentriert in dieser Spalte)
+$content-max: 1200px;
+
+// -----------------------------------------------------------------------------
+//  Radien & Schatten
+// -----------------------------------------------------------------------------
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-pill: 999px;   // fuer abgerundete Buttons
+
+$shadow-card: 0 20px 50px rgba(28, 28, 40, 0.12);
+
+// -----------------------------------------------------------------------------
+//  Breakpoints (fuer Responsive-Design)
+//  Wir designen "mobile first" und schalten ab diesen Breiten auf groesser.
+// -----------------------------------------------------------------------------
+$bp-tablet:  768px;
+$bp-desktop: 1024px;
+
+// -----------------------------------------------------------------------------
+//  Animation
+//  Eine Standard-Dauer + Easing, damit sich alles einheitlich anfuehlt.
+// -----------------------------------------------------------------------------
+$ease-out:   cubic-bezier(0.16, 1, 0.3, 1);  // weiches Ausklingen
+$dur-fast:   0.2s;
+$dur-base:   0.4s;
+$dur-slow:   0.8s;

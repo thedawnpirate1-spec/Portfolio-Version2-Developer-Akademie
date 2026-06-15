@@ -1,0 +1,31 @@
+// =============================================================================
+//  MIXINS & PLATZHALTER
+//  Wiederverwendbare SCSS-Bausteine. "@include name;" fuegt den Block ein.
+// =============================================================================
+@use 'tokens' as *;   // gibt uns Zugriff auf $color-primary usw. (ohne Praefix)
+
+// Zentrierte Inhaltsspalte: maximale Breite + Innenabstand links/rechts.
+// Jede Sektion legt ihren Inhalt in so einen Container.
+@mixin container {
+  width: 100%;
+  max-width: $content-max;
+  margin-inline: auto;          // zentriert horizontal
+  padding-inline: $space-md;    // Luft an den Seiten (auch auf Handy)
+}
+
+// "Mobile first": Dieser Block greift erst AB der angegebenen Breite.
+// Nutzung:  @include up($bp-tablet) { ... }
+@mixin up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;   // hier landet der Code, den man beim Aufruf reingibt
+  }
+}
+
+// Startzustand fuer Scroll-Reveal-Animationen:
+// Element ist unsichtbar und leicht nach unten verschoben.
+// Spaeter (per Klasse .is-visible) faedeln wir es weich ein.
+@mixin reveal-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity $dur-slow $ease-out, transform $dur-slow $ease-out;
+}
