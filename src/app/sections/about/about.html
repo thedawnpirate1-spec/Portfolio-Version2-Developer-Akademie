@@ -1,0 +1,54 @@
+<!--
+  About-Sektion „Let's work together".
+  Links: Titel + „I am" + Verfuegbarkeit (Ort/Remote/Relocate mit Icons).
+  Rechts: Vorstellungstext + „Send a message" (scrollt zum Kontakt).
+  appReveal blendet beide Spalten beim Scrollen weich ein.
+-->
+<section class="about" id="about">
+  <div class="about__inner container">
+    <!-- linke Spalte -->
+    <div class="about__intro" appReveal>
+      <h2 class="about__title">
+        <span>Let's work</span>
+        <span>together</span>
+      </h2>
+
+      <p class="about__iam">I am</p>
+
+      <ul class="about__availability">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+          </svg>
+          <span>located {{ about.location }}</span>
+        </li>
+
+        @if (about.remote) {
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2v7h14V7H5ZM2 18h20v2H2z" />
+            </svg>
+            <span>open to work remote</span>
+          </li>
+        }
+
+        @if (about.relocate) {
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 8.5 12 3 3 8.5V20h6v-6h6v6h6V8.5Zm-9 1.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+            </svg>
+            <span>open to relocate</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- rechte Spalte -->
+    <div class="about__text" appReveal>
+      @for (paragraph of about.paragraphs; track $index) {
+        <p>{{ paragraph }}</p>
+      }
+      <a class="btn-primary" href="#contact">Send a message</a>
+    </div>
+  </div>
+</section>

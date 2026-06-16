@@ -23,3 +23,17 @@ export const PROFILE = {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/leon-lammerich-800733406/',  icon: 'linkedin' },
   ] as SocialLink[],
 };
+
+// -----------------------------------------------------------------------------
+//  About-Sektion „Let's work together"
+//  Standort + Verfuegbarkeit + Vorstellungstext. Text hier frei erweitern.
+// -----------------------------------------------------------------------------
+export const ABOUT = {
+  location: 'near Bonn',   // Figma-Vorlage: "located in Munich"
+  remote: true,            // -> "open to work remote"
+  relocate: true,          // -> "open to relocate"
+  // Jeder Eintrag = ein Absatz. Hier kannst du deinen Text spaeter ausbauen.
+  paragraphs: [
+    'Ich bin Programmierer geworden aufgrund der Flexibilität — der Verbindung aus kreativer Gestaltung und Problemlösung.',
+  ],
+};

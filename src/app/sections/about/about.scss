@@ -1,0 +1,75 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.about {
+  padding-block: $space-xl;
+
+  &__inner {
+    display: grid;
+    gap: $space-lg;
+    grid-template-columns: 1fr;            // Mobile: gestapelt
+    align-items: center;
+
+    @include up($bp-desktop) {
+      grid-template-columns: 1fr 1fr;      // Desktop: Titel | Text
+    }
+  }
+
+  // --- linke Spalte ---
+  &__title {
+    font-family: $font-display;            // Baloo 2
+    color: $color-primary;
+    font-weight: $fw-bold;
+    line-height: 0.95;
+    font-size: clamp(2.5rem, 8vw, 7.5rem); // Figma Desktop: 121px
+
+    span { display: block; }
+  }
+
+  &__iam {
+    font-family: $font-display;
+    color: $color-primary;
+    text-align: center;
+    font-size: clamp(1.75rem, 4vw, 2.8rem); // Figma: 45px
+    margin-top: $space-md;
+  }
+
+  &__availability {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-md;
+    margin-top: $space-sm;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: $font-body;              // Montserrat
+      font-weight: $fw-semibold;
+      color: $color-primary;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+    }
+  }
+
+  // --- rechte Spalte ---
+  &__text {
+    p {
+      font-family: $font-body;
+      font-size: clamp(1rem, 2.2vw, 1.45rem); // Figma: 23px
+      line-height: 1.5;
+      color: $color-text;
+      margin-bottom: $space-sm;
+    }
+
+    .btn-primary {
+      margin-top: $space-md;
+    }
+  }
+}
