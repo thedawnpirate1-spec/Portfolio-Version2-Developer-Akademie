@@ -1,6 +1,11 @@
 <!--
-  Wurzel-Template der App. Aktuell nur der Router-Outlet.
-  Ab Push 2 kommen hier Header und Footer drum herum, und die einzelne
-  Portfolio-Seite wird ueber den Outlet eingeblendet.
+  Wurzel-Layout: Header bleibt immer oben, Footer immer unten,
+  dazwischen rendert der Router-Outlet die aktive Seite (aktuell Home).
 -->
-<router-outlet />
+<app-header />
+
+<main>
+  <router-outlet />
+</main>
+
+<app-footer />

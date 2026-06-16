@@ -1,0 +1,39 @@
+<!--
+  Hero-Sektion. Aufbau:
+   - .hero__bg     : dekorative, schwebende blaue Kreise (rein dekorativ)
+   - .hero__photo  : Profilfoto links
+   - .hero__text   : Begruessung + grosser Titel
+   - .hero__scroll : "SCROLL"-Indikator mit laufendem Punkt
+   - app-social-links : Icons an der rechten Kante (senkrecht)
+  Die Einblend-Animationen stecken in hero.scss (Klassen .reveal-1 ... .reveal-4).
+-->
+<section class="hero" id="home">
+  <!-- aria-hidden: Deko, fuer Screenreader unsichtbar -->
+  <div class="hero__bg" aria-hidden="true">
+    <span class="circle circle--xl"></span>
+    <span class="circle circle--md"></span>
+    <span class="circle circle--sm"></span>
+  </div>
+
+  <div class="hero__inner container">
+    <div class="hero__photo reveal-1">
+      <img src="assets/images/profil-cutout.png" alt="Profilfoto von {{ name }}" />
+    </div>
+
+    <div class="hero__text">
+      <p class="hero__greeting reveal-2">Hello! I am {{ name }}</p>
+      <h1 class="hero__title reveal-3">
+        Frontend<br />Developer
+      </h1>
+    </div>
+
+    <div class="hero__scroll reveal-4">
+      <span class="hero__scroll-label">SCROLL</span>
+      <span class="hero__scroll-line"><span class="hero__scroll-dot"></span></span>
+    </div>
+
+    <div class="hero__socials reveal-4">
+      <app-social-links orientation="vertical" />
+    </div>
+  </div>
+</section>

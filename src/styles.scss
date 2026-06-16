@@ -4,6 +4,7 @@
 //  Reihenfolge: Tokens verfuegbar machen -> Reset -> Basis-Typografie.
 // =============================================================================
 @use 'styles/tokens' as *;
+@use 'styles/mixins' as *;
 
 // -----------------------------------------------------------------------------
 //  1) Minimaler Reset
@@ -67,4 +68,10 @@ img {
 button {
   font-family: inherit;
   cursor: pointer;
+}
+
+// Globale Utility-Klasse: zentrierte Inhaltsspalte. Jede Sektion legt ihren
+// Inhalt in <div class="container"> – so haben alle dieselbe Breite & Raender.
+.container {
+  @include container;
 }

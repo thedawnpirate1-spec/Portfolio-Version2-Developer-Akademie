@@ -1,0 +1,63 @@
+@use '../../../styles/tokens' as *;
+
+.header {
+  position: fixed;          // bleibt beim Scrollen oben kleben
+  inset: 0 0 auto 0;        // top:0, left:0, right:0
+  z-index: 100;             // ueber allem anderen
+  padding-block: $space-sm;
+  // Uebergang von transparent zu weiss laeuft weich:
+  transition: background $dur-base $ease-out, box-shadow $dur-base $ease-out;
+
+  // Zustand "gescrollt": weisser Hintergrund + dezenter Schatten.
+  &.is-scrolled {
+    background: rgba($color-bg, 0.92);
+    backdrop-filter: blur(8px);   // leichter Milchglas-Effekt dahinter
+    box-shadow: 0 4px 20px rgba(28, 28, 40, 0.06);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-family: $font-display;
+    font-weight: $fw-bold;
+    font-size: 1.4rem;
+    color: $color-text;
+
+    span { color: $color-primary; }   // der Punkt im Logo in Markenblau
+  }
+
+  &__nav {
+    display: flex;
+    gap: $space-md;
+
+    a {
+      font-weight: $fw-medium;
+      color: $color-text;
+      position: relative;
+      transition: color $dur-fast $ease-out;
+    }
+
+    // Unterstrich-Animation: ein 0px breiter Strich, der bei Hover aufwaechst.
+    a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: $color-primary;
+      transition: width $dur-fast $ease-out;
+    }
+
+    a:hover {
+      color: $color-primary;
+    }
+    a:hover::after {
+      width: 100%;
+    }
+  }
+}

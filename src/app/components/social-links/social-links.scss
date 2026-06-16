@@ -1,0 +1,39 @@
+@use '../../../styles/tokens' as *;
+
+.socials {
+  list-style: none;          // Bullet-Punkte weg
+  display: flex;
+  flex-direction: column;    // Standard: senkrecht (Hero)
+  gap: $space-sm;
+
+  &.is-horizontal {
+    flex-direction: row;     // Footer-Variante
+  }
+
+  a {
+    display: grid;
+    place-items: center;     // Icon exakt zentrieren
+    width: 42px;
+    height: 42px;
+    border-radius: $radius-pill;
+    background: $color-bg;
+    box-shadow: 0 6px 18px rgba($color-primary, 0.25);
+    color: $color-primary;
+    // Sanfter Uebergang fuer den Hover-Effekt (Farbe + leichtes Anheben).
+    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out,
+      color $dur-fast $ease-out;
+  }
+
+  // Hover: Kreis fuellt sich blau, Icon wird weiss, Button hebt sich leicht.
+  a:hover {
+    background: $color-primary;
+    color: $color-text-on-dark;
+    transform: translateY(-3px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;       // Icon erbt die Textfarbe -> ein Hover faerbt beides
+  }
+}
