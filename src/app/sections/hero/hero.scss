@@ -2,48 +2,54 @@
 @use '../../../styles/mixins' as *;
 
 // =============================================================================
-//  HERO – Layout (mobile first, waechst ab Tablet auf zwei Spalten)
+//  HERO – Layout nach Figma (Desktop): Person steht unten links auf der
+//  Grundlinie, grosser blauer Kreis dahinter, Text rechts vertikal mittig,
+//  SCROLL center-rechts, Social-Icons unten rechts. Mobile: gestapelt.
 // =============================================================================
 .hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;                       // Kreis, der ueberlappt, abschneiden
-  // heller Hero-Hintergrund wie im Figma (weiss -> ganz helles Blau)
+  overflow: hidden;                          // Kreis/Foto, das ueberlappt, abschneiden
   background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
-  padding-block: $space-xl $space-lg;      // Platz oben fuer den fixen Header
 
   &__inner {
     position: relative;
+    min-height: 100vh;
+    padding-top: 96px;                       // Platz unter dem fixen Header
     display: grid;
     gap: $space-md;
+    grid-template-columns: 1fr;              // Mobile: eine Spalte
     align-items: center;
-    grid-template-columns: 1fr;            // Mobile: eine Spalte
     text-align: center;
 
     @include up($bp-tablet) {
-      grid-template-columns: 1fr 1.1fr;    // Desktop: Foto | Text
+      grid-template-columns: 1.25fr 1fr;     // Desktop: Foto breiter | Text
+      align-items: end;                      // Person sitzt auf der Grundlinie
       text-align: left;
     }
   }
 
-  // --- Foto + grosser blauer Kreis dahinter (Figma "hero bg") ---
+  // --- Foto + grosser blauer Kreis dahinter ---
   &__photo {
     position: relative;
-    isolation: isolate;                    // eigener Stacking-Context
-    display: flex;
-    justify-content: center;
-    order: -1;                             // Foto auf Mobile zuerst (oben)
+    isolation: isolate;                      // eigener Stacking-Context
+    justify-self: center;
+    width: 100%;
+    max-width: 320px;                        // Mobile
+    order: -1;                               // Foto auf Mobile oben
 
-    &::before {                            // der grosse blaue Kreis
+    @include up($bp-tablet) {
+      align-self: end;                       // unten andocken (Person steht)
+      max-width: 600px;
+    }
+
+    &::before {                              // der grosse blaue Kreis
       content: '';
       position: absolute;
       z-index: 0;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: min(118%, 520px);
+      left: -15%;                            // laeuft links aus dem Bild (wie Figma)
+      bottom: 6%;
+      width: 135%;
       aspect-ratio: 1;
       border-radius: 50%;
       background: $gradient-circle;
@@ -52,35 +58,43 @@
 
     img {
       position: relative;
-      z-index: 1;                          // Foto vor dem Kreis
+      z-index: 1;                            // Foto vor dem Kreis
+      display: block;
       width: 100%;
-      max-width: 420px;
-      filter: drop-shadow(0 22px 38px rgba($color-primary, 0.3));
+      filter: drop-shadow(0 18px 34px rgba($color-primary, 0.28));
     }
   }
 
-  // --- Texte ---
+  // --- Textspalte (rechts, vertikal mittig) ---
+  &__text {
+    @include up($bp-tablet) {
+      align-self: center;
+      padding-bottom: 6vh;
+    }
+  }
+
   &__greeting {
-    font-family: $font-body;               // Montserrat
+    font-family: $font-body;                 // Montserrat
     font-weight: $fw-regular;
     color: $color-primary;
-    font-size: clamp(1.5rem, 3.2vw, 4rem); // Figma Desktop: 64px
+    font-size: clamp(1.5rem, 3.2vw, 4rem);   // Figma Desktop: 64px
     margin-bottom: $space-xs;
   }
 
   &__title {
-    font-family: $font-display;            // Baloo 2
+    font-family: $font-display;              // Baloo 2
     color: $color-primary;
     text-transform: uppercase;
     font-weight: $fw-bold;
     line-height: 0.95;
     letter-spacing: -0.02em;
-    font-size: clamp(3rem, 9vw, 8rem);     // Figma Desktop: ~128px
+    font-size: clamp(2.75rem, 8.5vw, 7.5rem); // Figma Desktop: ~128px
+    white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
 
-    span { display: block; }               // FRONTEND / DEVELOPER untereinander
+    span { display: block; }
   }
 
-  // --- SCROLL-Indikator (nur Desktop) ---
+  // --- SCROLL-Indikator (Desktop, center-rechts) ---
   &__scroll {
     display: none;
 
@@ -90,14 +104,13 @@
       align-items: center;
       gap: $space-xs;
       position: absolute;
-      left: 50%;
-      bottom: $space-md;
-      transform: translateX(-50%);
+      left: 56%;
+      bottom: 14%;
     }
   }
 
   &__scroll-label {
-    font-family: $font-body;               // Montserrat Medium
+    font-family: $font-body;                 // Montserrat Medium
     font-weight: $fw-medium;
     letter-spacing: 0.3em;
     font-size: $fs-small;
@@ -113,7 +126,6 @@
     overflow: hidden;
   }
 
-  // Punkt laeuft endlos die Linie hinab (Scroll-Hinweis)
   &__scroll-dot {
     position: absolute;
     top: 0;
@@ -126,7 +138,7 @@
     animation: scroll-dot 1.8s $ease-out infinite;
   }
 
-  // --- Social-Icons (Mobile zentriert unten, Desktop senkrecht rechts) ---
+  // --- Social-Icons (Mobile zentriert unten, Desktop senkrecht unten rechts) ---
   &__socials {
     display: flex;
     justify-content: center;
@@ -135,8 +147,7 @@
     @include up($bp-tablet) {
       position: absolute;
       right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 16%;
       margin-top: 0;
     }
   }
@@ -145,26 +156,23 @@
 // =============================================================================
 //  Animationen
 // =============================================================================
-// (1) Einblenden von unten
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-// (2) Schweben des grossen Kreises (Basis-Transform bleibt zentriert)
+// Kreis schwebt sanft auf und ab.
 @keyframes hero-float {
-  0%, 100% { transform: translate(-50%, -50%); }
-  50%      { transform: translate(-50%, calc(-50% - 18px)); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
 }
 
-// (3) Scroll-Punkt
 @keyframes scroll-dot {
   0%   { transform: translate(-50%, -100%); opacity: 0; }
   30%  { opacity: 1; }
   100% { transform: translate(-50%, 320%); opacity: 0; }
 }
 
-// Gestaffeltes Einblenden – gleiche Animation, zeitversetzt.
 .reveal-1, .reveal-2, .reveal-3, .reveal-4 {
   animation: fade-up $dur-slow $ease-out both;
 }

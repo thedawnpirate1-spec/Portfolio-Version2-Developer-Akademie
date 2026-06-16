@@ -1,0 +1,7 @@
+<svg viewBox="0 0 64 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="display:block">
+  <!-- Scrum: zwei kreisende Pfeile (Sprint-Zyklus), weiss -->
+  <path d="M32 6a24 24 0 0 1 21.6 13.6l-6.3 2.4A17 17 0 0 0 32 13V6Z" fill="white"/>
+  <path d="M53.6 19.6 56 8l-11 4.6 8.6 7Z" fill="white"/>
+  <path d="M32 54A24 24 0 0 1 10.4 40.4l6.3-2.4A17 17 0 0 0 32 47v7Z" fill="white"/>
+  <path d="M10.4 40.4 8 52l11-4.6-8.6-7Z" fill="white"/>
+</svg>

@@ -5,6 +5,12 @@
   appReveal blendet beide Spalten beim Scrollen weich ein.
 -->
 <section class="about" id="about">
+  <!-- dekorative Kreise wie im Figma (oben Mitte angeschnitten, rechts ein Kreis) -->
+  <div class="about__deco" aria-hidden="true">
+    <span class="about__deco-circle about__deco-circle--top"></span>
+    <span class="about__deco-circle about__deco-circle--right"></span>
+  </div>
+
   <div class="about__inner container">
     <!-- linke Spalte -->
     <div class="about__intro" appReveal>
@@ -35,7 +41,7 @@
         @if (about.relocate) {
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M21 8.5 12 3 3 8.5V20h6v-6h6v6h6V8.5Zm-9 1.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+              <path d="M9 4h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z" />
             </svg>
             <span>open to relocate</span>
           </li>

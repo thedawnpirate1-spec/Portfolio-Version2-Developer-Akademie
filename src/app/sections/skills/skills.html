@@ -1,0 +1,21 @@
+<!--
+  Skill-Set-Sektion. Blauer Verlaufs-Hintergrund, weisse Icons + Labels.
+  Die Icons liegen als weisse SVGs in assets/figma/icons/.
+  Flex-wrap + justify-center -> 6 Icons in Reihe 1, der Rest zentriert darunter.
+-->
+<section class="skills" id="skills">
+  <div class="container">
+    <h2 class="skills__title" appReveal>Skill set</h2>
+
+    <ul class="skills__grid" appReveal>
+      @for (skill of skills; track skill.name) {
+        <li class="skills__item" [class.skills__item--badge]="skill.badge">
+          <span class="skills__icon">
+            <img [src]="'assets/figma/icons/' + skill.icon + '.svg'" [alt]="skill.name" />
+          </span>
+          <span class="skills__name">{{ skill.name }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

@@ -37,3 +37,28 @@ export const ABOUT = {
     'Ich bin Programmierer geworden aufgrund der Flexibilität — der Verbindung aus kreativer Gestaltung und Problemlösung.',
   ],
 };
+
+// -----------------------------------------------------------------------------
+//  Skill-Set-Sektion
+//  Reihenfolge wie im Figma. icon = Dateiname in public/assets/figma/icons/.
+//  Hier kannst du deine eigenen Skills ergaenzen/entfernen.
+// -----------------------------------------------------------------------------
+export interface Skill {
+  name: string;
+  icon: string;     // -> assets/figma/icons/<icon>.svg
+  badge?: boolean;  // Sonderbehandlung (Growth mindset hat eigenen Schatten)
+}
+
+export const SKILLS: Skill[] = [
+  { name: 'Angular',         icon: 'angular' },
+  { name: 'TypeScript',      icon: 'typescript' },
+  { name: 'JavaScript',      icon: 'javascript' },
+  { name: 'HTML',            icon: 'html' },
+  { name: 'Scrum',           icon: 'scrum' },
+  { name: 'Supabase',        icon: 'supabase' },
+  { name: 'Git',             icon: 'git' },
+  { name: 'CSS',             icon: 'css' },
+  { name: 'REST-API',        icon: 'rest-api' },
+  { name: 'Material Design', icon: 'material-design' },
+  { name: 'Growth mindset',  icon: 'growth-mindset', badge: true },
+];

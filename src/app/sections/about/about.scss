@@ -2,9 +2,35 @@
 @use '../../../styles/mixins' as *;
 
 .about {
+  position: relative;
+  overflow: hidden;            // schneidet die angeschnittenen Deko-Kreise sauber ab
   padding-block: $space-xl;
 
+  // --- dekorative Kreise ---
+  &__deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: $gradient-circle;
+    pointer-events: none;
+  }
+  // oben Mitte, halb angeschnitten
+  &__deco-circle--top {
+    width: 230px;
+    height: 230px;
+    top: -90px;
+    left: 52%;
+  }
+  // rechts daneben, kleiner
+  &__deco-circle--right {
+    width: 120px;
+    height: 120px;
+    top: 40px;
+    right: 8%;
+  }
+
   &__inner {
+    position: relative;        // Inhalt ueber den Deko-Kreisen
+    z-index: 1;
     display: grid;
     gap: $space-lg;
     grid-template-columns: 1fr;            // Mobile: gestapelt
