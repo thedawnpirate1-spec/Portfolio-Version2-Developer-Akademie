@@ -2,96 +2,118 @@
 @use '../../../styles/mixins' as *;
 
 // =============================================================================
-//  HERO – Layout
+//  HERO – Layout (mobile first, waechst ab Tablet auf zwei Spalten)
 // =============================================================================
 .hero {
-  position: relative;          // Bezugspunkt fuer die absolut platzierten Kreise
-  min-height: 100vh;           // fuellt mind. die volle Bildschirmhoehe
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;            // Kreise, die ueber den Rand ragen, abschneiden
-  background: $color-bg;
+  overflow: hidden;                       // Kreis, der ueberlappt, abschneiden
+  // heller Hero-Hintergrund wie im Figma (weiss -> ganz helles Blau)
+  background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
+  padding-block: $space-xl $space-lg;      // Platz oben fuer den fixen Header
 
   &__inner {
     position: relative;
-    z-index: 1;                // Inhalt liegt UEBER den Deko-Kreisen
     display: grid;
     gap: $space-md;
     align-items: center;
-    // Mobile: eine Spalte. Ab Tablet: Foto links | Text mittig | schmale Spalte rechts.
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;            // Mobile: eine Spalte
+    text-align: center;
 
     @include up($bp-tablet) {
-      grid-template-columns: 1fr 1fr auto;
+      grid-template-columns: 1fr 1.1fr;    // Desktop: Foto | Text
+      text-align: left;
     }
   }
 
+  // --- Foto + grosser blauer Kreis dahinter (Figma "hero bg") ---
   &__photo {
+    position: relative;
+    isolation: isolate;                    // eigener Stacking-Context
     display: flex;
     justify-content: center;
+    order: -1;                             // Foto auf Mobile zuerst (oben)
+
+    &::before {                            // der grosse blaue Kreis
+      content: '';
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(118%, 520px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: $gradient-circle;
+      animation: hero-float 8s ease-in-out infinite;
+    }
 
     img {
+      position: relative;
+      z-index: 1;                          // Foto vor dem Kreis
       width: 100%;
-      max-width: 380px;
-      // Freigestelltes PNG -> kein Rahmen; weicher Schatten an der Silhouette.
-      filter: drop-shadow(0 22px 38px rgba($color-primary, 0.28));
+      max-width: 420px;
+      filter: drop-shadow(0 22px 38px rgba($color-primary, 0.3));
     }
   }
 
-  &__text {
-    @include up($bp-tablet) {
-      // Text optisch nach rechts oben ruecken wie im Entwurf
-      justify-self: start;
-    }
-  }
-
+  // --- Texte ---
   &__greeting {
-    font-size: 1.25rem;
-    font-weight: $fw-medium;
-    color: $color-text-muted;
+    font-family: $font-body;               // Montserrat
+    font-weight: $fw-regular;
+    color: $color-primary;
+    font-size: clamp(1.5rem, 3.2vw, 4rem); // Figma Desktop: 64px
     margin-bottom: $space-xs;
   }
 
   &__title {
-    font-size: $fs-hero;
-    font-weight: $fw-black;
+    font-family: $font-display;            // Baloo 2
     color: $color-primary;
     text-transform: uppercase;
-    letter-spacing: -0.01em;
+    font-weight: $fw-bold;
     line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-size: clamp(3rem, 9vw, 8rem);     // Figma Desktop: ~128px
+
+    span { display: block; }               // FRONTEND / DEVELOPER untereinander
   }
 
-  // --- SCROLL-Indikator -------------------------------------------------------
+  // --- SCROLL-Indikator (nur Desktop) ---
   &__scroll {
-    display: none;             // auf kleinen Screens ausblenden
+    display: none;
+
     @include up($bp-tablet) {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: $space-xs;
-      grid-column: 2;          // unter dem Text
-      justify-self: center;
-      margin-top: $space-lg;
+      position: absolute;
+      left: 50%;
+      bottom: $space-md;
+      transform: translateX(-50%);
     }
   }
 
   &__scroll-label {
-    writing-mode: vertical-rl; // Text senkrecht
+    font-family: $font-body;               // Montserrat Medium
+    font-weight: $fw-medium;
     letter-spacing: 0.3em;
     font-size: $fs-small;
-    color: $color-text-muted;
+    color: $color-primary;
   }
 
   &__scroll-line {
     position: relative;
     width: 2px;
-    height: 60px;
+    height: 80px;
+    border-radius: 2px;
     background: rgba($color-primary, 0.25);
     overflow: hidden;
-    border-radius: 2px;
   }
 
-  // der Punkt, der die Linie endlos hinunterlaeuft
+  // Punkt laeuft endlos die Linie hinab (Scroll-Hinweis)
   &__scroll-dot {
     position: absolute;
     top: 0;
@@ -104,77 +126,45 @@
     animation: scroll-dot 1.8s $ease-out infinite;
   }
 
+  // --- Social-Icons (Mobile zentriert unten, Desktop senkrecht rechts) ---
   &__socials {
+    display: flex;
+    justify-content: center;
+    margin-top: $space-md;
+
     @include up($bp-tablet) {
-      grid-column: 3;          // ganz rechts
-      justify-self: end;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-top: 0;
     }
   }
 }
 
 // =============================================================================
-//  Deko-Kreise + Float-Animation
-//  position: absolute -> frei platziert; sie "schweben" endlos auf und ab.
+//  Animationen
 // =============================================================================
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: $gradient-circle;
-  // Jeder Kreis bekommt unten eine eigene Dauer/Delay, damit sie NICHT synchron
-  // wippen – das wirkt natuerlicher.
-  animation: float 7s ease-in-out infinite;
-
-  &--xl {
-    width: 600px; height: 600px;
-    top: -60px; left: -120px;
-    opacity: 0.9;
-  }
-  &--md {
-    width: 180px; height: 180px;
-    bottom: 40px; left: 38%;
-    animation-duration: 9s;
-    animation-delay: -2s;     // negativer Delay = startet "mitten" in der Bewegung
-    opacity: 0.7;
-  }
-  &--sm {
-    width: 90px; height: 90px;
-    top: 120px; right: 8%;
-    animation-duration: 6s;
-    animation-delay: -4s;
-    opacity: 0.6;
-  }
-}
-
-// =============================================================================
-//  @keyframes – die eigentlichen Animationen
-// =============================================================================
-
-// (1) Einblenden von unten: unsichtbar + 28px tiefer  ->  sichtbar an Endposition.
+// (1) Einblenden von unten
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-// (2) Schweben: sanft hoch und wieder runter. ease-in-out laesst es weich kippen.
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-26px); }
+// (2) Schweben des grossen Kreises (Basis-Transform bleibt zentriert)
+@keyframes hero-float {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%      { transform: translate(-50%, calc(-50% - 18px)); }
 }
 
-// (3) Scroll-Punkt: faellt von oben durch die Linie und faedelt dabei aus.
+// (3) Scroll-Punkt
 @keyframes scroll-dot {
   0%   { transform: translate(-50%, -100%); opacity: 0; }
   30%  { opacity: 1; }
   100% { transform: translate(-50%, 320%); opacity: 0; }
 }
 
-// -----------------------------------------------------------------------------
-//  Gestaffeltes Einblenden (Stagger)
-//  Alle .reveal-* nutzen dieselbe fade-up-Animation, starten aber zeitversetzt.
-//  animation-fill-mode: both  =>  VOR dem Start gilt schon der "from"-Zustand
-//  (Element bleibt unsichtbar, statt aufzublitzen) und NACH dem Ende der
-//  "to"-Zustand (es bleibt sichtbar).
-// -----------------------------------------------------------------------------
+// Gestaffeltes Einblenden – gleiche Animation, zeitversetzt.
 .reveal-1, .reveal-2, .reveal-3, .reveal-4 {
   animation: fade-up $dur-slow $ease-out both;
 }

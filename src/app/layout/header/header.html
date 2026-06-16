@@ -1,8 +1,7 @@
 <!--
-  Sticky Header. [class.is-scrolled] wird true, sobald man scrollt
-  (siehe header.ts) -> dann blendet SCSS Hintergrund + Schatten ein.
-  Die Nav-Links sind normale Anker auf Sektions-IDs; das globale
-  scroll-behavior: smooth (styles.scss) sorgt fuer das weiche Scrollen.
+  Sticky Header. [class.is-scrolled] wird true sobald man scrollt (header.ts)
+  -> dann blendet SCSS Hintergrund + Schatten ein. Nav-Links sind Anker auf
+  Sektions-IDs; globales scroll-behavior: smooth sorgt fuers weiche Scrollen.
 -->
 <header class="header" [class.is-scrolled]="scrolled()">
   <div class="header__inner container">
@@ -10,10 +9,19 @@
       {{ name }}<span>.</span>
     </a>
 
-    <nav class="header__nav" aria-label="Hauptnavigation">
-      <a href="#about">About me</a>
-      <a href="#skills">Skill set</a>
-      <a href="#work">My work</a>
-    </nav>
+    <div class="header__right">
+      <nav class="header__nav" aria-label="Hauptnavigation">
+        <a href="#about">About me</a>
+        <a href="#skills">Skill set</a>
+        <a href="#work">My work</a>
+      </nav>
+
+      <!-- Sprachumschalter (aktuell statisch; i18n folgt spaeter optional) -->
+      <div class="header__lang" aria-label="Sprache wählen">
+        <button type="button">DE</button>
+        <span>/</span>
+        <button type="button" class="is-active" aria-current="true">EN</button>
+      </div>
+    </div>
   </div>
 </header>

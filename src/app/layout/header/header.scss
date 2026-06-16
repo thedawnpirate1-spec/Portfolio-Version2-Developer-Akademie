@@ -3,16 +3,16 @@
 .header {
   position: fixed;          // bleibt beim Scrollen oben kleben
   inset: 0 0 auto 0;        // top:0, left:0, right:0
-  z-index: 100;             // ueber allem anderen
+  z-index: 100;
   padding-block: $space-sm;
-  // Uebergang von transparent zu weiss laeuft weich:
   transition: background $dur-base $ease-out, box-shadow $dur-base $ease-out;
 
-  // Zustand "gescrollt": weisser Hintergrund + dezenter Schatten.
+  // Figma: Header liegt immer auf leichtem Milchglas; beim Scrollen deutlicher.
+  backdrop-filter: blur(8px);
+
   &.is-scrolled {
     background: rgba($color-bg, 0.92);
-    backdrop-filter: blur(8px);   // leichter Milchglas-Effekt dahinter
-    box-shadow: 0 4px 20px rgba(28, 28, 40, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   }
 
   &__inner {
@@ -22,12 +22,18 @@
   }
 
   &__logo {
-    font-family: $font-display;
+    font-family: $font-display;   // Baloo 2
     font-weight: $fw-bold;
     font-size: 1.4rem;
-    color: $color-text;
+    color: $color-primary;
 
-    span { color: $color-primary; }   // der Punkt im Logo in Markenblau
+    span { opacity: 0.6; }        // der Punkt etwas dezenter
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
   }
 
   &__nav {
@@ -35,13 +41,15 @@
     gap: $space-md;
 
     a {
+      font-family: $font-body;    // Montserrat (wie im Figma)
       font-weight: $fw-medium;
-      color: $color-text;
+      font-size: 1.05rem;
+      color: $color-primary;
       position: relative;
       transition: color $dur-fast $ease-out;
     }
 
-    // Unterstrich-Animation: ein 0px breiter Strich, der bei Hover aufwaechst.
+    // Hover aus dem Prototyp: Link wird kraeftiger + Unterstrich waechst auf.
     a::after {
       content: '';
       position: absolute;
@@ -52,12 +60,33 @@
       background: $color-primary;
       transition: width $dur-fast $ease-out;
     }
+    a:hover { color: $color-primary-dark; }
+    a:hover::after { width: 100%; }
+  }
 
-    a:hover {
-      color: $color-primary;
+  // DE/EN-Umschalter
+  &__lang {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: $font-body;
+    color: $color-primary;
+
+    button {
+      background: none;
+      border: 0;
+      color: inherit;
+      font-family: inherit;
+      font-size: 1.05rem;
+      padding: 0 2px;
+      transition: opacity $dur-fast $ease-out;
     }
-    a:hover::after {
-      width: 100%;
-    }
+    button:hover { opacity: 0.7; }
+    button.is-active { font-weight: $fw-bold; }   // aktive Sprache fett (EN)
+  }
+
+  // Auf kleinen Screens Nav vorerst ausblenden (Burger-Menue folgt spaeter).
+  @media (max-width: #{$bp-tablet - 1px}) {
+    &__nav { display: none; }
   }
 }

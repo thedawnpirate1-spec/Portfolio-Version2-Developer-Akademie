@@ -11,21 +11,28 @@
 //  So koennen wir spaeter das Blau tauschen, ohne ueberall "blau" zu suchen.
 // -----------------------------------------------------------------------------
 
-// Markenblau – die kraeftige Hauptfarbe (Links, Headings-Akzent, Buttons)
-$color-primary:        #4f6bfa;   // mittleres Royalblau
-$color-primary-dark:   #3a52d6;   // fuer Hover / gedrueckte Zustaende
-$color-primary-light:  #7e94ff;   // hellere Variante (Kreis-Verlauf oben)
+// Markenblau – ECHTE Werte aus Figma (style 2 blue). NICHT mehr geschaetzt.
+$color-primary:        #5988ff;   // Hauptblau (Headings, Links, Buttons)
+$color-primary-deep:   #0043f0;   // tiefes Blau – Ende der Verlaeufe
+$color-primary-dark:   #2d65f8;   // fuer Hover / gedrueckte Zustaende
+$color-primary-light:  #7e9cff;   // hellere Variante
+
+// Akzente aus dem Figma-Farbsystem
+$color-purple-deep:    #1e0a7d;   // Purple light
+$color-purple:         #797ef3;   // Purple 2
 
 // Hintergruende
 $color-bg:             #ffffff;   // Standard-Seitenhintergrund
 $color-bg-alt:         #f4f6ff;   // ganz helles Blau fuer abgesetzte Bloecke
 
 // Text
-$color-text:           #1c1c28;   // fast-schwarz fuer Fliesstext
-$color-text-muted:     #6b7180;   // graue Sekundaertexte / Beschreibungen
-$color-text-on-dark:   #ffffff;   // Text auf blauem Grund (Skill-Sektion)
+$color-text:           #000000;   // Fliesstext (Figma: Black)
+$color-text-muted:     #6b7180;   // graue Sekundaertexte
+$color-text-on-dark:   #ffffff;   // Text auf blauem Grund (Skill-/References-Sektion)
 
-// Dekorative Kreis-Verlaeufe (die schwebenden blauen Kugeln im Design)
+// Verlauf fuer Skill-/References-Sektion (echter Figma-Verlauf)
+$gradient-blue:   linear-gradient(115deg, #{$color-primary} 34%, #{$color-primary-deep} 112%);
+// Dekorative Kreis-Verlaeufe (die schwebenden blauen Kugeln)
 $gradient-circle: radial-gradient(circle at 30% 30%, $color-primary-light, $color-primary 70%);
 
 // -----------------------------------------------------------------------------
@@ -33,8 +40,9 @@ $gradient-circle: radial-gradient(circle at 30% 30%, $color-primary-light, $colo
 //  Eine Display-Schrift fuer grosse Headings, eine fuer Fliesstext.
 //  Poppins ist die Schrift dieses Developer-Akademie-Templates.
 // -----------------------------------------------------------------------------
-$font-display: 'Poppins', system-ui, sans-serif;   // Headings
-$font-body:    'Poppins', system-ui, sans-serif;   // Fliesstext (gleiche Familie, leichtere Gewichte)
+$font-display: 'Baloo 2', system-ui, sans-serif;    // grosse Headings (rund/verspielt)
+$font-body:    'Montserrat', system-ui, sans-serif; // Fliesstext, Tech-Tags, Orte
+$font-ui:      'Poppins', system-ui, sans-serif;    // Buttons, Formular, "Scroll down"
 
 // Schriftgroessen (rem = relativ zur Root-Schriftgroesse 16px)
 $fs-hero:    clamp(2.75rem, 6vw, 4.5rem);  // "FRONTEND DEVELOPER" – skaliert mit der Breite

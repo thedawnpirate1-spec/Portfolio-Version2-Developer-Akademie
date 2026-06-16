@@ -13,11 +13,13 @@ export interface SocialLink {
 }
 
 export const PROFILE = {
-  name: 'Leon Lammerich',                 // ← hier deinen Vornamen eintragen
+  name: 'Leon Lammerich',
+  firstName: 'Leon',                 // fuer die Hero-Begruessung "Hello! I am …"
   role: 'Frontend Developer',
+  // Reihenfolge wie im Figma-Design: GitHub, E-Mail, LinkedIn
   socials: [
-    { label: 'GitHub',   href: 'https://github.com/',        icon: 'github'   },
-    { label: 'E-Mail',   href: 'mailto:hallo@example.com',   icon: 'mail'     },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/',  icon: 'linkedin' },
+    { label: 'GitHub',   href: 'https://github.com/thedawnpirate1-spec',                 icon: 'github'   },
+    { label: 'E-Mail',   href: 'mailto:leonlammerich@gmx.de',                            icon: 'mail'     },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/leon-lammerich-800733406/',  icon: 'linkedin' },
   ] as SocialLink[],
 };

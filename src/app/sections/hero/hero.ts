@@ -10,5 +10,6 @@ import { PROFILE } from '../../data/profile';
 })
 export class Hero {
   readonly name = PROFILE.name;
+  readonly firstName = PROFILE.firstName;
   readonly role = PROFILE.role;
 }
