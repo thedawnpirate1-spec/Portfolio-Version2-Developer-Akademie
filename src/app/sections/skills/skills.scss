@@ -37,12 +37,19 @@
   }
 
   &__icon {
-    display: grid;
-    place-items: center;
-    width: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 72px;
 
-    img { width: 100%; height: 100%; object-fit: contain; }
+    // Explizite Groesse + contain -> Icon bleibt proportional und sprengt
+    // nie den Container (vorher liefen die SVGs auf 150px auf).
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+    }
   }
 
   // "Growth mindset" hat im Figma einen kraeftigeren Schatten.

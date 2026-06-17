@@ -12,8 +12,33 @@
   overflow: hidden;                          // Kreis/Foto, das ueberlappt, abschneiden
   background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
 
+  // --- grosser blauer Ball ---
+  // Mobile: dezent hinter dem Foto, oben zentriert.
+  // Desktop: grosser Ball OBEN LINKS, laeuft ueber obere + linke Kante hinaus.
+  &__circle {
+    position: absolute;
+    z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
+    border-radius: 50%;
+    background: $gradient-circle;
+    width: 600vh;
+    height: 600vh;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include up($bp-tablet) {
+      width: 150vh;
+      height: 150vh;
+      top: 50%;
+      left: -75vh;
+      transform: translateY(-50%);
+      animation: none;
+    }
+  }
+
   &__inner {
     position: relative;
+    z-index: 1;                              // Inhalt (Foto + Text) liegt VOR dem Ball
     min-height: 100vh;
     padding-top: 96px;                       // Platz unter dem fixen Header
     display: grid;
@@ -23,7 +48,10 @@
     text-align: center;
 
     @include up($bp-tablet) {
-      grid-template-columns: 1.25fr 1fr;     // Desktop: Foto breiter | Text
+      // minmax(0,...) -> Spalten folgen dem Verhaeltnis, der grosse nowrap-Titel
+      // darf ueberlaufen (wird vom Hero overflow:hidden geclippt) statt die
+      // Foto-Spalte zusammenzustauchen.
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       align-items: end;                      // Person sitzt auf der Grundlinie
       text-align: left;
     }
@@ -40,20 +68,8 @@
 
     @include up($bp-tablet) {
       align-self: end;                       // unten andocken (Person steht)
-      max-width: 600px;
-    }
-
-    &::before {                              // der grosse blaue Kreis
-      content: '';
-      position: absolute;
-      z-index: 0;
-      left: -15%;                            // laeuft links aus dem Bild (wie Figma)
-      bottom: 6%;
-      width: 135%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: $gradient-circle;
-      animation: hero-float 8s ease-in-out infinite;
+      max-width: 100%;                       // breiteres Foto
+      width: 90%;
     }
 
     img {
@@ -88,7 +104,7 @@
     font-weight: $fw-bold;
     line-height: 0.95;
     letter-spacing: -0.02em;
-    font-size: clamp(2.75rem, 8.5vw, 7.5rem); // Figma Desktop: ~128px
+    font-size: clamp(2.5rem, 6.5vw, 6rem);   // passt in die rechte Spalte
     white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
 
     span { display: block; }
@@ -104,8 +120,9 @@
       align-items: center;
       gap: $space-xs;
       position: absolute;
-      left: 56%;
-      bottom: 14%;
+      left: 75%;
+      transform: translateX(-50%);
+      bottom: 10%;
     }
   }
 
@@ -147,7 +164,7 @@
     @include up($bp-tablet) {
       position: absolute;
       right: 0;
-      bottom: 16%;
+      bottom: 10%; // etwas tiefer passend zum SCROLL
       margin-top: 0;
     }
   }
