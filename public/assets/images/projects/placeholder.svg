@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 393" role="img" aria-label="Projekt-Platzhalter">
+  <rect width="620" height="393" rx="12" fill="#eef2ff"/>
+  <rect x="0" y="0" width="620" height="46" rx="12" fill="#dbe3ff"/>
+  <circle cx="26" cy="23" r="6" fill="#9fb4ff"/>
+  <circle cx="48" cy="23" r="6" fill="#9fb4ff"/>
+  <circle cx="70" cy="23" r="6" fill="#9fb4ff"/>
+  <rect x="140" y="90" width="340" height="22" rx="6" fill="#c3d0ff"/>
+  <rect x="180" y="130" width="260" height="14" rx="5" fill="#d3dcff"/>
+  <rect x="200" y="200" width="220" height="48" rx="10" fill="#5988ff"/>
+  <text x="310" y="300" text-anchor="middle" font-family="Poppins, sans-serif" font-size="18" fill="#6b7180">dein Projekt-Screenshot</text>
+</svg>

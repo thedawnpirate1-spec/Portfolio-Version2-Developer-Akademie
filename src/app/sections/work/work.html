@@ -1,0 +1,40 @@
+<!--
+  My-Work-Sektion. Projektkarten wechseln links/rechts (i % 2).
+  Jede Karte: Screenshot + Titel (Baloo) + Tech (Montserrat) + Beschreibung +
+  Buttons (optional "Live test" gefuellt, "Github" umrandet).
+  @for mit $index steuert das Abwechseln; appReveal blendet jede Karte beim
+  Hereinscrollen ein.
+-->
+<section class="work" id="work">
+  <div class="container">
+    <h2 class="work__title" appReveal>My work</h2>
+    <p class="work__intro" appReveal>
+      Eine Auswahl meiner Projekte — interagiere mit ihnen und sieh meine Skills in Aktion.
+    </p>
+
+    <div class="work__list">
+      @for (project of projects; track project.title; let i = $index) {
+        <article class="work__card" [class.work__card--reverse]="i % 2 === 1" appReveal>
+          <div class="work__image">
+            <img [src]="project.image" [alt]="project.title + ' Screenshot'" />
+          </div>
+
+          <div class="work__info">
+            <h3 class="work__name">{{ project.title }}</h3>
+            <p class="work__tech">{{ project.tech }}</p>
+            <p class="work__desc">{{ project.description }}</p>
+
+            <div class="work__buttons">
+              @if (project.live) {
+                <a class="btn-secondary" [href]="project.live" target="_blank" rel="noopener">Live test</a>
+              }
+              @if (project.github) {
+                <a class="btn-primary" [href]="project.github" target="_blank" rel="noopener">Github</a>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

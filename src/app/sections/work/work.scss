@@ -1,0 +1,84 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.work {
+  padding-block: $space-xl;
+
+  &__title {
+    font-family: $font-display;              // Baloo 2
+    font-weight: $fw-bold;
+    color: $color-primary;
+    font-size: clamp(2.5rem, 7vw, 6rem);     // Figma Desktop: 96px
+  }
+
+  &__intro {
+    font-family: $font-body;
+    font-size: clamp(1rem, 2.2vw, 1.45rem);
+    color: $color-text;
+    margin-top: $space-sm;
+    margin-bottom: $space-xl;
+    max-width: 640px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+  }
+
+  // --- einzelne Projektkarte ---
+  &__card {
+    display: grid;
+    gap: $space-lg;
+    grid-template-columns: 1fr;              // Mobile: Bild oben, Text unten
+    align-items: center;
+
+    @include up($bp-desktop) {
+      grid-template-columns: 1.2fr 1fr;      // Desktop: Bild | Text
+    }
+  }
+
+  // jede zweite Karte spiegeln (Text links, Bild rechts)
+  &__card--reverse {
+    @include up($bp-desktop) {
+      .work__image { order: 2; }
+      .work__info  { text-align: right; }
+      .work__buttons { justify-content: flex-end; }
+    }
+  }
+
+  &__image {
+    img {
+      width: 100%;
+      border-radius: $radius-md;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);   // Figma "s2 shadow"
+    }
+  }
+
+  &__name {
+    font-family: $font-display;              // Baloo 2
+    color: $color-primary;
+    font-size: clamp(2rem, 4vw, 2.8rem);     // Figma: 45px
+  }
+
+  &__tech {
+    font-family: $font-body;
+    color: $color-primary;
+    font-size: clamp(1rem, 2vw, 1.45rem);    // Figma: 23px
+    margin-block: $space-xs $space-sm;
+  }
+
+  &__desc {
+    font-family: $font-body;
+    color: $color-text;
+    font-size: 1rem;                         // Figma: 16px
+    line-height: 1.5;
+    margin-bottom: $space-md;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+  }
+}

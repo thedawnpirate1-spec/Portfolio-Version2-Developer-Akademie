@@ -20,11 +20,11 @@
     z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
     border-radius: 50%;
     background: $gradient-circle;
-    width: 600vh;
-    height: 600vh;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 200vw;
+    height: 200vw;
+    top: -50vw;
+    left: -50vw;
+    transform: none;
 
     @include up($bp-tablet) {
       width: 150vh;
@@ -45,7 +45,7 @@
     gap: $space-md;
     grid-template-columns: 1fr;              // Mobile: eine Spalte
     align-items: center;
-    text-align: center;
+    text-align: left;                        // Text linksbündig auf Mobile
 
     @include up($bp-tablet) {
       // minmax(0,...) -> Spalten folgen dem Verhaeltnis, der grosse nowrap-Titel
@@ -60,13 +60,15 @@
   // --- Foto + grosser blauer Kreis dahinter ---
   &__photo {
     position: relative;
+    z-index: 2;                              // Immer über dem Kreis
     isolation: isolate;                      // eigener Stacking-Context
     justify-self: center;
     width: 100%;
     max-width: 320px;                        // Mobile
-    order: -1;                               // Foto auf Mobile oben
+    order: 2;                                // Foto auf Mobile unter dem Text
 
     @include up($bp-tablet) {
+      order: 0;                              // Wieder normales Verhalten auf Desktop
       align-self: end;                       // unten andocken (Person steht)
       max-width: 100%;                       // breiteres Foto
       width: 90%;
@@ -83,7 +85,12 @@
 
   // --- Textspalte (rechts, vertikal mittig) ---
   &__text {
+    position: relative;                      // Z-Index greift
+    z-index: 2;                              // Text liegt immer über dem Bild und Hintergrund
+    order: 1;                                // Text auf Mobile oben
+
     @include up($bp-tablet) {
+      order: 0;
       align-self: center;
       padding-bottom: 6vh;
     }
@@ -92,14 +99,18 @@
   &__greeting {
     font-family: $font-body;                 // Montserrat
     font-weight: $fw-regular;
-    color: $color-primary;
+    color: #ffffff;                          // Mobile: weiß
     font-size: clamp(1.5rem, 3.2vw, 4rem);   // Figma Desktop: 64px
     margin-bottom: $space-xs;
+
+    @include up($bp-tablet) {
+      color: $color-primary;                 // Desktop: blau
+    }
   }
 
   &__title {
     font-family: $font-display;              // Baloo 2
-    color: $color-primary;
+    color: #ffffff;                          // Mobile: weiß
     text-transform: uppercase;
     font-weight: $fw-bold;
     line-height: 0.95;
@@ -107,15 +118,25 @@
     font-size: clamp(2.5rem, 6.5vw, 6rem);   // passt in die rechte Spalte
     white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
 
+    @include up($bp-tablet) {
+      color: $color-primary;                 // Desktop: blau
+    }
+
     span { display: block; }
   }
 
   // --- SCROLL-Indikator (Desktop, center-rechts) ---
   &__scroll {
-    display: none;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    position: absolute;
+    right: -24px;                            // An rechten Rand rücken
+    bottom: 25%;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
 
     @include up($bp-tablet) {
-      display: flex;
       flex-direction: column;
       align-items: center;
       gap: $space-xs;
@@ -123,6 +144,7 @@
       left: 75%;
       transform: translateX(-50%);
       bottom: 10%;
+      right: auto;
     }
   }
 
@@ -132,15 +154,31 @@
     letter-spacing: 0.3em;
     font-size: $fs-small;
     color: $color-primary;
+
+    // Spezieller Text auf Mobile (über HTML data-Attribut oder Pseudo)
+    &::after {
+      content: " down \2192";
+    }
+
+    @include up($bp-tablet) {
+      &::after {
+        content: "";                         // Auf Desktop nur SCROLL
+      }
+    }
   }
 
   &__scroll-line {
+    display: none;                           // Keine Linie auf Mobile
     position: relative;
     width: 2px;
     height: 80px;
     border-radius: 2px;
     background: rgba($color-primary, 0.25);
     overflow: hidden;
+
+    @include up($bp-tablet) {
+      display: block;                        // Linie auf Desktop wieder da
+    }
   }
 
   &__scroll-dot {
@@ -155,11 +193,14 @@
     animation: scroll-dot 1.8s $ease-out infinite;
   }
 
-  // --- Social-Icons (Mobile zentriert unten, Desktop senkrecht unten rechts) ---
+  // --- Social-Icons (Mobile zentriert oben, Desktop senkrecht unten rechts) ---
   &__socials {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: center;
     margin-top: $space-md;
+    order: 0; // Auf Mobile ganz oben über dem Text
 
     @include up($bp-tablet) {
       position: absolute;

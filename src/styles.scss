@@ -115,3 +115,24 @@ button {
     transform: translateY(-2px);
   }
 }
+
+// Sekundaer-Button (Figma "Button secondary"): gefuellt blau, weisse Schrift.
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-ui;                 // Poppins
+  font-size: 1.1rem;
+  color: $color-text-on-dark;
+  background: $color-primary;
+  border: 2px solid $color-primary;
+  border-radius: 10px;
+  padding: 0.8rem 1.9rem;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+  transition: background $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-2px);
+  }
+}
