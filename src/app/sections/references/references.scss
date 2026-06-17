@@ -1,0 +1,68 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.references {
+  background: $gradient-blue;              // echter Figma-Verlauf #5988FF -> #0043F0
+  color: $color-text-on-dark;
+  padding-block: $space-xl;
+  text-align: center;
+
+  &__title {
+    font-family: $font-display;            // Baloo 2
+    font-weight: $fw-bold;
+    font-size: clamp(2rem, 5vw, 2.8rem);   // Figma: 45px
+  }
+
+  &__subtitle {
+    font-family: $font-body;
+    font-size: clamp(1.1rem, 2.5vw, 2rem); // Figma: 32px
+    margin-top: $space-sm;
+    margin-bottom: $space-lg;
+    opacity: 0.95;
+  }
+
+  &__grid {
+    display: grid;
+    gap: $space-md;
+    grid-template-columns: 1fr;            // Mobile: gestapelt
+    max-width: 1040px;
+    margin-inline: auto;
+
+    @include up($bp-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    margin: 0;
+    text-align: left;
+  }
+
+  &__quote {
+    font-family: $font-body;
+    font-size: 1.05rem;                    // Figma: 18px
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name {
+    font-family: $font-body;
+    font-weight: $fw-bold;
+    font-size: 1.3rem;                     // Figma: 24px
+  }
+
+  &__project {
+    font-family: $font-body;
+    font-size: 1rem;                       // Figma: 16px
+    opacity: 0.9;
+  }
+}

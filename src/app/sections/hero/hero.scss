@@ -45,7 +45,7 @@
     gap: $space-md;
     grid-template-columns: 1fr;              // Mobile: eine Spalte
     align-items: center;
-    text-align: left;                        // Text linksbündig auf Mobile
+    text-align: center;                      // Text zentriert auf Mobile
 
     @include up($bp-tablet) {
       // minmax(0,...) -> Spalten folgen dem Verhaeltnis, der grosse nowrap-Titel
@@ -63,8 +63,8 @@
     z-index: 2;                              // Immer über dem Kreis
     isolation: isolate;                      // eigener Stacking-Context
     justify-self: center;
-    width: 100%;
-    max-width: 320px;                        // Mobile
+    width: 75vw;                             // Fließend responsive auf Mobile
+    max-width: 360px;                        // Obergrenze für Mobile vor Tablet
     order: 2;                                // Foto auf Mobile unter dem Text
 
     @include up($bp-tablet) {
@@ -100,11 +100,12 @@
     font-family: $font-body;                 // Montserrat
     font-weight: $fw-regular;
     color: #ffffff;                          // Mobile: weiß
-    font-size: clamp(1.5rem, 3.2vw, 4rem);   // Figma Desktop: 64px
+    font-size: clamp(1.4rem, 5.5vw, 2.5rem); // Großer, fließender Text auf Mobile
     margin-bottom: $space-xs;
 
     @include up($bp-tablet) {
       color: $color-primary;                 // Desktop: blau
+      font-size: clamp(1.5rem, 3.2vw, 4rem); // Figma Desktop: 64px
     }
   }
 
@@ -115,11 +116,12 @@
     font-weight: $fw-bold;
     line-height: 0.95;
     letter-spacing: -0.02em;
-    font-size: clamp(2.5rem, 6.5vw, 6rem);   // passt in die rechte Spalte
+    font-size: clamp(2.2rem, 11vw, 5rem);    // Großer, fließender Titel auf Mobile
     white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
 
     @include up($bp-tablet) {
       color: $color-primary;                 // Desktop: blau
+      font-size: clamp(2.5rem, 6.5vw, 6rem); // passt in die rechte Spalte
     }
 
     span { display: block; }

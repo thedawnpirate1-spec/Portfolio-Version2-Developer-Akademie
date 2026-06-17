@@ -21,6 +21,10 @@
     }
   }
 
+  &.is-menu-open {
+    backdrop-filter: none;                   // Verhindert Containing-Block-Bug für fixed children
+  }
+
   &__inner {
     display: flex;
     align-items: center;
@@ -33,6 +37,8 @@
     font-size: 1.4rem;
     color: #ffffff;               // weiß (überlagert blauen Kreis)
     transition: color $dur-base $ease-out;
+    position: relative;
+    z-index: 100;                 // Bleibt über dem Menü-Overlay (z-index 99)
 
     span { opacity: 0.6; }        // der Punkt etwas dezenter
 
@@ -50,6 +56,8 @@
       position: fixed;
       inset: 0;
       top: 0;
+      width: 100vw;
+      height: 100vh;
       flex-direction: column;
       justify-content: center;
       gap: 40px;

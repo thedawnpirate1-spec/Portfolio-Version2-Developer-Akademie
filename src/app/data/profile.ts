@@ -78,6 +78,23 @@ export interface Project {
   live?: string;       // Live-Demo (optional -> "Live test"-Button)
 }
 
+// -----------------------------------------------------------------------------
+//  References / Testimonials („Need a teamplayer?")
+//  PLATZHALTER — durch ECHTE Referenzen ersetzen (oder Sektion entfernen).
+//  Erfundene Zitate gehoeren NICHT in ein echtes Portfolio.
+// -----------------------------------------------------------------------------
+export interface Reference {
+  name: string;
+  project: string;
+  quote: string;
+}
+
+export const REFERENCES: Reference[] = [
+  { name: '[Name der Referenz]', project: 'Projekt [Name]', quote: '„Hier kommt ein echtes Zitat einer Person hin, mit der du zusammengearbeitet hast."' },
+  { name: '[Name der Referenz]', project: 'Projekt [Name]', quote: '„Ein zweites echtes Zitat — z. B. von einer Lerngruppe oder einem Praktikum."' },
+  { name: '[Name der Referenz]', project: 'Projekt [Name]', quote: '„Ein drittes echtes Zitat. Wenn du keine hast, lassen wir diese Sektion weg."' },
+];
+
 export const PROJECTS: Project[] = [
   {
     title: 'Join',
