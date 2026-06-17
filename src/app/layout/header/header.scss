@@ -11,12 +11,13 @@
   // Figma: Header liegt immer auf leichtem Milchglas; beim Scrollen deutlicher.
   backdrop-filter: blur(8px);
 
-  &.is-scrolled {
+  &.is-scrolled,
+  &.is-menu-open {
     background: rgba($color-bg, 0.92);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 
     .header__logo {
-      color: $color-primary;                 // Beim Scrollen wird Logo immer blau
+      color: $color-primary;                 // Beim Scrollen oder offenes Menü: blau
     }
   }
 
@@ -30,13 +31,13 @@
     font-family: $font-display;   // Baloo 2
     font-weight: $fw-bold;
     font-size: 1.4rem;
-    color: #ffffff;               // Mobile: weiß (überlagert blauen Kreis)
+    color: #ffffff;               // weiß (überlagert blauen Kreis)
     transition: color $dur-base $ease-out;
 
     span { opacity: 0.6; }        // der Punkt etwas dezenter
 
     @include up($bp-tablet) {
-      color: $color-primary;      // Desktop: blau
+      color: #ffffff;             // Desktop: auch weiß (überlagert blauen Kreis)
     }
   }
 
@@ -44,6 +45,26 @@
     display: flex;
     align-items: center;
     gap: $space-md;
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      position: fixed;
+      inset: 0;
+      top: 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+      background: rgba($color-bg, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 99; // unterhalb Logo und Burger
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity $dur-base $ease-out;
+
+      .header.is-menu-open & {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
   }
 
   &__nav {
@@ -82,6 +103,10 @@
     font-family: $font-body;
     color: $color-primary;
 
+    @media (max-width: #{$bp-tablet - 1px}) {
+      font-size: 1.4rem;
+    }
+
     button {
       background: none;
       border: 0;
@@ -90,13 +115,67 @@
       font-size: 1.05rem;
       padding: 0 2px;
       transition: opacity $dur-fast $ease-out;
+
+      @media (max-width: #{$bp-tablet - 1px}) {
+        font-size: 1.4rem;
+      }
     }
     button:hover { opacity: 0.7; }
     button.is-active { font-weight: $fw-bold; }   // aktive Sprache fett (EN)
   }
 
-  // Auf kleinen Screens Nav vorerst ausblenden (Burger-Menue folgt spaeter).
+  // Burger Menü
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    z-index: 100;
+    
+    span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: $color-primary; // Burger immer blau, da er ganz rechts auf weißem Hintergrund liegt
+      border-radius: 2px;
+      transition: transform $dur-fast $ease-out, opacity $dur-fast $ease-out;
+      margin-left: auto;
+    }
+
+    .header.is-menu-open & {
+      span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+
+    @include up($bp-tablet) {
+      display: none; // Auf Desktop versteckt
+    }
+  }
+
+  // Auf kleinen Screens Nav Styles anpassen
   @media (max-width: #{$bp-tablet - 1px}) {
-    &__nav { display: none; }
+    &__nav {
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+
+      a {
+        font-size: 1.6rem;
+      }
+    }
   }
 }

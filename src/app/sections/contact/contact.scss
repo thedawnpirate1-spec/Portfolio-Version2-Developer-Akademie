@@ -1,0 +1,109 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.contact {
+  padding-block: $space-xl;
+
+  &__inner {
+    display: grid;
+    gap: $space-lg;
+    grid-template-columns: 1fr;            // Mobile: gestapelt
+    align-items: start;
+
+    @include up($bp-desktop) {
+      grid-template-columns: 1fr 1fr;      // Desktop: Text | Formular
+      gap: $space-xl;
+    }
+  }
+
+  // --- linke Spalte ---
+  &__title {
+    font-family: $font-display;            // Baloo 2
+    color: $color-primary;
+    font-size: clamp(2.5rem, 7vw, 5.5rem); // Figma Desktop: 90px
+  }
+
+  &__lead {
+    font-family: $font-body;
+    font-weight: $fw-bold;
+    color: $color-primary;
+    font-size: clamp(1.4rem, 3vw, 2rem);   // Figma: 32px
+    margin-top: $space-md;
+  }
+
+  &__text {
+    font-family: $font-body;
+    color: $color-text;
+    line-height: 1.6;
+    margin-top: $space-sm;
+    max-width: 460px;
+  }
+
+  &__cta {
+    font-family: $font-body;
+    color: $color-text;
+    margin-top: $space-md;
+
+    span {
+      font-family: $font-display;          // "Contact me!" in Baloo (wie Figma)
+      color: $color-primary;
+    }
+  }
+
+  // --- rechte Spalte: Formular ---
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+
+  // Felder: weiss, blauer Rand, abgerundet (Figma)
+  input,
+  textarea {
+    width: 100%;
+    font-family: $font-body;
+    font-size: 1rem;
+    color: $color-text;
+    background: $color-bg;
+    border: 1px solid $color-primary;
+    border-radius: 10px;
+    padding: 0.9rem 1.5rem;
+    resize: vertical;
+
+    &::placeholder { color: #9aa3b2; }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+    }
+  }
+
+  &__error {
+    display: block;
+    margin-top: 4px;
+    font-size: $fs-small;
+    color: #e61c40;                        // Figma-Fehlerfarbe
+  }
+
+  &__privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: $space-xs;
+    font-size: $fs-small;
+    color: $color-text;
+
+    input { width: auto; accent-color: $color-primary; margin-top: 2px; }
+    a { color: $color-primary; text-decoration: underline; }
+  }
+
+  .btn-primary {
+    align-self: flex-start;
+    margin-top: $space-sm;
+  }
+
+  &__sent {
+    color: $color-primary;
+    font-weight: $fw-semibold;
+    margin-top: $space-xs;
+  }
+}

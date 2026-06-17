@@ -16,6 +16,7 @@ export const PROFILE = {
   name: 'Leon Lammerich',
   firstName: 'Leon',                 // fuer die Hero-Begruessung "Hello! I am …"
   role: 'Frontend Developer',
+  email: 'leonlammerich@gmx.de',     // fuer das Kontaktformular (mailto)
   // Reihenfolge wie im Figma-Design: GitHub, E-Mail, LinkedIn
   socials: [
     { label: 'GitHub',   href: 'https://github.com/thedawnpirate1-spec',                 icon: 'github'   },

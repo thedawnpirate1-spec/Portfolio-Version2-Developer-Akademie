@@ -114,6 +114,16 @@ button {
     color: $color-text-on-dark;
     transform: translateY(-2px);
   }
+
+  // Deaktiviert (Figma: grau, bis das Formular gueltig ist)
+  &:disabled {
+    border-color: #bbbbbb;
+    color: #bbbbbb;
+    background: transparent;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+  }
 }
 
 // Sekundaer-Button (Figma "Button secondary"): gefuellt blau, weisse Schrift.

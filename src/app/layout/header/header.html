@@ -3,20 +3,26 @@
   -> dann blendet SCSS Hintergrund + Schatten ein. Nav-Links sind Anker auf
   Sektions-IDs; globales scroll-behavior: smooth sorgt fuers weiche Scrollen.
 -->
-<header class="header" [class.is-scrolled]="scrolled()">
+<header class="header" [class.is-scrolled]="scrolled()" [class.is-menu-open]="menuOpen()">
   <div class="header__inner container">
-    <a class="header__logo" href="#home" aria-label="Zum Seitenanfang">
+    <a class="header__logo" href="#home" aria-label="Zum Seitenanfang" (click)="closeMenu()">
       {{ name }}<span>.</span>
     </a>
 
+    <!-- Burger Menü Button (Mobile) -->
+    <button class="header__burger" aria-label="Menü umschalten" (click)="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+
     <div class="header__right">
       <nav class="header__nav" aria-label="Hauptnavigation">
-        <a href="#about">About me</a>
-        <a href="#skills">Skill set</a>
-        <a href="#work">My work</a>
+        <a href="#about" (click)="closeMenu()">About me</a>
+        <a href="#skills" (click)="closeMenu()">Skill set</a>
+        <a href="#work" (click)="closeMenu()">My work</a>
+        <a href="#contact" (click)="closeMenu()">Contact</a>
       </nav>
 
-      <!-- Sprachumschalter (Desktop und Mobile) -->
+      <!-- Sprachumschalter -->
       <div class="header__lang" aria-label="Sprache wählen">
         <button type="button">DE</button>
         <span>/</span>

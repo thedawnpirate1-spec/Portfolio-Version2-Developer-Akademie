@@ -1,0 +1,61 @@
+<!--
+  Contact-Sektion. Links: Titel + Text. Rechts: Reactive Form.
+  [formGroup] bindet das Formular aus contact.ts; formControlName verknuepft
+  jedes Feld. Der Button ist [disabled], solange das Formular ungueltig ist.
+-->
+<section class="contact" id="contact">
+  <div class="contact__inner container">
+    <!-- linke Spalte -->
+    <div class="contact__intro" appReveal>
+      <h2 class="contact__title">Contact</h2>
+      <p class="contact__lead">Got a problem to solve?</p>
+      <p class="contact__text">
+        Du suchst jemanden, der deine Ideen sauber umsetzt? Schreib mir — ich
+        freue mich darauf, zu deinen Projekten beizutragen.
+      </p>
+      <p class="contact__cta">
+        Need a Frontend developer? <span>Contact me!</span>
+      </p>
+    </div>
+
+    <!-- rechte Spalte: Formular -->
+    <form class="contact__form" [formGroup]="form" (ngSubmit)="submit()" appReveal>
+      <div class="contact__field">
+        <input type="text" formControlName="name" placeholder="Your name" autocomplete="name" />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <span class="contact__error">Bitte gib deinen Namen ein.</span>
+        }
+      </div>
+
+      <div class="contact__field">
+        <input type="email" formControlName="email" placeholder="Your email" autocomplete="email" />
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <span class="contact__error">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+        }
+      </div>
+
+      <div class="contact__field">
+        <textarea formControlName="message" placeholder="Your message" rows="5"></textarea>
+        @if (form.controls.message.touched && form.controls.message.invalid) {
+          <span class="contact__error">Bitte schreib eine kurze Nachricht.</span>
+        }
+      </div>
+
+      <div class="contact__privacy">
+        <input type="checkbox" id="privacy" formControlName="privacy" />
+        <label for="privacy">
+          I've read the <a href="#">privacy policy</a> and agree to the processing of my data.
+        </label>
+      </div>
+      @if (form.controls.privacy.touched && form.controls.privacy.invalid) {
+        <span class="contact__error">Bitte akzeptiere die Datenschutzerklärung.</span>
+      }
+
+      <button type="submit" class="btn-primary" [disabled]="form.invalid">Say hello ;)</button>
+
+      @if (sent()) {
+        <p class="contact__sent">Danke! Dein Mailprogramm öffnet sich gerade. 🎉</p>
+      }
+    </form>
+  </div>
+</section>

@@ -20,18 +20,18 @@
     z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
     border-radius: 50%;
     background: $gradient-circle;
-    width: 200vw;
-    height: 200vw;
-    top: -50vw;
-    left: -50vw;
+    width: 155vw;
+    height: 155vw;
+    top: -35vw;
+    left: -55vw;
     transform: none;
 
     @include up($bp-tablet) {
-      width: 150vh;
-      height: 150vh;
-      top: 50%;
-      left: -75vh;
-      transform: translateY(-50%);
+      width: 130vw;
+      height: 130vw;
+      top: -75vw;
+      left: -85vw;
+      transform: none;
       animation: none;
     }
   }
@@ -68,10 +68,10 @@
     order: 2;                                // Foto auf Mobile unter dem Text
 
     @include up($bp-tablet) {
-      order: 0;                              // Wieder normales Verhalten auf Desktop
+      order: 0;
       align-self: end;                       // unten andocken (Person steht)
-      max-width: 100%;                       // breiteres Foto
-      width: 90%;
+      max-width: 600px;                      // Begrenzung der Maximalgröße
+      width: 80%;                            // Wird fließend kleiner
     }
 
     img {
@@ -195,14 +195,13 @@
 
   // --- Social-Icons (Mobile zentriert oben, Desktop senkrecht unten rechts) ---
   &__socials {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    margin-top: $space-md;
-    order: 0; // Auf Mobile ganz oben über dem Text
+    display: none;
 
     @include up($bp-tablet) {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
       position: absolute;
       right: 0;
       bottom: 10%; // etwas tiefer passend zum SCROLL
