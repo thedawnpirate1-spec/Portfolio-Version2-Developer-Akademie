@@ -29,7 +29,6 @@ export class Contact {
     message: ['', Validators.required],
     privacy: [false, Validators.requiredTrue],
   });
-
   // async/await + try/catch = der saubere "fetch mit Fehlerbehandlung"-Weg.
   // firstValueFrom() macht aus dem HttpClient-Observable ein Promise.
   async submit(): Promise<void> {
