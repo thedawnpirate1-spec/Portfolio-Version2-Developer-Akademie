@@ -44,14 +44,15 @@
     display: grid;
     gap: $space-md;
     grid-template-columns: 1fr;              // Mobile: eine Spalte
+    grid-template-rows: auto 1fr;            // Text nimmt benötigten Platz, Foto füllt den Rest
     align-items: center;
     text-align: center;                      // Text zentriert auf Mobile
 
     @include up($bp-tablet) {
-      // minmax(0,...) -> Spalten folgen dem Verhaeltnis, der grosse nowrap-Titel
-      // darf ueberlaufen (wird vom Hero overflow:hidden geclippt) statt die
-      // Foto-Spalte zusammenzustauchen.
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      // Spaltenverteilung: links enger, rechts breiter, um das Foto nach links
+      // und den Text näher zur Mitte zu rücken (wie in der Vorlage).
+      grid-template-columns: 42% 58%;
+      grid-template-rows: auto;              // Zurücksetzen für Desktop
       align-items: end;                      // Person sitzt auf der Grundlinie
       text-align: left;
     }
@@ -66,6 +67,7 @@
     width: 75vw;                             // Fließend responsive auf Mobile
     max-width: 360px;                        // Obergrenze für Mobile vor Tablet
     order: 2;                                // Foto auf Mobile unter dem Text
+    align-self: end;                         // Foto dockt unten am Bildschirmrand an
 
     @include up($bp-tablet) {
       order: 0;
@@ -143,7 +145,7 @@
       align-items: center;
       gap: $space-xs;
       position: absolute;
-      left: 75%;
+      left: 71%;                             // Zentriert unter der rechten Spalte (42% + 58%/2 = 71%)
       transform: translateX(-50%);
       bottom: 10%;
       right: auto;

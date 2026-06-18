@@ -51,10 +51,16 @@
         <span class="contact__error">Bitte akzeptiere die Datenschutzerklärung.</span>
       }
 
-      <button type="submit" class="btn-primary" [disabled]="form.invalid">Say hello ;)</button>
+      <button type="submit" class="btn-primary" [disabled]="form.invalid || sending()">
+        {{ sending() ? 'Senden …' : 'Say hello ;)' }}
+      </button>
 
       @if (sent()) {
-        <p class="contact__sent">Danke! Dein Mailprogramm öffnet sich gerade. 🎉</p>
+        <p class="contact__sent">Danke für deine Nachricht! Ich melde mich. 🎉</p>
+      }
+      @if (error()) {
+        <p class="contact__error">Senden fehlgeschlagen. Bitte später erneut versuchen
+          oder direkt eine E-Mail schreiben.</p>
       }
     </form>
   </div>
