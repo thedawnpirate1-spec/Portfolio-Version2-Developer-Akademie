@@ -1,0 +1,29 @@
+# =============================================================================
+#  .htaccess  —  Apache-Konfiguration fuer das deployte Angular-Portfolio
+#  Zweck: Single-Page-App-Routing. Direkte Aufrufe/Reloads von Routen
+#  (z. B. /impressum, /datenschutz) sollen NICHT 404 liefern, sondern an
+#  index.html gehen -> Angulars Router uebernimmt dann.
+#  Echte Dateien (send_mail.php, Bilder, JS/CSS) werden weiterhin direkt
+#  ausgeliefert.
+# =============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1) Existiert die angeforderte Datei ODER ein Ordner wirklich?
+  #    -> direkt ausliefern (z. B. send_mail.php, /assets/..., main.js)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 2) Sonst: alles auf index.html umleiten (Angular-Router macht den Rest)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# --- Kleinigkeiten zur Sicherheit/Sauberkeit --------------------------------
+# Verzeichnis-Listing abschalten (niemand soll Ordnerinhalte sehen).
+Options -Indexes
+
+# Standard-Startdatei
+DirectoryIndex index.html
