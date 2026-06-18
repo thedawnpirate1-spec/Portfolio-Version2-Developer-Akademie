@@ -9,8 +9,11 @@
       <app-social-links orientation="horizontal" />
     </div>
 
-    <!-- Pflicht-Link in DE; Ziel /impressum folgt als eigene Seite -->
-    <a class="footer__legal" href="/impressum">Legal Notice</a>
+    <!-- Pflicht-Seiten in DE (echte Routen) -->
+    <nav class="footer__legalnav" aria-label="Rechtliches">
+      <a class="footer__legal" routerLink="/impressum">Legal Notice</a>
+      <a class="footer__legal" routerLink="/datenschutz">Datenschutz</a>
+    </nav>
 
     <button class="footer__top" type="button" (click)="scrollToTop()" aria-label="Nach oben scrollen">
       <svg viewBox="0 0 24 24" aria-hidden="true">

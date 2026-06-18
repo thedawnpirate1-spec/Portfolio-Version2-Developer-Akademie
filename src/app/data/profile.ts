@@ -17,6 +17,13 @@ export const PROFILE = {
   firstName: 'Leon',                 // fuer die Hero-Begruessung "Hello! I am …"
   role: 'Frontend Developer',
   email: 'leonlammerich@gmx.de',     // fuer das Kontaktformular (mailto)
+  legal: {                           // fuer Impressum + Datenschutz
+    name: 'Leon Lammerich',
+    street: 'Gotenweg 24',
+    city: '53859 Niederkassel',
+    email: 'leonlammerich@gmx.de',
+    phone: '',                       // optional – leer = wird nicht angezeigt
+  },
   // Reihenfolge wie im Figma-Design: GitHub, E-Mail, LinkedIn
   socials: [
     { label: 'GitHub',   href: 'https://github.com/thedawnpirate1-spec',                 icon: 'github'   },

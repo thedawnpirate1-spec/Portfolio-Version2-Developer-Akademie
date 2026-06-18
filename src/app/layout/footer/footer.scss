@@ -41,6 +41,13 @@
     opacity: 0.9;
   }
 
+  &__legalnav {
+    display: flex;
+    gap: $space-md;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   // Legal-Notice-Link mit kurzem Unterstrich (wie Figma)
   &__legal {
     font-family: $font-ui;

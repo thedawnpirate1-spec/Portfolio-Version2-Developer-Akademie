@@ -1,0 +1,49 @@
+<main class="legal">
+  <h1>Impressum</h1>
+
+  <h2>Angaben gemäß § 5 DDG</h2>
+  <address>
+    {{ legal.name }}<br />
+    {{ legal.street }}<br />
+    {{ legal.city }}
+  </address>
+
+  <h2>Kontakt</h2>
+  <p>
+    E-Mail: <a [href]="'mailto:' + legal.email">{{ legal.email }}</a>
+    @if (legal.phone) {
+      <br />Telefon: {{ legal.phone }}
+    }
+  </p>
+
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+  <address>
+    {{ legal.name }}<br />
+    {{ legal.street }}<br />
+    {{ legal.city }}
+  </address>
+
+  <h2>Haftung für Inhalte</h2>
+  <p>
+    Die Inhalte dieser Seiten wurden mit Sorgfalt erstellt. Für Richtigkeit,
+    Vollständigkeit und Aktualität kann ich jedoch keine Gewähr übernehmen. Als
+    Diensteanbieter bin ich für eigene Inhalte verantwortlich, aber nicht
+    verpflichtet, fremde Informationen zu überwachen.
+  </p>
+
+  <h2>Haftung für Links</h2>
+  <p>
+    Diese Website kann Links zu externen Websites enthalten, auf deren Inhalte ich
+    keinen Einfluss habe. Für diese fremden Inhalte ist stets der jeweilige
+    Anbieter verantwortlich. Bei Bekanntwerden von Rechtsverstößen entferne ich
+    solche Links umgehend.
+  </p>
+
+  <h2>Urheberrecht</h2>
+  <p>
+    Die von mir erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+    deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.
+  </p>
+
+  <a class="legal__back" routerLink="/">← Zurück zur Startseite</a>
+</main>

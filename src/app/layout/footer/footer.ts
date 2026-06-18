@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { SocialLinks } from '../../components/social-links/social-links';
 import { PROFILE } from '../../data/profile';
 
 @Component({
   selector: 'app-footer',
-  imports: [SocialLinks],   // wir nutzen die wiederverwendbare Social-Links-Komponente
+  imports: [SocialLinks, RouterLink],   // SocialLinks + routerLink fuer die Rechtsseiten
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
