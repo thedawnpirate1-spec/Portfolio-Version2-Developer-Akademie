@@ -9,7 +9,7 @@
 
   &__title {
     font-family: $font-display;            // Baloo 2
-    font-weight: $fw-bold;
+    font-weight: $fw-regular;              // Figma: Baloo Regular (war bold)
     font-size: clamp(2rem, 5vw, 2.8rem);   // Figma: 45px
   }
 
@@ -22,14 +22,23 @@
   }
 
   &__grid {
-    display: grid;
+    // Mobile (Figma 304:694 „References carousel"): horizontales Karussell,
+    // Karten ~228px breit, die nächste Karte lugt rechts hervor. Scroll-Snap.
+    display: flex;
     gap: $space-md;
-    grid-template-columns: 1fr;            // Mobile: gestapelt
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: $space-md;
+    padding-bottom: $space-xs;              // Luft für die Scrollbar
     max-width: 1040px;
     margin-inline: auto;
+    scrollbar-width: thin;
 
     @include up($bp-desktop) {
+      // Desktop: statische 3-Spalten, kein Scrollen
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+      overflow: visible;
     }
   }
 
@@ -39,6 +48,12 @@
     gap: $space-md;
     margin: 0;
     text-align: left;
+    flex: 0 0 14.25rem;                     // Figma Mobile: Kartenbreite 228px
+    scroll-snap-align: center;
+
+    @include up($bp-desktop) {
+      flex: 1 1 auto;                        // im Grid wieder volle Spaltenbreite
+    }
   }
 
   &__quote {

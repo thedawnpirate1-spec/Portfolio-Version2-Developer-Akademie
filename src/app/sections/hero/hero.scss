@@ -19,22 +19,41 @@
     position: absolute;
     z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
     border-radius: 50%;
-    background: $gradient-circle;
-    width: 155vw;
-    height: 155vw;
-    top: -35vw;
-    left: -55vw;
+    background: $color-primary;              // Figma: solides #5988FF (kein Gradient)
+    // Mobile (Figma 05_Version 2 - Mobile, Ellipse 3 = 612px @ -228/-22 in 390er Frame)
+    width: 156.9vw;
+    height: 156.9vw;
+    top: -5.6vw;
+    left: -58.5vw;
     transform: none;
 
+    // Desktop (Figma 04_Version 2 - Desktop, Ellipse 3 = 892px @ -199/-71 in 1440er Frame)
     @include up($bp-tablet) {
-      width: 130vw;
-      height: 130vw;
-      top: -75vw;
-      left: -85vw;
+      width: 61.94vw;
+      height: 61.94vw;
+      top: -4.93vw;
+      left: -13.82vw;
       transform: none;
       animation: none;
     }
   }
+
+  // --- Mobile-Bubbles (Figma-Mobile Ellipse 5/6, solid #5988FF) ---
+  // Nur Mobile sichtbar; im Desktop-Frame gibt es diese Bubbles nicht.
+  &__bubble {
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background: $color-primary;
+    pointer-events: none;
+
+    @include up($bp-tablet) { display: none; }
+  }
+  // Ellipse 5: 156px @ (107,762) im 390×844-Frame -> unten links, blutet unten aus
+  &__bubble--1 { width: 40vw;   left: 27.4%; top: 90%; }
+  // Ellipse 6: 61px @ (308,886) -> unten rechts, grösstenteils unter der unteren Kante
+  &__bubble--2 { width: 15.6vw; left: 79%;   top: 104%; }
 
   &__inner {
     position: relative;
@@ -51,7 +70,7 @@
     @include up($bp-tablet) {
       // Spaltenverteilung: links enger, rechts breiter, um das Foto nach links
       // und den Text näher zur Mitte zu rücken (wie in der Vorlage).
-      grid-template-columns: 42% 58%;
+      grid-template-columns: 46% 54%;        // Foto-Spalte breiter (Figma-Foto = 761px ≈ 53%)
       grid-template-rows: auto;              // Zurücksetzen für Desktop
       align-items: end;                      // Person sitzt auf der Grundlinie
       text-align: left;
@@ -72,8 +91,8 @@
     @include up($bp-tablet) {
       order: 0;
       align-self: end;                       // unten andocken (Person steht)
-      max-width: 600px;                      // Begrenzung der Maximalgröße
-      width: 80%;                            // Wird fließend kleiner
+      max-width: 720px;                      // Figma-Foto = 761px (vorher 600 -> zu klein)
+      width: 100%;                           // füllt die breitere Foto-Spalte
     }
 
     img {
@@ -107,7 +126,7 @@
 
     @include up($bp-tablet) {
       color: $color-primary;                 // Desktop: blau
-      font-size: clamp(1.5rem, 3.2vw, 4rem); // Figma Desktop: 64px
+      font-size: clamp(1.5rem, 4.44vw, 4rem); // Figma Desktop: 64px @1440
     }
   }
 
@@ -115,38 +134,41 @@
     font-family: $font-display;              // Baloo 2
     color: #ffffff;                          // Mobile: weiß
     text-transform: uppercase;
-    font-weight: $fw-bold;
+    font-weight: $fw-regular;                // Figma: Baloo Regular (war bold)
     line-height: 0.95;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;                // Figma: -3.2px @128px
     font-size: clamp(2.2rem, 11vw, 5rem);    // Großer, fließender Titel auf Mobile
     white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
 
     @include up($bp-tablet) {
       color: $color-primary;                 // Desktop: blau
-      font-size: clamp(2.5rem, 6.5vw, 6rem); // passt in die rechte Spalte
+      font-size: clamp(2.5rem, 8.9vw, 8rem); // Figma Desktop: 128px (FRONTEND)
     }
 
     span { display: block; }
   }
 
-  // --- SCROLL-Indikator (Desktop, center-rechts) ---
+  // --- SCROLL-Indikator ---
+  // Mobile: senkrechter Text „SCROLL down ↓" rechts neben dem Foto (Figma 304:719).
+  // WICHTIG: KEINE Rotation per transform hier — das Element trägt reveal-4 (fade-up),
+  // und fade-up animiert `transform`; ein rotate()/translateX() würde dadurch
+  // überschrieben (Text bliebe waagerecht). Vertikal kommt daher via `writing-mode`
+  // am Label, Desktop-Zentrierung via width:0 statt translateX. So bleibt die
+  // Einblende-Animation konfliktfrei.
   &__scroll {
-    position: relative;
+    position: absolute;
     z-index: 2;
     display: flex;
-    position: absolute;
-    right: -24px;                            // An rechten Rand rücken
-    bottom: 25%;
-    transform: rotate(90deg);
-    transform-origin: left bottom;
+    align-items: center;
+    right: 10px;
+    bottom: 16%;
 
     @include up($bp-tablet) {
       flex-direction: column;
       align-items: center;
       gap: $space-xs;
-      position: absolute;
-      left: 71%;                             // Zentriert unter der rechten Spalte (42% + 58%/2 = 71%)
-      transform: translateX(-50%);
+      left: 71%;                             // Zentriert unter der rechten Spalte
+      width: 0;                              // Kinder zentrieren auf der left-Achse (kein transform nötig)
       bottom: 10%;
       right: auto;
     }
@@ -158,13 +180,16 @@
     letter-spacing: 0.3em;
     font-size: $fs-small;
     color: $color-primary;
+    white-space: nowrap;
+    writing-mode: vertical-rl;               // Mobile: senkrecht; das „→" zeigt dadurch nach unten
 
-    // Spezieller Text auf Mobile (über HTML data-Attribut oder Pseudo)
+    // Mobile-Zusatz: „SCROLL" + „ down →" -> senkrecht gelesen „SCROLL down ↓"
     &::after {
       content: " down \2192";
     }
 
     @include up($bp-tablet) {
+      writing-mode: horizontal-tb;           // Desktop: wieder waagerecht
       &::after {
         content: "";                         // Auf Desktop nur SCROLL
       }

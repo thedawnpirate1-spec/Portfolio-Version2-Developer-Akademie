@@ -11,11 +11,11 @@
     <div class="references__grid" appReveal>
       @for (ref of references; track ref.name + ref.project) {
         <figure class="references__card">
-          <blockquote class="references__quote">{{ ref.quote }}</blockquote>
           <figcaption>
             <span class="references__name">{{ ref.name }}</span>
             <span class="references__project">{{ ref.project }}</span>
           </figcaption>
+          <blockquote class="references__quote">{{ ref.quote }}</blockquote>
         </figure>
       }
     </div>

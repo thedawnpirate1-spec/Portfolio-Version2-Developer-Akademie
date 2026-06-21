@@ -4,11 +4,11 @@
 .skills {
   background: $gradient-blue;                // echter Figma-Verlauf #5988FF -> #0043F0
   color: $color-text-on-dark;
-  padding-block: $space-xl;
+  padding-block: $space-lg;                  // Figma: Titel @56px oben (vorher $space-xl=128px -> zu tief)
 
   &__title {
     font-family: $font-display;              // Baloo 2
-    font-weight: $fw-bold;
+    font-weight: $fw-regular;                // Figma: Baloo Regular (war bold)
     text-align: center;
     font-size: clamp(2.5rem, 7vw, 6rem);     // Figma Desktop: 96px
     margin-bottom: $space-lg;
@@ -19,9 +19,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;                 // letzte Reihe zentriert (6 + 5)
-    gap: $space-lg $space-md;
+    gap: $space-md $space-sm;                 // Mobile: enger -> 3 Icons pro Reihe (wie Figma)
     max-width: 920px;
     margin-inline: auto;
+
+    @include up($bp-tablet) {
+      gap: $space-lg $space-md;              // Desktop: wieder grosszuegiger
+    }
   }
 
   &__item {
@@ -29,8 +33,12 @@
     flex-direction: column;
     align-items: center;
     gap: $space-xs;
-    width: 120px;
+    width: 88px;                             // Mobile: 3 pro Reihe (Figma-Zelle = 88px)
     transition: transform $dur-fast $ease-out;
+
+    @include up($bp-tablet) {
+      width: 120px;                          // Desktop: breitere Zellen
+    }
 
     // Hover: Icon hebt sich leicht an (dezente Mikrointeraktion).
     &:hover { transform: translateY(-6px); }
@@ -40,13 +48,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 72px;
+    height: 84px;
 
     // Explizite Groesse + contain -> Icon bleibt proportional und sprengt
-    // nie den Container (vorher liefen die SVGs auf 150px auf).
+    // nie den Container. Groesse exakt nach Figma (Icon ~75px).
     img {
-      width: 60px;
-      height: 60px;
+      width: 75px;
+      height: 75px;
       object-fit: contain;
       display: block;
     }

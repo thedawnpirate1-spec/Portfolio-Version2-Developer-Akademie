@@ -30,8 +30,10 @@ $color-text:           #000000;   // Fliesstext (Figma: Black)
 $color-text-muted:     #6b7180;   // graue Sekundaertexte
 $color-text-on-dark:   #ffffff;   // Text auf blauem Grund (Skill-/References-Sektion)
 
-// Verlauf fuer Skill-/References-Sektion (echter Figma-Verlauf)
-$gradient-blue:   linear-gradient(115deg, #{$color-primary} 34%, #{$color-primary-deep} 112%);
+// Verlauf fuer Skill-/References-/Footer-Band (EXAKT aus Figma via MCP:
+// Skill-Background 262:648 = 151.49deg, References 105205:2057 = 155.43deg,
+// gleiche Stops. Winkel-Differenz 4deg ist unsichtbar -> ein Token mit 151.49deg.)
+$gradient-blue:   linear-gradient(151.49deg, #{$color-primary} 33.96%, #{$color-primary} 36.71%, #{$color-primary-deep} 112.25%);
 // Dekorative Kreis-Verlaeufe (die schwebenden blauen Kugeln)
 $gradient-circle: radial-gradient(circle at 30% 30%, $color-primary-light, $color-primary 70%);
 

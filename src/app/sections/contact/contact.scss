@@ -2,7 +2,23 @@
 @use '../../../styles/mixins' as *;
 
 .contact {
+  position: relative;
+  overflow: hidden;            // ueberstehende Deko-Kreise abschneiden
   padding-block: $space-xl;
+
+  // --- dekorative Kreise ---
+  // Mobile-first (Figma-Mobile 304:694): nur E14 sichtbar (Seam oben rechts);
+  // E13/E11 sind auf Mobile ausgeblendet (lägen dort auf dem blauen Verlaufsband).
+  // Ab Tablet die Desktop-Kreise (230:457).
+  &__c--e14 { width: 20.3vw; left: 77.2%; top: -13%; }   // Mobile E14 (105245:1276)
+  &__c--e13 { display: none; }
+  &__c--e11 { display: none; }
+
+  @include up($bp-tablet) {
+    &__c--e13 { display: block; width: 10.3vw; left: 64.6%; top: -13%; }  // Seam Refs/Contact
+    &__c--e11 { display: block; width: 14.2vw; left: 16.8%; top: 74%; }  // unten-links, UNTER der „Contact me!"-Zeile (Figma: Kreis im Leerraum, nicht hinter dem blauen Text; minimaler Anschnitt unten ist designkonform)
+    &__c--e14 { width: 5.1vw;  left: 88.6%; top: 82%; }
+  }
 
   &__inner {
     display: grid;
@@ -20,7 +36,7 @@
   &__title {
     font-family: $font-display;            // Baloo 2
     color: $color-primary;
-    font-size: clamp(2.5rem, 7vw, 5.5rem); // Figma Desktop: 90px
+    font-size: clamp(2.5rem, 6.25vw, 5.625rem); // Figma Desktop: 90px @1440
   }
 
   &__lead {

@@ -52,7 +52,7 @@ body {
 h1, h2, h3, h4 {
   font-family: $font-display;
   line-height: 1.1;
-  font-weight: $fw-bold;
+  font-weight: $fw-regular;   // Figma: Baloo-Headings sind Regular (400), nicht Bold
 }
 
 a {
@@ -90,6 +90,28 @@ button {
 }
 
 // -----------------------------------------------------------------------------
+//  Dekorative Kreise (Figma "Ellipse 3-14")
+//  Im Figma sind es solide Kreise in #5988FF OHNE Blur/Gradient, die HINTER
+//  dem Content liegen. Wiederverwendbares Primitive: jede Sektion positioniert
+//  die Kreise per % (responsiv). Die Sektion braucht dazu:
+//    position: relative;  overflow: hidden;   (Ueberstand abschneiden wie im Frame)
+//  und ihr Content liegt ueber den Kreisen (.container ist global z-index:1).
+// -----------------------------------------------------------------------------
+.deco-circle {
+  position: absolute;
+  z-index: 0;                 // hinter dem Content
+  border-radius: 50%;
+  aspect-ratio: 1;            // immer kreisrund, Breite steuert die Groesse
+  background: $color-primary; // solides Figma-Blau #5988FF
+  pointer-events: none;
+
+  &--light { background: $color-primary-light; }  // E5 liest minimal heller
+}
+
+// Content-Spalte liegt immer ueber den dekorativen Kreisen.
+.container { position: relative; z-index: 1; }
+
+// -----------------------------------------------------------------------------
 //  Primaer-Button (Figma "Button primary s2")
 //  Umrandet + transparent; fuellt sich beim Hover blau. In About, Projekten
 //  und Kontakt wiederverwendet.
@@ -99,12 +121,12 @@ button {
   align-items: center;
   justify-content: center;
   font-family: $font-ui;                 // Poppins
-  font-size: 1.1rem;
+  font-size: 1.4375rem;                  // Figma: 23px
   color: $color-primary;
   background: transparent;
   border: 2px solid $color-primary;
   border-radius: 10px;
-  padding: 0.8rem 1.9rem;
+  padding: 0.9375rem 1.875rem;           // Figma: 15px / 30px
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);   // Figma "s2 shadow"
   transition: background $dur-fast $ease-out, color $dur-fast $ease-out,
     transform $dur-fast $ease-out;
@@ -132,12 +154,12 @@ button {
   align-items: center;
   justify-content: center;
   font-family: $font-ui;                 // Poppins
-  font-size: 1.1rem;
+  font-size: 1.4375rem;                  // Figma: 23px
   color: $color-text-on-dark;
   background: $color-primary;
   border: 2px solid $color-primary;
   border-radius: 10px;
-  padding: 0.8rem 1.9rem;
+  padding: 0.9375rem 1.875rem;           // Figma: 15px / 30px
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
   transition: background $dur-fast $ease-out, transform $dur-fast $ease-out;
 
