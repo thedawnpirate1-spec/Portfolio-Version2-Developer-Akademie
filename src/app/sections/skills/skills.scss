@@ -29,6 +29,7 @@
   }
 
   &__item {
+    position: relative;                       // Anker + z-index für den Hover-Pop
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,28 +41,60 @@
       width: 120px;                          // Desktop: breitere Zellen
     }
 
-    // Hover: Icon hebt sich leicht an (dezente Mikrointeraktion).
-    &:hover { transform: translateY(-6px); }
+    // Hover: Icon „ploppt" dezent heraus (leichtes Vergrößern + Anheben) und legt
+    // sich über die Nachbarn, damit z. B. die Growth-Sprechblase frei herausragen kann.
+    &:hover {
+      transform: translateY(-4px) scale(1.08);
+      z-index: 5;
+    }
   }
 
   &__icon {
+    position: relative;                       // Anker für die absolute Hover-Variante
     display: flex;
     align-items: center;
     justify-content: center;
     height: 84px;
-
-    // Explizite Groesse + contain -> Icon bleibt proportional und sprengt
-    // nie den Container. Groesse exakt nach Figma (Icon ~75px).
-    img {
-      width: 75px;
-      height: 75px;
-      object-fit: contain;
-      display: block;
-    }
   }
 
-  // "Growth mindset" hat im Figma einen kraeftigeren Schatten.
-  &__item--badge &__icon {
+  // Basis-Icon: feste Figma-Größe (~75px), proportional. Bleibt beim Hover SICHTBAR
+  // (weiß) – das „Größerwerden" macht der Item-Transform. NICHT ausblenden!
+  &__icon-base {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    display: block;
+  }
+
+  // Growth mindset: NUR die weiße Sprechblase ploppt heraus. Der Hut bleibt als
+  // Basis-Icon in der Linie (wie die anderen Icons), daher schneiden wir den
+  // unteren Hut-Teil der Hover-Grafik per clip-path weg und zeigen nur die Blase –
+  // nach rechts oben versetzt, mit einem kleinen Pop.
+  &__icon-hover {
+    position: absolute;
+    left: 64%;                                // etwas nach rechts (war mittig)
+    bottom: 52%;                              // oberhalb des Huts
+    width: 12rem;
+    max-width: none;
+    height: auto;
+    clip-path: inset(0 0 30% 0);              // unteren Hut-Teil wegschneiden -> nur Blase
+    transform-origin: 0% 100%;                // ploppt aus der Hut-Ecke nach oben rechts
+    transform: scale(0.6);
+    opacity: 0;
+    z-index: 30;
+    pointer-events: none;
+    transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
+  }
+
+  // Blase nur bei vorhandener Hover-Variante einblenden (per :has -> betrifft NUR
+  // das Growth-Item; alle anderen Basis-Icons bleiben unberührt sichtbar).
+  &__item:hover:has(&__icon-hover) &__icon-hover {
+    opacity: 1;
+    transform: scale(1);                      // Blase ploppt heraus
+  }
+
+  // "Growth mindset" hat im Figma einen kraeftigeren Schatten (nur das Basis-Icon).
+  &__item--badge &__icon-base {
     filter: drop-shadow(0 4px 9px rgba(0, 0, 0, 0.45));
   }
 

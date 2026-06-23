@@ -285,3 +285,34 @@ nicht unter ~500 px schrumpft und `preview_screenshot` timeoutet).
   echte Repo-/Live-Links, echte Referenz-Namen/Zitate, Footer-Logo-Icon statt Wortmarke.
 
 Build nach den Änderungen grün (kein Server-/Konsolen-Fehler).
+
+---
+
+## Abschnitt I — QA-Runde 2026-06-23 (Header-Breakpoint, References-Buttons, Asset-Verkabelung)
+
+Stack-Hinweis: dieses Projekt ist **Angular 22 + SCSS** (nicht Next.js/Tailwind), korrektes
+Figma-File **`evjDQX22JNHFTLiAKgDuMt`** (Frames `04_Version 2 - Desktop` / `05_Version 2 -
+Mobile`). Alle Werte unten sind **live im Browser** gemessen (Claude Preview, port 4201,
+`preview_eval` getBoundingClientRect / getComputedStyle; `preview_screenshot` weiter
+timeout-behaftet → Messung statt Screenshot).
+
+### Geänderte & verifizierte Punkte
+
+| # | Section | Problem | Fix | Live-Verifikation |
+|---|---------|---------|-----|-------------------|
+| I1 | Header | Bei gebrochener Viewport-Breite (Windows-Skalierung 125 %, z. B. 767,2 px CSS-px) erschienen **Burger UND Desktop-Navleiste gleichzeitig**: Burger wurde erst ab `min-width:768`, das Nav-Overlay aber erst bei `max-width:767px` aktiv → 1px-Lücke, in der beide Regeln aus waren. | `header.scss`: alle mobilen `max-width: #{$bp-tablet - 1px}` (767px) → `#{$bp-tablet - 0.02px}` (767.98px). Lücke geschlossen. | @768px: Burger `display:none`, Nav-Row `width 386`. @767px: Burger `flex`, `__right` overlay `opacity:0 position:fixed`. → an jeder Breite genau **ein** Menü. |
+| I2 | References | Mobil/Tablet **Scrollbalken** im Karussell (User-Wunsch: per Button wechseln). | `references.*`: Scroll-Flex → Button-Karussell. `activeIndex`-Signal + `prev/next/goTo` (Umlauf), `__viewport{overflow:hidden}`, `__track` per `--index` um -100 %/Schritt verschoben, Pfeil-Buttons ‹ › + Punkte-Indikator. Desktop (≥1024) **unverändert** 3-Spalten-Grid (`transform:none`, Buttons/Dots `display:none`). | next×→ idx 2, `translateX(-460.8px)` (=2×Kartenbreite 230,4), 3. Zitat zentriert, Dot 2 aktiv; Umlauf idx2→next→0. Desktop: track `grid`, 3 cols, 3 Karten sichtbar, keine Buttons/Dots. |
+| I3 | Skills | „Growth mindset" sollte **Hover-Variante** aus den Assets zeigen. | `profile.ts`: `Skill.hover?` + `hover:'growth-mindset-hover'`. `skills.html`: zweites `<img class="skills__icon-hover">` bei vorhandenem `hover`. `skills.scss`: `__icon{position:relative}`, Hover-Img absolut deckungsgleich, Crossfade über `opacity` bei `:hover`. | base `growth-mindset.svg` + hover `growth-mindset-hover.svg` (204×178, lädt), Default `opacity:0`, Item `--badge`. |
+| I4 | Hero (mobil) | Bubbles waren **Platzhalter-Vollfarbkreise** (`background:$color-primary`). | `hero.scss`: `&__bubble` → `background:url('/assets/figma/deco/bubble.svg') center/contain` (echter Radial-Verlauf #5988FF→#0043F0), `border-radius` entfällt. Positionen (top 90 %/104 %) unverändert. | bubble--1 156px + bubble--2 61px, beide `background-image: …/deco/bubble.svg` (lädt von :4201). |
+| I5 | Work | „El Pollo Loco" zeigte Platzhalter, obwohl Asset vorhanden. | Asset `my work/el pollo loco.svg` → kebab-case `my-work/el-pollo-loco.svg` umbenannt (Leerzeichen brechen Deploy-URLs). `profile.ts` El-Pollo-Loco `image` darauf gezeigt. | Karte 2 `src=…/my-work/el-pollo-loco.svg`, `naturalWidth 620×393`, `complete:true`. |
+
+### Offen (nicht ohne Nutzer-Input umsetzbar)
+- **Arrow-Assets `deco/arrow-down.svg` + `deco/arrow up.svg`**: Platzierung im Figma-Frame
+  nicht eindeutig (Scroll-Indikator? Back-to-Top-Button?) → Rückfrage an Nutzer offen,
+  bewusst nicht geraten (Leitplanke „keine Neuinterpretation"). `deco/bubbles.svg` (kombinierte
+  Gruppe) funktional durch 2× `bubble.svg` abgedeckt.
+- **Inhalts-Lücken** (kein Design, nur Nutzer kann liefern): restliche echte
+  Projekt-Screenshots (Join/Pokédex/DA-Bubble), echte Repo-/Live-Links, echte
+  Referenz-Namen/Zitate, optionales Footer-Logo-Icon.
+
+Build nach allen Änderungen grün — keine Server-/Konsolen-Fehler (`preview_console_logs` leer).

@@ -12,20 +12,19 @@
   &__deco-circle {
     position: absolute;
     z-index: 0;
-    border-radius: 50%;
     aspect-ratio: 1;
-    background: $color-primary;
+    // echtes Figma-Bubble-Asset (Radial-Verlauf) statt CSS-Vollkreis
+    background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
     pointer-events: none;
     display: none;                       // Mobile: keine About-Kreise
 
     @include up($bp-tablet) { display: block; }
   }
-  // E5 (278:653): Seam Hero/About, mittig-links, leicht heller
+  // E5 (278:653): Seam Hero/About, mittig-links
   &__deco-circle--top {
     width: 14.3vw;
     left: 43.6%;
     top: -7vw;
-    background: $color-primary-light;
   }
   // E6 (278:654): klein, rechts
   &__deco-circle--right {

@@ -11,7 +11,11 @@
       @for (skill of skills; track skill.name) {
         <li class="skills__item" [class.skills__item--badge]="skill.badge">
           <span class="skills__icon">
-            <img [src]="'assets/figma/icons/' + skill.icon + '.svg'" [alt]="skill.name" />
+            <img class="skills__icon-base" [src]="'assets/figma/icons/' + skill.icon + '.svg'" [alt]="skill.name" />
+            @if (skill.hover) {
+              <!-- Hover-Variante aus den Figma-Assets (Crossfade beim Hover) -->
+              <img class="skills__icon-hover" [src]="'assets/figma/icons/' + skill.hover + '.svg'" alt="" aria-hidden="true" />
+            }
           </span>
           <span class="skills__name">{{ skill.name }}</span>
         </li>

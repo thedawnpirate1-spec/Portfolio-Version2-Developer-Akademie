@@ -100,12 +100,10 @@ button {
 .deco-circle {
   position: absolute;
   z-index: 0;                 // hinter dem Content
-  border-radius: 50%;
   aspect-ratio: 1;            // immer kreisrund, Breite steuert die Groesse
-  background: $color-primary; // solides Figma-Blau #5988FF
+  // echtes Figma-Bubble-Asset (Radial-Verlauf #5988FF -> #0043F0) statt CSS-Vollkreis
+  background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
   pointer-events: none;
-
-  &--light { background: $color-primary-light; }  // E5 liest minimal heller
 }
 
 // Content-Spalte liegt immer ueber den dekorativen Kreisen.

@@ -8,15 +8,44 @@
     <h2 class="references__title" appReveal>Need a teamplayer?</h2>
     <p class="references__subtitle" appReveal>Here is what my colleagues say about me.</p>
 
-    <div class="references__grid" appReveal>
-      @for (ref of references; track ref.name + ref.project) {
-        <figure class="references__card">
-          <figcaption>
-            <span class="references__name">{{ ref.name }}</span>
-            <span class="references__project">{{ ref.project }}</span>
-          </figcaption>
-          <blockquote class="references__quote">{{ ref.quote }}</blockquote>
-        </figure>
+    <div class="references__carousel" appReveal>
+      <!-- Pfeil zurück: nur Mobile/Tablet sichtbar (Desktop zeigt alle Karten) -->
+      <button type="button" class="references__nav references__nav--prev"
+              (click)="prev()" aria-label="Vorherige Referenz">
+        <span aria-hidden="true">&#8249;</span>
+      </button>
+
+      <!-- Fenster: zeigt genau eine Karte, kein Scrollbalken (overflow: hidden) -->
+      <div class="references__viewport">
+        <!-- Schiene: per --index um -100% je Schritt verschoben -->
+        <div class="references__track" [style.--index]="activeIndex()">
+          @for (ref of references; track ref.name + ref.project) {
+            <figure class="references__card">
+              <figcaption>
+                <span class="references__name">{{ ref.name }}</span>
+                <span class="references__project">{{ ref.project }}</span>
+              </figcaption>
+              <blockquote class="references__quote">{{ ref.quote }}</blockquote>
+            </figure>
+          }
+        </div>
+      </div>
+
+      <!-- Pfeil vor -->
+      <button type="button" class="references__nav references__nav--next"
+              (click)="next()" aria-label="Nächste Referenz">
+        <span aria-hidden="true">&#8250;</span>
+      </button>
+    </div>
+
+    <!-- Punkte-Indikator: aktuelle Position + Direktauswahl (nur Mobile/Tablet) -->
+    <div class="references__dots" aria-label="Referenz wählen">
+      @for (ref of references; track ref.name + ref.project; let i = $index) {
+        <button type="button" class="references__dot"
+                [class.is-active]="activeIndex() === i"
+                (click)="goTo(i)"
+                [attr.aria-label]="'Referenz ' + (i + 1)"
+                [attr.aria-current]="activeIndex() === i ? 'true' : null"></button>
       }
     </div>
   </div>

@@ -21,38 +21,110 @@
     opacity: 0.95;
   }
 
-  &__grid {
-    // Mobile (Figma 304:694 „References carousel"): horizontales Karussell,
-    // Karten ~228px breit, die nächste Karte lugt rechts hervor. Scroll-Snap.
+  // --- Karussell (Mobile/Tablet): eine Karte, Wechsel per Button. ---
+  // KEIN Scrollbalken mehr (overflow: hidden). Desktop bleibt 3-Spalten-Grid.
+  &__carousel {
     display: flex;
-    gap: $space-md;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: $space-md;
-    padding-bottom: $space-xs;              // Luft für die Scrollbar
+    align-items: center;
+    gap: $space-xs;
     max-width: 1040px;
     margin-inline: auto;
-    scrollbar-width: thin;
 
     @include up($bp-desktop) {
-      // Desktop: statische 3-Spalten, kein Scrollen
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+  }
+
+  &__viewport {
+    flex: 1 1 auto;
+    overflow: hidden;                       // schneidet die nicht-aktiven Karten ab
+
+    @include up($bp-desktop) {
       overflow: visible;
     }
   }
 
+  &__track {
+    display: flex;
+    // --index kommt aus dem Template (activeIndex). Jeder Schritt = -100%.
+    transform: translateX(calc(var(--index, 0) * -100%));
+    transition: transform $dur-base $ease-out;
+
+    @include up($bp-desktop) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $space-md;
+      transform: none;                     // Desktop: statisch, kein Verschieben
+    }
+  }
+
   &__card {
+    flex: 0 0 100%;                         // Mobile/Tablet: genau eine Karte pro Ansicht
     display: flex;
     flex-direction: column;
     gap: $space-md;
     margin: 0;
     text-align: left;
-    flex: 0 0 14.25rem;                     // Figma Mobile: Kartenbreite 228px
-    scroll-snap-align: center;
+    padding-inline: $space-xs;
 
     @include up($bp-desktop) {
       flex: 1 1 auto;                        // im Grid wieder volle Spaltenbreite
+      padding-inline: 0;
+    }
+  }
+
+  // --- Pfeil-Buttons (nur Mobile/Tablet) ---
+  &__nav {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba($color-text-on-dark, 0.6);
+    border-radius: 50%;
+    background: transparent;
+    color: $color-text-on-dark;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background $dur-fast $ease-out, border-color $dur-fast $ease-out;
+
+    &:hover {
+      background: rgba($color-text-on-dark, 0.15);
+      border-color: $color-text-on-dark;
+    }
+
+    @include up($bp-desktop) {
+      display: none;                        // Desktop: alle Karten sichtbar -> keine Pfeile
+    }
+  }
+
+  // --- Punkte-Indikator (nur Mobile/Tablet) ---
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: $space-xs;
+    margin-top: $space-md;
+
+    @include up($bp-desktop) {
+      display: none;
+    }
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba($color-text-on-dark, 0.4);
+    cursor: pointer;
+    transition: background $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+    &.is-active {
+      background: $color-text-on-dark;
+      transform: scale(1.25);
     }
   }
 

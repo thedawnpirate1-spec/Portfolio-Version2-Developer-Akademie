@@ -55,6 +55,7 @@ export interface Skill {
   name: string;
   icon: string;     // -> assets/figma/icons/<icon>.svg
   badge?: boolean;  // Sonderbehandlung (Growth mindset hat eigenen Schatten)
+  hover?: string;   // optionales Hover-SVG -> assets/figma/icons/<hover>.svg (Crossfade)
 }
 
 export const SKILLS: Skill[] = [
@@ -68,7 +69,7 @@ export const SKILLS: Skill[] = [
   { name: 'CSS',             icon: 'css' },
   { name: 'REST-API',        icon: 'rest-api' },
   { name: 'Material Design', icon: 'material-design' },
-  { name: 'Growth mindset',  icon: 'growth-mindset', badge: true },
+  { name: 'Growth mindset',  icon: 'growth-mindset', badge: true, hover: 'growth-mindset-hover' },
 ];
 
 // -----------------------------------------------------------------------------
@@ -115,7 +116,7 @@ export const PROJECTS: Project[] = [
     title: 'El Pollo Loco',
     tech: 'JavaScript | HTML | CSS',
     description: 'Jump-’n’-Run-Spiel auf Basis objektorientierter Programmierung.',
-    image: 'assets/images/projects/placeholder.svg',
+    image: 'assets/figma/my-work/el-pollo-loco.svg',
     github: '#',
     live: '#',
   },

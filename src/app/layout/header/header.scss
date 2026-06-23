@@ -52,7 +52,7 @@
     align-items: center;
     gap: $space-md;
 
-    @media (max-width: #{$bp-tablet - 1px}) {
+    @media (max-width: #{$bp-tablet - 0.02px}) {
       position: fixed;
       inset: 0;
       top: 0;
@@ -111,7 +111,7 @@
     font-family: $font-body;
     color: $color-primary;
 
-    @media (max-width: #{$bp-tablet - 1px}) {
+    @media (max-width: #{$bp-tablet - 0.02px}) {
       font-size: 1.4rem;
     }
 
@@ -124,7 +124,7 @@
       padding: 0 2px;
       transition: opacity $dur-fast $ease-out;
 
-      @media (max-width: #{$bp-tablet - 1px}) {
+      @media (max-width: #{$bp-tablet - 0.02px}) {
         font-size: 1.4rem;
       }
     }
@@ -175,7 +175,7 @@
   }
 
   // Auf kleinen Screens Nav Styles anpassen
-  @media (max-width: #{$bp-tablet - 1px}) {
+  @media (max-width: #{$bp-tablet - 0.02px}) {
     &__nav {
       flex-direction: column;
       align-items: center;

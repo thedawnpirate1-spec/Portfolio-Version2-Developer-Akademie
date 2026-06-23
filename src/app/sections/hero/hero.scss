@@ -43,9 +43,9 @@
   &__bubble {
     position: absolute;
     z-index: 0;
-    border-radius: 50%;
     aspect-ratio: 1;
-    background: $color-primary;
+    // Echtes Figma-Asset (Radial-Verlauf #5988FF -> #0043F0) statt Platzhalter-Farbkreis
+    background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
     pointer-events: none;
 
     @include up($bp-tablet) { display: none; }
