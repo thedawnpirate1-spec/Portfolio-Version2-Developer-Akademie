@@ -68,31 +68,27 @@
     transition: opacity $dur-fast $ease-out;
   }
 
-  // Growth mindset: der Hut (Basis-Icon) BLEIBT in der Reihe und GENAU SO GROSS wie
-  // die anderen Icons (75px) – wird NICHT ersetzt. Beim Hover ploppt NUR die weiße
-  // Sprechblase nach OBEN heraus, Richtung Supabase (liegt direkt darüber). Der
-  // Hut-Teil der Hover-Grafik wird per clip-path weggeschnitten.
+  // Growth mindset hover: Die Sprechblase ploppt nach oben heraus und zeigt die Spezial-Interessen.
+  // Da die Hut-Grafik aus dem Hover-SVG gelöscht wurde, müssen wir keinen clip-path mehr anwenden.
   &__icon-hover {
     position: absolute;
-    left: 50%;
-    bottom: 55%;                              // sitzt oben am Hut, Blase wächst nach oben
-    width: 12rem;                             // ~192px – lesbar
+    left: calc(50% - 37.5px);                 // Richtet das linke Ende am Hut aus
+    bottom: 4.5px;                            // Richtet das untere Ende an der Basis aus
+    width: 201px;                             // Exakte Figma-Breite (skaliert)
+    height: 176px;                            // Exakte Figma-Höhe (skaliert)
     max-width: none;
-    height: auto;
-    clip-path: inset(0 0 37% 0);              // nur die Blase zeigen (Hut weggeschnitten)
-    transform-origin: 50% 100%;               // ploppt vom Hut nach oben auf
-    transform: translateX(-26%) scale(0.7);   // leicht nach rechts Richtung Supabase
+    transform-origin: 36% 70%;                // Wächst aus der Spitze des Sprechblasen-Pfeils heraus
+    transform: scale(0.5);                    // Startet dezent verkleinert
     opacity: 0;
     z-index: 30;
     pointer-events: none;
     transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
   }
 
-  // Basis-Hut bleibt SICHTBAR und in Originalgröße (NICHT ausblenden);
-  // nur die Sprechblase ploppt nach oben heraus.
-  &__item:hover:has(&__icon-hover) &__icon-hover {
+  // Basis-Hut bleibt sichtbar, die Sprechblase ploppt weich nach oben auf.
+  &__item:hover &__icon-hover {
     opacity: 1;
-    transform: translateX(-26%) scale(1);
+    transform: scale(1);
   }
 
   // "Growth mindset" hat im Figma einen kraeftigeren Schatten (nur das Basis-Icon
