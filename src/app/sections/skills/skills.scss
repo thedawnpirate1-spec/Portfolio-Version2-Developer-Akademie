@@ -58,42 +58,45 @@
   }
 
   // Basis-Icon: feste Figma-Größe (~75px), proportional. Bleibt beim Hover SICHTBAR
-  // (weiß) – das „Größerwerden" macht der Item-Transform. NICHT ausblenden!
+  // (weiß) – das „Größerwerden" macht der Item-Transform. NUR beim Growth-Item wird
+  // es beim Hover ausgeblendet (dort übernimmt die Hover-Grafik den Hut komplett).
   &__icon-base {
     width: 75px;
     height: 75px;
     object-fit: contain;
     display: block;
+    transition: opacity $dur-fast $ease-out;
   }
 
-  // Growth mindset: NUR die weiße Sprechblase ploppt heraus. Der Hut bleibt als
-  // Basis-Icon in der Linie (wie die anderen Icons), daher schneiden wir den
-  // unteren Hut-Teil der Hover-Grafik per clip-path weg und zeigen nur die Blase –
-  // nach rechts oben versetzt, mit einem kleinen Pop.
+  // Growth mindset: der Hut (Basis-Icon) BLEIBT in der Reihe und GENAU SO GROSS wie
+  // die anderen Icons (75px) – wird NICHT ersetzt. Beim Hover ploppt NUR die weiße
+  // Sprechblase nach OBEN heraus, Richtung Supabase (liegt direkt darüber). Der
+  // Hut-Teil der Hover-Grafik wird per clip-path weggeschnitten.
   &__icon-hover {
     position: absolute;
-    left: 64%;                                // etwas nach rechts (war mittig)
-    bottom: 52%;                              // oberhalb des Huts
-    width: 12rem;
+    left: 50%;
+    bottom: 55%;                              // sitzt oben am Hut, Blase wächst nach oben
+    width: 12rem;                             // ~192px – lesbar
     max-width: none;
     height: auto;
-    clip-path: inset(0 0 30% 0);              // unteren Hut-Teil wegschneiden -> nur Blase
-    transform-origin: 0% 100%;                // ploppt aus der Hut-Ecke nach oben rechts
-    transform: scale(0.6);
+    clip-path: inset(0 0 37% 0);              // nur die Blase zeigen (Hut weggeschnitten)
+    transform-origin: 50% 100%;               // ploppt vom Hut nach oben auf
+    transform: translateX(-26%) scale(0.7);   // leicht nach rechts Richtung Supabase
     opacity: 0;
     z-index: 30;
     pointer-events: none;
     transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
   }
 
-  // Blase nur bei vorhandener Hover-Variante einblenden (per :has -> betrifft NUR
-  // das Growth-Item; alle anderen Basis-Icons bleiben unberührt sichtbar).
+  // Basis-Hut bleibt SICHTBAR und in Originalgröße (NICHT ausblenden);
+  // nur die Sprechblase ploppt nach oben heraus.
   &__item:hover:has(&__icon-hover) &__icon-hover {
     opacity: 1;
-    transform: scale(1);                      // Blase ploppt heraus
+    transform: translateX(-26%) scale(1);
   }
 
-  // "Growth mindset" hat im Figma einen kraeftigeren Schatten (nur das Basis-Icon).
+  // "Growth mindset" hat im Figma einen kraeftigeren Schatten (nur das Basis-Icon
+  // im Ruhezustand; die Hover-Grafik bringt ihren eigenen Schatten mit).
   &__item--badge &__icon-base {
     filter: drop-shadow(0 4px 9px rgba(0, 0, 0, 0.45));
   }

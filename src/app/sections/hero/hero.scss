@@ -18,8 +18,8 @@
   &__circle {
     position: absolute;
     z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
-    border-radius: 50%;
-    background: $color-primary;              // Figma: solides #5988FF (kein Gradient)
+    // echtes Figma-Bubble-Asset (Radial-Verlauf #5988FF -> #0043F0) aus figma/deco
+    background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
     // Mobile (Figma 05_Version 2 - Mobile, Ellipse 3 = 612px @ -228/-22 in 390er Frame)
     width: 156.9vw;
     height: 156.9vw;
