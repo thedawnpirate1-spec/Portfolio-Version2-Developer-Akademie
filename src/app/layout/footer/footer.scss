@@ -24,9 +24,22 @@
     width: 100%;
 
     @include up($bp-tablet) {
-      flex-direction: row;
-      justify-content: center;            // Center logo, copy, socials in footer
-      gap: $space-xl;                     // Nice spacing in the middle
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: $space-md;
+
+      .footer__logo {
+        justify-self: start;
+        margin-left: 60px;                // Leave space for the left-aligned scroll arrow!
+      }
+      .footer__copy {
+        justify-self: center;
+      }
+      app-social-links {
+        justify-self: end;
+        display: block;
+      }
     }
   }
 
@@ -71,30 +84,4 @@
     &:hover::after { width: 100%; }
   }
 
-  &__top {
-    position: absolute;
-    left: $space-md;
-    bottom: 50%;
-    transform: translateY(50%);
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: $radius-pill;
-    background: transparent;
-    color: $color-text-on-dark;
-    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(50%) translateY(-3px);
-    }
-
-    svg { width: 22px; height: 22px; }
-
-    @include up($bp-tablet) {
-      left: $space-lg;
-    }
-  }
 }

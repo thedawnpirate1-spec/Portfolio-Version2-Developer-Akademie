@@ -21,6 +21,7 @@
   }
 
   &__inner {
+    position: relative;                    // Anchor for absolute positioning of contact__top
     display: grid;
     gap: $space-lg;
     grid-template-columns: 1fr;            // Mobile: gestapelt
@@ -124,20 +125,22 @@
   }
 
   &__top {
+    position: absolute;
+    left: $space-md;                       // Mobile: aligned to left
+    bottom: -60px;                         // Mobile: below form
     display: grid;
     place-items: center;
     width: 44px;
     height: 44px;
-    border: 2px solid $color-primary;
+    border: none;
     border-radius: $radius-pill;
-    background: transparent;
-    color: $color-primary;
-    margin-top: $space-lg;
-    align-self: flex-start;
+    background: $color-primary;            // Solid blue circle as in Soll-Zustand
+    color: $color-text-on-dark;            // White arrow
     transition: transform $dur-fast $ease-out, background $dur-fast $ease-out;
+    box-shadow: 0 4px 10px rgba($color-primary, 0.3);
 
     &:hover {
-      background: rgba($color-primary, 0.1);
+      background: $color-primary-dark;
       transform: translateY(-3px);
     }
 
@@ -148,7 +151,8 @@
     }
 
     @include up($bp-tablet) {
-      display: none;
+      left: 0;                             // Desktop: aligned with left content edge of container
+      bottom: 20px;                        // Desktop: bottom of contact section next to left column
     }
   }
 }
