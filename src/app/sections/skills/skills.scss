@@ -78,7 +78,7 @@
     height: 176px;                            // Exakte Figma-Höhe (skaliert)
     max-width: none;
     transform-origin: 36% 70%;                // Wächst aus der Spitze des Sprechblasen-Pfeils heraus
-    transform: scale(0.5);                    // Startet dezent verkleinert
+    transform: scale(0.5);
     opacity: 0;
     z-index: 30;
     pointer-events: none;

@@ -137,15 +137,19 @@
     font-weight: $fw-regular;                // Figma: Baloo Regular (war bold)
     line-height: 0.95;
     letter-spacing: -0.025em;                // Figma: -3.2px @128px
-    font-size: clamp(2.2rem, 11vw, 5rem);    // Großer, fließender Titel auf Mobile
     white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
+
+    span { display: block; }
+
+    span:nth-child(1) { font-size: clamp(2.2rem, 18.7vw, 4.56rem); } // Mobile: 73px @390px
+    span:nth-child(2) { font-size: clamp(2rem, 17.1vw, 4.18rem); }   // Mobile: 67px @390px
 
     @include up($bp-tablet) {
       color: $color-primary;                 // Desktop: blau
-      font-size: clamp(2.5rem, 8.9vw, 8rem); // Figma Desktop: 128px (FRONTEND)
+      
+      span:nth-child(1) { font-size: clamp(4.5rem, 8.88vw, 8rem); } // Desktop: 128px @1440px
+      span:nth-child(2) { font-size: clamp(4.15rem, 8.19vw, 7.375rem); } // Desktop: 118px @1440px
     }
-
-    span { display: block; }
   }
 
   // --- SCROLL-Indikator ---
@@ -182,14 +186,16 @@
     color: $color-primary;
     white-space: nowrap;
     writing-mode: vertical-rl;               // Mobile: senkrecht; das „→" zeigt dadurch nach unten
+    text-transform: none;                    // Mobile: "Scroll down →"
 
-    // Mobile-Zusatz: „SCROLL" + „ down →" -> senkrecht gelesen „SCROLL down ↓"
+    // Mobile-Zusatz: „SCROLL" + „ down →" -> senkrecht gelesen „Scroll down ↓"
     &::after {
       content: " down \2192";
     }
 
     @include up($bp-tablet) {
       writing-mode: horizontal-tb;           // Desktop: wieder waagerecht
+      text-transform: uppercase;             // Desktop: "SCROLL"
       &::after {
         content: "";                         // Auf Desktop nur SCROLL
       }

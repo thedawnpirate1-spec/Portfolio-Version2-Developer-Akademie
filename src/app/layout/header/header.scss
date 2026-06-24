@@ -11,6 +11,10 @@
   // Figma: Header liegt immer auf leichtem Milchglas; beim Scrollen deutlicher.
   backdrop-filter: blur(8px);
 
+  @include up($bp-tablet) {
+    padding-block: 24px;
+  }
+
   &.is-scrolled,
   &.is-menu-open {
     background: rgba($color-bg, 0.92);

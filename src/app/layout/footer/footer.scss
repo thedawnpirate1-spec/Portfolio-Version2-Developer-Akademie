@@ -12,6 +12,7 @@
     align-items: center;
     gap: $space-md;
     text-align: center;
+    position: relative;                   // For absolute positioning of top button on the left
   }
 
   // obere Zeile: Logo | Copyright | Social-Icons
@@ -24,7 +25,8 @@
 
     @include up($bp-tablet) {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;            // Center logo, copy, socials in footer
+      gap: $space-xl;                     // Nice spacing in the middle
     }
   }
 
@@ -70,6 +72,10 @@
   }
 
   &__top {
+    position: absolute;
+    left: $space-md;
+    bottom: 50%;
+    transform: translateY(50%);
     display: grid;
     place-items: center;
     width: 44px;
@@ -82,9 +88,13 @@
 
     &:hover {
       background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-3px);
+      transform: translateY(50%) translateY(-3px);
     }
 
     svg { width: 22px; height: 22px; }
+
+    @include up($bp-tablet) {
+      left: $space-lg;
+    }
   }
 }

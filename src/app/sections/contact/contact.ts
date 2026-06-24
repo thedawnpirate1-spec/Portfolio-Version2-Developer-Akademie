@@ -60,4 +60,8 @@ export class Contact {
       this.sending.set(false);    // laeuft IMMER (Erfolg wie Fehler)
     }
   }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

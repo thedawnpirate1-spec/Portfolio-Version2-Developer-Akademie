@@ -122,4 +122,33 @@
     font-weight: $fw-semibold;
     margin-top: $space-xs;
   }
+
+  &__top {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 2px solid $color-primary;
+    border-radius: $radius-pill;
+    background: transparent;
+    color: $color-primary;
+    margin-top: $space-lg;
+    align-self: flex-start;
+    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out;
+
+    &:hover {
+      background: rgba($color-primary, 0.1);
+      transform: translateY(-3px);
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    @include up($bp-tablet) {
+      display: none;
+    }
+  }
 }

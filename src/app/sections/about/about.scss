@@ -43,7 +43,7 @@
     text-align: center;                    // Figma-Mobile: Inhalt zentriert
 
     @include up($bp-desktop) {
-      grid-template-columns: 1fr 1fr;      // Desktop: Titel | Text
+      grid-template-columns: 1.15fr 0.85fr;      // Desktop: Titel | Text (breiterer linker Spalte)
       text-align: left;                    // Desktop: linksbündig
     }
   }
