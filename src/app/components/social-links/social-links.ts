@@ -13,4 +13,14 @@ export class SocialLinks {
 
   // Steuert die Anordnung: senkrecht (Hero, rechte Kante) oder waagerecht (Footer).
   readonly orientation = input<'vertical' | 'horizontal'>('vertical');
+
+  getNormalIconName(icon: string): string {
+    if (icon === 'mail') return 'e-mail-normal';
+    return `${icon}-normal`;
+  }
+
+  getHoverIconName(icon: string): string {
+    if (icon === 'mail') return 'email-hover';
+    return `${icon}-hover`;
+  }
 }

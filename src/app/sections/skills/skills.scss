@@ -72,20 +72,20 @@
   // Da die Hut-Grafik aus dem Hover-SVG gelöscht wurde, müssen wir keinen clip-path mehr anwenden.
   &__icon-hover {
     position: absolute;
-    left: calc(50% - 37.5px);                 // Richtet das linke Ende am Hut aus
-    bottom: 4.5px;                            // Richtet das untere Ende an der Basis aus
-    width: 201px;                             // Exakte Figma-Breite (skaliert)
-    height: 176px;                            // Exakte Figma-Höhe (skaliert)
+    left: calc(50% - 46px);                   // Align bubble pointer (x=46) with the center of the base icon
+    bottom: 78px;                             // Position above the base icon
+    width: 177px;                             // 1:1 Figma width
+    height: 134px;                            // 1:1 Figma height
     max-width: none;
-    transform-origin: 36% 70%;                // Wächst aus der Spitze des Sprechblasen-Pfeils heraus
-    transform: scale(0.5);
+    transform-origin: 26% 93.3%;              // Grow from the tip of the bubble pointer (x=46, y=125)
+    transform: scale(0);
     opacity: 0;
     z-index: 30;
     pointer-events: none;
     transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
   }
 
-  // Basis-Hut bleibt sichtbar, die Sprechblase ploppt weich nach oben auf.
+  // Base icon remains visible, bubble pops up above it
   &__item:hover &__icon-hover {
     opacity: 1;
     transform: scale(1);

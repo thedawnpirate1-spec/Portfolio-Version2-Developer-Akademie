@@ -69,7 +69,7 @@ export const SKILLS: Skill[] = [
   { name: 'Material Design', icon: 'material-design' },
   { name: 'REST-API',        icon: 'rest-api' },
   { name: 'Scrum',           icon: 'scrum' },
-  { name: 'Growth mindset',  icon: 'growth-mindset', badge: true, hover: 'growth-mindset-hover' },
+  { name: 'Growth mindset',  icon: 'growth-mindset', badge: true, hover: 'hover-info-grow-mindset' },
 ];
 
 // -----------------------------------------------------------------------------

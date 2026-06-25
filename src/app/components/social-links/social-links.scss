@@ -11,29 +11,45 @@
   }
 
   a {
-    display: grid;
-    place-items: center;     // Icon exakt zentrieren
+    display: block;
+    position: relative;
     width: 42px;
     height: 42px;
     border-radius: $radius-pill;
-    background: $color-bg;
+    background: #ffffff; // Background color for the cutout logo in normal state (blue circle, white icon)
     box-shadow: 0 6px 18px rgba($color-primary, 0.25);
-    color: $color-primary;
     // Sanfter Uebergang fuer den Hover-Effekt (Farbe + leichtes Anheben).
-    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out,
-      color $dur-fast $ease-out;
+    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out;
   }
 
-  // Hover: Kreis fuellt sich blau, Icon wird weiss, Button hebt sich leicht.
+  // Hover: Background turns blue so the cutout of the white SVG shows blue (white circle, blue icon).
   a:hover {
     background: $color-primary;
-    color: $color-text-on-dark;
     transform: translateY(-3px);
   }
 
-  svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;       // Icon erbt die Textfarbe -> ein Hover faerbt beides
+  &__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity $dur-fast $ease-out;
+  }
+
+  &__icon--normal {
+    opacity: 1;
+  }
+
+  &__icon--hover {
+    opacity: 0;
+  }
+
+  a:hover &__icon--normal {
+    opacity: 0;
+  }
+
+  a:hover &__icon--hover {
+    opacity: 1;
   }
 }

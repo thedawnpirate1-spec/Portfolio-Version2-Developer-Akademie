@@ -132,27 +132,52 @@
     place-items: center;
     width: 44px;
     height: 44px;
-    border: none;
+    border: 2px solid transparent;
     border-radius: $radius-pill;
-    background: $color-primary;            // Solid blue circle as in Soll-Zustand
-    color: $color-text-on-dark;            // White arrow
-    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: transform $dur-fast $ease-out, background $dur-fast $ease-out, border-color $dur-fast $ease-out;
     box-shadow: 0 4px 10px rgba($color-primary, 0.3);
 
     &:hover {
-      background: $color-primary-dark;
-      transform: translateY(-3px);
-    }
-
-    svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
+      background: #ffffff;
+      border-color: $color-primary;
+      transform: translateY(-3px) scale(1.08);
     }
 
     @include up($bp-tablet) {
       left: 0;                             // Desktop: aligned with left content edge of container
       bottom: 20px;                        // Desktop: bottom of contact section next to left column
+      transform: none;
+
+      &:hover {
+        transform: translateY(-3px) scale(1.08);
+      }
     }
+  }
+
+  &__top-icon {
+    grid-area: 1 / 1;
+    transition: opacity $dur-fast $ease-out;
+  }
+  &__top-icon--normal {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+  &__top-icon--hover {
+    width: 58%;
+    height: 58%;
+    opacity: 0;
+    color: $color-primary;                 // blue arrow inside
+    transform: rotate(180deg);
+  }
+
+  &__top:hover &__top-icon--normal {
+    opacity: 0;
+  }
+  &__top:hover &__top-icon--hover {
+    opacity: 1;
   }
 }
