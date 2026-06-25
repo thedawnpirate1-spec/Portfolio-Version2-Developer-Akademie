@@ -16,16 +16,16 @@
 
     <div class="header__right">
       <nav class="header__nav" aria-label="Hauptnavigation">
-        <a href="#about" (click)="closeMenu()">About me</a>
-        <a href="#skills" (click)="closeMenu()">Skill set</a>
-        <a href="#work" (click)="closeMenu()">My work</a>
+        <a href="#about" (click)="closeMenu()">{{ ts.t('NAV_ABOUT') }}</a>
+        <a href="#skills" (click)="closeMenu()">{{ ts.t('NAV_SKILLS') }}</a>
+        <a href="#work" (click)="closeMenu()">{{ ts.t('NAV_WORK') }}</a>
       </nav>
 
       <!-- Sprachumschalter -->
       <div class="header__lang" aria-label="Sprache wählen">
-        <button type="button">DE</button>
+        <button type="button" (click)="ts.setLanguage('DE')" [class.is-active]="ts.currentLang() === 'DE'" [attr.aria-current]="ts.currentLang() === 'DE' ? 'true' : null">DE</button>
         <span>/</span>
-        <button type="button" class="is-active" aria-current="true">EN</button>
+        <button type="button" (click)="ts.setLanguage('EN')" [class.is-active]="ts.currentLang() === 'EN'" [attr.aria-current]="ts.currentLang() === 'EN' ? 'true' : null">EN</button>
       </div>
     </div>
   </div>

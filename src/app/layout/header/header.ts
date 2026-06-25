@@ -1,5 +1,6 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { PROFILE } from '../../data/profile';
+import { TranslationService } from '../../shared/translation.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,7 @@ import { PROFILE } from '../../data/profile';
 })
 export class Header {
   readonly name = PROFILE.name;
+  readonly ts = inject(TranslationService);
 
   // Signal = reaktiver Wert. Aendert er sich, rendert Angular die Stellen neu,
   // die ihn lesen (hier die [class.is-scrolled]-Bindung im Template).

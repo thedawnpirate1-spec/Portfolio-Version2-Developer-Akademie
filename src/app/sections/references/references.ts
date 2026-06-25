@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Reveal } from '../../shared/reveal';
 import { REFERENCES } from '../../data/profile';
+import { TranslationService } from '../../shared/translation.service';
 
 @Component({
   selector: 'app-references',
@@ -10,6 +11,7 @@ import { REFERENCES } from '../../data/profile';
 })
 export class References {
   readonly references = REFERENCES;
+  readonly ts = inject(TranslationService);
 
   // Aktive Karte im Mobile-/Tablet-Karussell. Desktop zeigt alle 3 als Grid,
   // dort wird der Index ignoriert. Per Pfeil-Buttons / Punkten wechselt man

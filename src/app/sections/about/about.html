@@ -10,23 +10,22 @@
     <span class="about__deco-circle about__deco-circle--top"></span>
     <span class="about__deco-circle about__deco-circle--right"></span>
   </div>
-
   <div class="about__inner container">
     <!-- linke Spalte -->
     <div class="about__intro" appReveal>
       <h2 class="about__title">
-        <span>Let's work</span>
-        <span>together</span>
+        <span>{{ ts.t('ABOUT_TITLE_1') }}</span>
+        <span>{{ ts.t('ABOUT_TITLE_2') }}</span>
       </h2>
 
-      <p class="about__iam">I am</p>
+      <p class="about__iam">{{ ts.t('ABOUT_IAM') }}</p>
 
       <ul class="about__availability">
         <li>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
           </svg>
-          <span>located {{ about.location }}</span>
+          <span>{{ ts.t('ABOUT_LOCATED') }}</span>
         </li>
 
         @if (about.remote) {
@@ -34,7 +33,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2v7h14V7H5ZM2 18h20v2H2z" />
             </svg>
-            <span>open to work remote</span>
+            <span>{{ ts.t('ABOUT_REMOTE') }}</span>
           </li>
         }
 
@@ -43,7 +42,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9 4h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z" />
             </svg>
-            <span>open to relocate</span>
+            <span>{{ ts.t('ABOUT_RELOCATE') }}</span>
           </li>
         }
       </ul>
@@ -51,10 +50,8 @@
 
     <!-- rechte Spalte -->
     <div class="about__text" appReveal>
-      @for (paragraph of about.paragraphs; track $index) {
-        <p>{{ paragraph }}</p>
-      }
-      <a class="btn-primary" href="#contact">Send a message</a>
+      <p>{{ ts.t('ABOUT_TEXT') }}</p>
+      <a class="btn-primary" href="#contact">{{ ts.t('ABOUT_BTN') }}</a>
     </div>
   </div>
 </section>

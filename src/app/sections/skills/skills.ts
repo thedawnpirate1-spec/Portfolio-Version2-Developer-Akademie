@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Reveal } from '../../shared/reveal';
 import { SKILLS } from '../../data/profile';
+import { TranslationService } from '../../shared/translation.service';
 
 @Component({
   selector: 'app-skills',
@@ -10,4 +11,5 @@ import { SKILLS } from '../../data/profile';
 })
 export class Skills {
   readonly skills = SKILLS;
+  readonly ts = inject(TranslationService);
 }

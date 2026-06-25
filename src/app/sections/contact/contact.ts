@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Reveal } from '../../shared/reveal';
+import { TranslationService } from '../../shared/translation.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,6 +15,7 @@ import { Reveal } from '../../shared/reveal';
 export class Contact {
   private readonly fb = inject(FormBuilder);
   private readonly http = inject(HttpClient);
+  readonly ts = inject(TranslationService);
 
   // Endpunkt: relativ -> liegt im Build neben index.html. Auf dem PHP-Host
   // (z. B. deine Domain) wird send_mail.php dann tatsaechlich ausgefuehrt.

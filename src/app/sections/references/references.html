@@ -5,8 +5,8 @@
 -->
 <section class="references" id="references">
   <div class="container">
-    <h2 class="references__title" appReveal>Need a teamplayer?</h2>
-    <p class="references__subtitle" appReveal>Here is what my colleagues say about me.</p>
+    <h2 class="references__title" appReveal>{{ ts.t('REF_TITLE') }}</h2>
+    <p class="references__subtitle" appReveal>{{ ts.t('REF_SUBTITLE') }}</p>
 
     <div class="references__carousel" appReveal>
       <!-- Pfeil zurück: nur Mobile/Tablet sichtbar (Desktop zeigt alle Karten) -->
@@ -19,13 +19,13 @@
       <div class="references__viewport">
         <!-- Schiene: per --index um -100% je Schritt verschoben -->
         <div class="references__track" [style.--index]="activeIndex()">
-          @for (ref of references; track ref.name + ref.project) {
+          @for (ref of references; track ref.name + ref.project; let i = $index) {
             <figure class="references__card">
               <figcaption>
                 <span class="references__name">{{ ref.name }}</span>
                 <span class="references__project">{{ ref.project }}</span>
               </figcaption>
-              <blockquote class="references__quote">{{ ref.quote }}</blockquote>
+              <blockquote class="references__quote">{{ ts.t('REF_QUOTE_' + (i + 1)) || ref.quote }}</blockquote>
             </figure>
           }
         </div>

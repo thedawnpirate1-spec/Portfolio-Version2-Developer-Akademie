@@ -14,63 +14,60 @@
   <div class="contact__inner container">
     <!-- linke Spalte -->
     <div class="contact__intro" appReveal>
-      <h2 class="contact__title">Contact</h2>
-      <p class="contact__lead">Got a problem to solve?</p>
+      <h2 class="contact__title">{{ ts.t('CONTACT_TITLE') }}</h2>
+      <p class="contact__lead">{{ ts.t('CONTACT_LEAD') }}</p>
       <p class="contact__text">
-        Du suchst jemanden, der deine Ideen sauber umsetzt? Schreib mir — ich
-        freue mich darauf, zu deinen Projekten beizutragen.
+        {{ ts.t('CONTACT_TEXT') }}
       </p>
       <p class="contact__cta">
-        Need a Frontend developer? <span>Contact me!</span>
+        {{ ts.t('CONTACT_CTA_1') }} <span>{{ ts.t('CONTACT_CTA_2') }}</span>
       </p>
     </div>
 
     <!-- rechte Spalte: Formular -->
     <form class="contact__form" [formGroup]="form" (ngSubmit)="submit()" appReveal>
       <div class="contact__field">
-        <input type="text" formControlName="name" placeholder="Your name" autocomplete="name" />
+        <input type="text" formControlName="name" [placeholder]="ts.t('CONTACT_PLACEHOLDER_NAME')" autocomplete="name" />
         @if (form.controls.name.touched && form.controls.name.invalid) {
-          <span class="contact__error">Bitte gib deinen Namen ein.</span>
+          <span class="contact__error">{{ ts.t('CONTACT_ERR_NAME') }}</span>
         }
       </div>
 
       <div class="contact__field">
-        <input type="email" formControlName="email" placeholder="Your email" autocomplete="email" />
+        <input type="email" formControlName="email" [placeholder]="ts.t('CONTACT_PLACEHOLDER_EMAIL')" autocomplete="email" />
         @if (form.controls.email.touched && form.controls.email.invalid) {
-          <span class="contact__error">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+          <span class="contact__error">{{ ts.t('CONTACT_ERR_EMAIL') }}</span>
         }
       </div>
 
       <div class="contact__field">
-        <textarea formControlName="message" placeholder="Your message" rows="5"></textarea>
+        <textarea formControlName="message" [placeholder]="ts.t('CONTACT_PLACEHOLDER_MESSAGE')" rows="5"></textarea>
         @if (form.controls.message.touched && form.controls.message.invalid) {
-          <span class="contact__error">Bitte schreib eine kurze Nachricht.</span>
+          <span class="contact__error">{{ ts.t('CONTACT_ERR_MESSAGE') }}</span>
         }
       </div>
 
       <div class="contact__privacy">
         <input type="checkbox" id="privacy" formControlName="privacy" />
         <label for="privacy">
-          I've read the <a routerLink="/datenschutz" target="_blank" rel="noopener">privacy policy</a> and agree to the processing of my data.
+          {{ ts.t('CONTACT_PRIVACY_1') }}<a routerLink="/datenschutz" target="_blank" rel="noopener">{{ ts.t('CONTACT_PRIVACY_LINK') }}</a>{{ ts.t('CONTACT_PRIVACY_2') }}
         </label>
       </div>
       @if (form.controls.privacy.touched && form.controls.privacy.invalid) {
-        <span class="contact__error">Bitte akzeptiere die Datenschutzerklärung.</span>
+        <span class="contact__error">{{ ts.t('CONTACT_ERR_PRIVACY') }}</span>
       }
 
       <button type="submit" class="btn-primary" [disabled]="form.invalid || sending()">
-        {{ sending() ? 'Senden …' : 'Say hello ;)' }}
+        {{ sending() ? ts.t('CONTACT_BTN_SENDING') : ts.t('CONTACT_BTN') }}
       </button>
 
       @if (sent()) {
-        <p class="contact__sent">Danke für deine Nachricht! Ich melde mich. 🎉</p>
+        <p class="contact__sent">{{ ts.t('CONTACT_SENT') }}</p>
       }
       @if (error()) {
-        <p class="contact__error">Senden fehlgeschlagen. Bitte später erneut versuchen
-          oder direkt eine E-Mail schreiben.</p>
+        <p class="contact__error">{{ ts.t('CONTACT_ERROR') }}</p>
       }
     </form>
-
     <!-- Scroll-to-Top (Figma-Deco-Pfeile: arrow-normal = Ruhezustand, arrow-hover = Hover) -->
     <button class="contact__top" type="button" (click)="scrollToTop()" aria-label="Nach oben scrollen">
       <img class="contact__top-icon contact__top-icon--normal" src="assets/figma/deco/arrow-normal.svg" alt="" aria-hidden="true" />
