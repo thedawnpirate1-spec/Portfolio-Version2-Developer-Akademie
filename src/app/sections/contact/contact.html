@@ -51,7 +51,7 @@
       <div class="contact__privacy">
         <input type="checkbox" id="privacy" formControlName="privacy" />
         <label for="privacy">
-          I've read the <a href="#">privacy policy</a> and agree to the processing of my data.
+          I've read the <a routerLink="/datenschutz" target="_blank" rel="noopener">privacy policy</a> and agree to the processing of my data.
         </label>
       </div>
       @if (form.controls.privacy.touched && form.controls.privacy.invalid) {

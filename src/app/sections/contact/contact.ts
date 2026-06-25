@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Reveal } from '../../shared/reveal';
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule, Reveal],
+  imports: [ReactiveFormsModule, Reveal, RouterLink],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
