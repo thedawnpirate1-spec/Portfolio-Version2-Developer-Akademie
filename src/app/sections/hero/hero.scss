@@ -10,13 +10,54 @@
 // Mixin containing all desktop styles to prevent code duplication between
 // the intermediate desktop layout (768px - 3399px) and the ultra-wide layout (3400px+).
 @mixin hero-desktop-theme {
-  &__circle {
+  &__circle--mobile {
+    display: block;
     width: 61.94vw;
     height: 61.94vw;
     top: -4.93vw;
     left: -13.82vw;
     transform: none;
     animation: none;
+  }
+
+  &__circle--desktop {
+    display: none;
+  }
+
+  &__bubble-small {
+    display: none;
+  }
+
+  @media (min-width: 1400px) {
+    &__circle--mobile {
+      display: none;
+    }
+
+    &__circle--desktop {
+      display: block;
+      position: absolute;
+      z-index: 0;
+      background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
+      width: 90%;
+      aspect-ratio: 1;
+      left: 50%;
+      top: 25%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    &__bubble-small {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
+      width: 23%;
+      aspect-ratio: 1;
+      right: 15%;
+      bottom: 5%;
+      pointer-events: none;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.12));
+    }
   }
 
   &__bubble {
@@ -96,7 +137,7 @@
   background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
 
   // --- grosser blauer Ball (Mobile) ---
-  &__circle {
+  &__circle--mobile {
     position: absolute;
     z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
     background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
@@ -106,6 +147,11 @@
     top: -5.6vw;
     left: -58.5vw;
     transform: none;
+  }
+
+  &__circle--desktop,
+  &__bubble-small {
+    display: none;
   }
 
   // --- Mobile-Bubbles (Figma-Mobile Ellipse 5/6, solid #5988FF) ---

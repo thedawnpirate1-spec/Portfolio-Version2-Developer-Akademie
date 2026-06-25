@@ -7,8 +7,9 @@
   reveal-1..4 = gestaffeltes Einblenden (siehe hero.scss).
 -->
 <section class="hero" id="home">
-  <!-- grosser blauer Ball: oben links, laeuft aus dem Bild; Person steht davor -->
-  <span class="hero__circle" aria-hidden="true"></span>
+  <!-- grosser blauer Ball: oben links, laeuft aus dem Bild; Person steht davor (Mobile) -->
+  <span class="hero__circle hero__circle--mobile" aria-hidden="true"></span>
+
 
   <!-- Mobile-Bubbles (Figma 05_Version 2 - Mobile, Ellipse 5/6 = 304:975/976) -->
   <span class="hero__bubble hero__bubble--1" aria-hidden="true"></span>
@@ -16,7 +17,9 @@
 
   <div class="hero__inner container">
     <div class="hero__photo reveal-1">
+      <span class="hero__circle hero__circle--desktop" aria-hidden="true"></span>
       <img src="assets/images/profil-cutout.png" alt="Profilfoto von {{ name }}" />
+      <span class="hero__bubble-small" aria-hidden="true"></span>
     </div>
     <div class="hero__text">
       <p class="hero__greeting reveal-2">{{ ts.t('HERO_GREETING') }} {{ firstName }}</p>
