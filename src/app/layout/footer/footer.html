@@ -1,13 +1,11 @@
 <footer class="footer">
   <div class="footer__inner container">
-    <div class="footer__row">
-      <a class="footer__logo" href="#home">{{ name }}<span>.</span></a>
+    <a class="footer__logo" href="#home">{{ name }}<span>.</span></a>
 
-      <p class="footer__copy">© {{ name }} {{ year }}</p>
+    <p class="footer__copy">© {{ name }} {{ year }}</p>
 
-      <!-- gleiche Komponente wie im Hero, hier waagerecht -->
-      <app-social-links orientation="horizontal" />
-    </div>
+    <!-- gleiche Komponente wie im Hero, hier waagerecht -->
+    <app-social-links orientation="horizontal" />
 
     <!-- Pflicht-Seiten in DE (echte Routen) -->
     <nav class="footer__legalnav" aria-label="Rechtliches">

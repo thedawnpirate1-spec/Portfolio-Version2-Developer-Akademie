@@ -13,33 +13,17 @@
     gap: $space-md;
     text-align: center;
     position: relative;                   // For absolute positioning of top button on the left
-  }
-
-  // obere Zeile: Logo | Copyright | Social-Icons
-  &__row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $space-md;
-    width: 100%;
 
     @include up($bp-tablet) {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "logo copy social"
+        "logo legal social";
       align-items: center;
-      gap: $space-md;
-
-      .footer__logo {
-        justify-self: start;
-        margin-left: 60px;                // Leave space for the left-aligned scroll arrow!
-      }
-      .footer__copy {
-        justify-self: center;
-      }
-      app-social-links {
-        justify-self: end;
-        display: block;
-      }
+      row-gap: $space-xs;
+      column-gap: $space-md;
     }
   }
 
@@ -49,11 +33,22 @@
     font-size: 1.4rem;
 
     span { opacity: 0.7; }
+
+    @include up($bp-tablet) {
+      grid-area: logo;
+      justify-self: start;
+      margin-left: 60px;                // Leave space for the left-aligned scroll arrow!
+    }
   }
 
   &__copy {
     font-size: $fs-small;
     opacity: 0.9;
+
+    @include up($bp-tablet) {
+      grid-area: copy;
+      justify-self: center;
+    }
   }
 
   &__legalnav {
@@ -61,6 +56,19 @@
     gap: $space-md;
     flex-wrap: wrap;
     justify-content: center;
+
+    @include up($bp-tablet) {
+      grid-area: legal;
+      justify-self: center;
+    }
+  }
+
+  app-social-links {
+    @include up($bp-tablet) {
+      grid-area: social;
+      justify-self: end;
+      display: block;
+    }
   }
 
   // Legal-Notice-Link mit kurzem Unterstrich (wie Figma)
