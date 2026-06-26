@@ -1,0 +1,22 @@
+# Was Vercel NICHT hochladen soll (Build laeuft ohnehin per `ng build` auf Vercel).
+# node_modules/, dist/, .angular/, .vercel/ sind bereits ueber .gitignore ausgeschlossen.
+
+# Projekt-Doku & Audit (nur lokal relevant, kein Teil der Seite)
+DESIGN-SPEC.md
+FIGMA-SYNC-AUDIT.md
+README.md
+
+# QA-/Diff-Artefakte (falls erneut erzeugt)
+.figma-ref/
+serve_diffs.js
+view_diffs.html
+__screenshots__/
+
+# Editor-/Tooling-Config (fuer den Build nicht noetig)
+.vscode/
+.editorconfig
+.prettierrc
+.figma-ref
+
+# Test-Setup (Prod-Build braucht es nicht)
+tsconfig.spec.json
