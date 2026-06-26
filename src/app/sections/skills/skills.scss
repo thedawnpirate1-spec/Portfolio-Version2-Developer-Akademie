@@ -2,15 +2,15 @@
 @use '../../../styles/mixins' as *;
 
 .skills {
-  background: $gradient-blue;                // echter Figma-Verlauf #5988FF -> #0043F0
+  background: $gradient-blue;
   color: $color-text-on-dark;
-  padding-block: $space-lg;                  // Figma: Titel @56px oben (vorher $space-xl=128px -> zu tief)
+  padding-block: $space-lg;
 
   &__title {
-    font-family: $font-display;              // Baloo 2
-    font-weight: $fw-regular;                // Figma: Baloo Regular (war bold)
+    font-family: $font-display;
+    font-weight: $fw-regular;
     text-align: center;
-    font-size: clamp(2.5rem, 7vw, 6rem);     // Figma Desktop: 96px
+    font-size: clamp(2.5rem, 7vw, 6rem);
     margin-bottom: $space-lg;
   }
 
@@ -18,31 +18,29 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;                 // letzte Reihe zentriert (6 + 5)
-    gap: $space-md $space-sm;                 // Mobile: enger -> 3 Icons pro Reihe (wie Figma)
+    justify-content: center;
+    gap: $space-md $space-sm;
     max-width: 920px;
     margin-inline: auto;
 
     @include up($bp-tablet) {
-      gap: $space-lg $space-md;              // Desktop: wieder grosszuegiger
+      gap: $space-lg $space-md;
     }
   }
 
   &__item {
-    position: relative;                       // Anker + z-index für den Hover-Pop
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $space-xs;
-    width: 88px;                             // Mobile: 3 pro Reihe (Figma-Zelle = 88px)
+    width: 88px;
     transition: transform $dur-fast $ease-out;
 
     @include up($bp-tablet) {
-      width: 120px;                          // Desktop: breitere Zellen
+      width: 120px;
     }
 
-    // Hover: Icon „ploppt" dezent heraus (leichtes Vergrößern + Anheben) und legt
-    // sich über die Nachbarn, damit z. B. die Growth-Sprechblase frei herausragen kann.
     &:hover {
       transform: translateY(-4px) scale(1.08);
       z-index: 5;
@@ -50,16 +48,13 @@
   }
 
   &__icon {
-    position: relative;                       // Anker für die absolute Hover-Variante
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 84px;
   }
 
-  // Basis-Icon: feste Figma-Größe (~75px), proportional. Bleibt beim Hover SICHTBAR
-  // (weiß) – das „Größerwerden" macht der Item-Transform. NUR beim Growth-Item wird
-  // es beim Hover ausgeblendet (dort übernimmt die Hover-Grafik den Hut komplett).
   &__icon-base {
     width: 75px;
     height: 75px;
@@ -68,16 +63,14 @@
     transition: opacity $dur-fast $ease-out;
   }
 
-  // Growth mindset hover: Die Sprechblase ploppt nach oben heraus und zeigt die Spezial-Interessen.
-  // Da die Hut-Grafik aus dem Hover-SVG gelöscht wurde, müssen wir keinen clip-path mehr anwenden.
   &__icon-hover {
     position: absolute;
-    left: calc(50% - 46px);                   // Align bubble pointer (x=46) with the center of the base icon
-    bottom: 78px;                             // Position above the base icon
-    width: 177px;                             // 1:1 Figma width
-    height: 134px;                            // 1:1 Figma height
+    left: calc(50% - 46px);
+    bottom: 78px;
+    width: 177px;
+    height: 134px;
     max-width: none;
-    transform-origin: 26% 93.3%;              // Grow from the tip of the bubble pointer (x=46, y=125)
+    transform-origin: 26% 93.3%;
     transform: scale(0);
     opacity: 0;
     z-index: 30;
@@ -85,20 +78,17 @@
     transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
   }
 
-  // Base icon remains visible, bubble pops up above it
   &__item:hover &__icon-hover {
     opacity: 1;
     transform: scale(1);
   }
 
-  // "Growth mindset" hat im Figma einen kraeftigeren Schatten (nur das Basis-Icon
-  // im Ruhezustand; die Hover-Grafik bringt ihren eigenen Schatten mit).
   &__item--badge &__icon-base {
     filter: drop-shadow(0 4px 9px rgba(0, 0, 0, 0.45));
   }
 
   &__name {
-    font-family: $font-body;                 // Montserrat
+    font-family: $font-body;
     font-size: 1rem;
     text-align: center;
   }

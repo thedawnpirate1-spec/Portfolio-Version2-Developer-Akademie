@@ -3,48 +3,43 @@
 
 .contact {
   position: relative;
-  overflow: hidden;            // ueberstehende Deko-Kreise abschneiden
+  overflow: hidden;
   padding-block: $space-xl;
 
-  // --- dekorative Kreise ---
-  // Mobile-first (Figma-Mobile 304:694): nur E14 sichtbar (Seam oben rechts);
-  // E13/E11 sind auf Mobile ausgeblendet (lägen dort auf dem blauen Verlaufsband).
-  // Ab Tablet die Desktop-Kreise (230:457).
-  &__c--e14 { width: 20.3vw; left: 77.2%; top: -13%; }   // Mobile E14 (105245:1276)
+  &__c--e14 { width: 20.3vw; left: 77.2%; top: -13%; }
   &__c--e13 { display: none; }
   &__c--e11 { display: none; }
 
   @include up($bp-tablet) {
-    &__c--e13 { display: block; width: 10.3vw; left: 64.6%; top: -13%; }  // Seam Refs/Contact
-    &__c--e11 { display: block; width: 14.2vw; left: 16.8%; top: 74%; }  // unten-links, UNTER der „Contact me!"-Zeile (Figma: Kreis im Leerraum, nicht hinter dem blauen Text; minimaler Anschnitt unten ist designkonform)
+    &__c--e13 { display: block; width: 10.3vw; left: 64.6%; top: -13%; }
+    &__c--e11 { display: block; width: 14.2vw; left: 16.8%; top: 74%; }
     &__c--e14 { width: 5.1vw;  left: 88.6%; top: 82%; }
   }
 
   &__inner {
-    position: relative;                    // Anchor for absolute positioning of contact__top
+    position: relative;
     display: grid;
     gap: $space-lg;
-    grid-template-columns: 1fr;            // Mobile: gestapelt
+    grid-template-columns: 1fr;
     align-items: start;
 
     @include up($bp-desktop) {
-      grid-template-columns: 1fr 1fr;      // Desktop: Text | Formular
+      grid-template-columns: 1fr 1fr;
       gap: $space-xl;
     }
   }
 
-  // --- linke Spalte ---
   &__title {
-    font-family: $font-display;            // Baloo 2
+    font-family: $font-display;
     color: $color-primary;
-    font-size: clamp(2.5rem, 6.25vw, 5.625rem); // Figma Desktop: 90px @1440
+    font-size: clamp(2.5rem, 6.25vw, 5.625rem);
   }
 
   &__lead {
     font-family: $font-body;
     font-weight: $fw-bold;
     color: $color-primary;
-    font-size: clamp(1.4rem, 3vw, 2rem);   // Figma: 32px
+    font-size: clamp(1.4rem, 3vw, 2rem);
     margin-top: $space-md;
   }
 
@@ -62,19 +57,17 @@
     margin-top: $space-md;
 
     span {
-      font-family: $font-display;          // "Contact me!" in Baloo (wie Figma)
+      font-family: $font-display;
       color: $color-primary;
     }
   }
 
-  // --- rechte Spalte: Formular ---
   &__form {
     display: flex;
     flex-direction: column;
     gap: $space-sm;
   }
 
-  // Felder: weiss, blauer Rand, abgerundet (Figma)
   input,
   textarea {
     width: 100%;
@@ -98,7 +91,7 @@
     display: block;
     margin-top: 4px;
     font-size: $fs-small;
-    color: #e61c40;                        // Figma-Fehlerfarbe
+    color: #e61c40;
   }
 
   &__privacy {
@@ -126,8 +119,8 @@
 
   &__top {
     position: absolute;
-    left: $space-md;                       // Mobile: aligned to left
-    bottom: -60px;                         // Mobile: below form
+    left: $space-md;
+    bottom: -60px;
     display: grid;
     place-items: center;
     width: 44px;
@@ -147,8 +140,8 @@
     }
 
     @include up($bp-tablet) {
-      left: 0;                             // Desktop: aligned with left content edge of container
-      bottom: 20px;                        // Desktop: bottom of contact section next to left column
+      left: 0;
+      bottom: 20px;
       transform: none;
 
       &:hover {
@@ -170,7 +163,7 @@
     width: 58%;
     height: 58%;
     opacity: 0;
-    color: $color-primary;                 // blue arrow inside
+    color: $color-primary;
     transform: rotate(180deg);
   }
 

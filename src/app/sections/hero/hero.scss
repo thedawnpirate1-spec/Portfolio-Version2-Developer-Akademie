@@ -1,14 +1,6 @@
 @use '../../../styles/tokens' as *;
 @use '../../../styles/mixins' as *;
 
-// =============================================================================
-//  HERO – Layout nach Figma (Desktop): Person steht unten links auf der
-//  Grundlinie, grosser blauer Kreis dahinter, Text rechts vertikal mittig,
-//  SCROLL center-rechts, Social-Icons unten rechts. Mobile: gestapelt.
-// =============================================================================
-
-// Mixin containing all desktop styles to prevent code duplication between
-// the intermediate desktop layout (768px - 3399px) and the ultra-wide layout (3400px+).
 @mixin hero-desktop-theme {
   &__circle--mobile {
     display: block;
@@ -65,17 +57,17 @@
   }
 
   &__inner {
-    grid-template-columns: 46% 54%;        // Foto-Spalte breiter (Figma-Foto = 761px ≈ 53%)
-    grid-template-rows: auto;              // Zurücksetzen für Desktop
-    align-items: end;                      // Person sitzt auf der Grundlinie
+    grid-template-columns: 46% 54%;
+    grid-template-rows: auto;
+    align-items: end;
     text-align: left;
   }
 
   &__photo {
     order: 0;
-    align-self: end;                       // unten andocken (Person steht)
-    max-width: 720px;                      // Figma-Foto = 761px (vorher 600 -> zu klein)
-    width: 100%;                           // füllt die breitere Foto-Spalte
+    align-self: end;
+    max-width: 720px;
+    width: 100%;
   }
 
   &__text {
@@ -85,37 +77,37 @@
   }
 
   &__greeting {
-    color: $color-primary;                 // Desktop: blau
-    font-size: clamp(1.5rem, 4.44vw, 4rem); // Figma Desktop: 64px @1440
+    color: $color-primary;
+    font-size: clamp(1.5rem, 4.44vw, 4rem);
   }
 
   &__title {
-    color: $color-primary;                 // Desktop: blau
-    
-    span:nth-child(1) { font-size: clamp(4.5rem, 8.88vw, 8rem); } // Desktop: 128px @1440px
-    span:nth-child(2) { font-size: clamp(4.15rem, 8.19vw, 7.375rem); } // Desktop: 118px @1440px
+    color: $color-primary;
+
+    span:nth-child(1) { font-size: clamp(4.5rem, 8.88vw, 8rem); }
+    span:nth-child(2) { font-size: clamp(4.15rem, 8.19vw, 7.375rem); }
   }
 
   &__scroll {
     flex-direction: column;
     align-items: center;
     gap: $space-xs;
-    left: 71%;                             // Zentriert unter der rechten Spalte
-    width: 0;                              // Kinder zentrieren auf der left-Achse (kein transform nötig)
+    left: 71%;
+    width: 0;
     bottom: 10%;
     right: auto;
   }
 
   &__scroll-label {
-    writing-mode: horizontal-tb;           // Desktop: wieder waagerecht
-    text-transform: uppercase;             // Desktop: "SCROLL"
+    writing-mode: horizontal-tb;
+    text-transform: uppercase;
     &::after {
-      content: "";                         // Auf Desktop nur SCROLL
+      content: "";
     }
   }
 
   &__scroll-line {
-    display: block;                        // Linie auf Desktop wieder da
+    display: block;
   }
 
   &__socials {
@@ -125,7 +117,7 @@
     justify-content: center;
     position: absolute;
     right: 0;
-    bottom: 10%; // etwas tiefer passend zum SCROLL
+    bottom: 10%;
     margin-top: 0;
   }
 }
@@ -133,15 +125,14 @@
 .hero {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;                          // Kreis/Foto, das ueberlappt, abschneiden
+  overflow: hidden;
   background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
 
-  // --- grosser blauer Ball (Mobile) ---
   &__circle--mobile {
     position: absolute;
-    z-index: 0;                              // hinter dem Inhalt (Foto/Text davor)
+    z-index: 0;
     background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
-    // Mobile (Figma 05_Version 2 - Mobile, Ellipse 3 = 612px @ -228/-22 in 390er Frame)
+
     width: 156.9vw;
     height: 156.9vw;
     top: -5.6vw;
@@ -154,7 +145,6 @@
     display: none;
   }
 
-  // --- Mobile-Bubbles (Figma-Mobile Ellipse 5/6, solid #5988FF) ---
   &__bubble {
     position: absolute;
     z-index: 0;
@@ -162,74 +152,71 @@
     background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
     pointer-events: none;
   }
-  // Ellipse 5: 156px @ (107,762) im 390×844-Frame -> unten links, blutet unten aus
+
   &__bubble--1 { width: 40vw;   left: 27.4%; top: 90%; }
-  // Ellipse 6: 61px @ (308,886) -> unten rechts, grösstenteils unter der unteren Kante
+
   &__bubble--2 { width: 15.6vw; left: 79%;   top: 104%; }
 
   &__inner {
     position: relative;
-    z-index: 1;                              // Inhalt (Foto + Text) liegt VOR dem Ball
+    z-index: 1;
     min-height: 100vh;
-    padding-top: 96px;                       // Platz unter dem fixen Header
+    padding-top: 96px;
     display: grid;
     gap: $space-md;
-    grid-template-columns: 1fr;              // Mobile: eine Spalte
-    grid-template-rows: auto 1fr;            // Text nimmt benötigten Platz, Foto füllt den Rest
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     align-items: center;
-    text-align: center;                      // Text zentriert auf Mobile
+    text-align: center;
   }
 
-  // --- Foto + grosser blauer Kreis dahinter (Mobile) ---
   &__photo {
     position: relative;
-    z-index: 2;                              // Immer über dem Kreis
-    isolation: isolate;                      // eigener Stacking-Context
+    z-index: 2;
+    isolation: isolate;
     justify-self: center;
-    width: 75vw;                             // Fließend responsive auf Mobile
-    max-width: 360px;                        // Obergrenze für Mobile vor Tablet
-    order: 2;                                // Foto auf Mobile unter dem Text
-    align-self: end;                         // Foto dockt unten am Bildschirmrand an
+    width: 75vw;
+    max-width: 360px;
+    order: 2;
+    align-self: end;
 
     img {
       position: relative;
-      z-index: 1;                            // Foto vor dem Kreis
+      z-index: 1;
       display: block;
       width: 100%;
       filter: drop-shadow(0 18px 34px rgba($color-primary, 0.28));
     }
   }
 
-  // --- Textspalte (Mobile) ---
   &__text {
-    position: relative;                      // Z-Index greift
-    z-index: 2;                              // Text liegt immer über dem Bild und Hintergrund
-    order: 1;                                // Text auf Mobile oben
+    position: relative;
+    z-index: 2;
+    order: 1;
   }
 
   &__greeting {
-    font-family: $font-body;                 // Montserrat
+    font-family: $font-body;
     font-weight: $fw-regular;
-    color: #ffffff;                          // Mobile: weiß
-    font-size: clamp(1.4rem, 5.5vw, 2.5rem); // Großer, fließender Text auf Mobile
+    color: #ffffff;
+    font-size: clamp(1.4rem, 5.5vw, 2.5rem);
     margin-bottom: $space-xs;
   }
 
   &__title {
-    font-family: $font-display;              // Baloo 2
-    color: #ffffff;                          // Mobile: weiß
+    font-family: $font-display;
+    color: #ffffff;
     text-transform: uppercase;
-    font-weight: $fw-regular;                // Figma: Baloo Regular
+    font-weight: $fw-regular;
     line-height: 0.95;
-    letter-spacing: -0.025em;                // Figma: -3.2px @128px
-    white-space: nowrap;                     // FRONTEND / DEVELOPER nicht umbrechen
+    letter-spacing: -0.025em;
+    white-space: nowrap;
 
     span { display: block; }
-    span:nth-child(1) { font-size: clamp(2.2rem, 18.7vw, 4.56rem); } // Mobile: 73px @390px
-    span:nth-child(2) { font-size: clamp(2rem, 17.1vw, 4.18rem); }   // Mobile: 67px @390px
+    span:nth-child(1) { font-size: clamp(2.2rem, 18.7vw, 4.56rem); }
+    span:nth-child(2) { font-size: clamp(2rem, 17.1vw, 4.18rem); }
   }
 
-  // --- SCROLL-Indikator (Mobile) ---
   &__scroll {
     position: absolute;
     z-index: 2;
@@ -240,14 +227,14 @@
   }
 
   &__scroll-label {
-    font-family: $font-body;                 // Montserrat Medium
+    font-family: $font-body;
     font-weight: $fw-medium;
     letter-spacing: 0.3em;
     font-size: $fs-small;
     color: $color-primary;
     white-space: nowrap;
-    writing-mode: vertical-rl;               // Mobile: senkrecht; das „→" zeigt dadurch nach unten
-    text-transform: none;                    // Mobile: "Scroll down →"
+    writing-mode: vertical-rl;
+    text-transform: none;
 
     &::after {
       content: " down \2192";
@@ -255,7 +242,7 @@
   }
 
   &__scroll-line {
-    display: none;                           // Keine Linie auf Mobile
+    display: none;
     position: relative;
     width: 2px;
     height: 80px;
@@ -280,33 +267,23 @@
     display: none;
   }
 
-  // ===========================================================================
-  //  RESPONSIVE BREAKDOWNS
-  // ===========================================================================
-
-  // 1. Intermediate Desktop / Tablet layout
   @media (min-width: 768px) and (max-width: 3399px) {
     @include hero-desktop-theme;
   }
 
-  // 2. New Ultra-Wide Desktop layout (Base Styles / Highest breakpoint)
   @media (min-width: 3400px) {
     @include hero-desktop-theme;
 
-    // Explicit properties for the ultra-wide container element
     width: 3400px;
     height: 1440px;
     min-height: 1440px;
     transform: rotate(0deg);
     opacity: 1;
-    margin-inline: auto; // Center the layout page horizontally
+    margin-inline: auto;
     background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
   }
 }
 
-// =============================================================================
-//  Animationen
-// =============================================================================
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }

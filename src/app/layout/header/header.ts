@@ -11,8 +11,6 @@ export class Header {
   readonly name = PROFILE.name;
   readonly ts = inject(TranslationService);
 
-  // Signal = reaktiver Wert. Aendert er sich, rendert Angular die Stellen neu,
-  // die ihn lesen (hier die [class.is-scrolled]-Bindung im Template).
   readonly scrolled = signal(false);
   readonly menuOpen = signal(false);
 

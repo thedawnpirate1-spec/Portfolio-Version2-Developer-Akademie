@@ -8,7 +8,7 @@ import { Contact } from '../../sections/contact/contact';
 
 @Component({
   selector: 'app-home',
-  // Alle Sektionen: Hero, About, Skill set, My work, References, Contact.
+
   imports: [Hero, About, Skills, Work, References, Contact],
   templateUrl: './home.html',
   styleUrl: './home.scss',

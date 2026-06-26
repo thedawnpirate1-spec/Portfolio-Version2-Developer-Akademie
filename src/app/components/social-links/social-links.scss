@@ -1,13 +1,13 @@
 @use '../../../styles/tokens' as *;
 
 .socials {
-  list-style: none;          // Bullet-Punkte weg
+  list-style: none;
   display: flex;
-  flex-direction: column;    // Standard: senkrecht (Hero)
+  flex-direction: column;
   gap: $space-sm;
 
   &.is-horizontal {
-    flex-direction: row;     // Footer-Variante
+    flex-direction: row;
   }
 
   a {
@@ -16,13 +16,12 @@
     width: 42px;
     height: 42px;
     border-radius: $radius-pill;
-    background: #ffffff; // Background color for the cutout logo in normal state (blue circle, white icon)
+    background: #ffffff;
     box-shadow: 0 6px 18px rgba($color-primary, 0.25);
-    // Sanfter Uebergang fuer den Hover-Effekt (Farbe + leichtes Anheben).
+
     transition: transform $dur-fast $ease-out, background $dur-fast $ease-out;
   }
 
-  // Hover: Background turns blue so the cutout of the white SVG shows blue (white circle, blue icon).
   a:hover {
     background: $color-primary;
     transform: translateY(-3px);

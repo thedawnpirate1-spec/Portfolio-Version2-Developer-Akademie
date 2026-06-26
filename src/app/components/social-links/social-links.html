@@ -2,9 +2,9 @@
   @for (link of links(); track link.href) {
     <li>
       <a [href]="link.href" [attr.aria-label]="link.label" target="_blank" rel="noopener">
-        <!-- Normal state (blue gradient circle with white icon) - using the normal SVG -->
+
         <img class="socials__icon socials__icon--normal" [src]="'assets/figma/social/' + getNormalIconName(link.icon) + '.svg'" alt="" aria-hidden="true" />
-        <!-- Hover state (white circle with blue icon) - using the hover SVG -->
+
         <img class="socials__icon socials__icon--hover" [src]="'assets/figma/social/' + getHoverIconName(link.icon) + '.svg'" alt="" aria-hidden="true" />
       </a>
     </li>

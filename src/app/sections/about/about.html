@@ -1,17 +1,11 @@
-<!--
-  About-Sektion „Let's work together".
-  Links: Titel + „I am" + Verfuegbarkeit (Ort/Remote/Relocate mit Icons).
-  Rechts: Vorstellungstext + „Send a message" (scrollt zum Kontakt).
-  appReveal blendet beide Spalten beim Scrollen weich ein.
--->
 <section class="about" id="about">
-  <!-- dekorative Kreise wie im Figma (oben Mitte angeschnitten, rechts ein Kreis) -->
+
   <div class="about__deco" aria-hidden="true">
     <span class="about__deco-circle about__deco-circle--top"></span>
     <span class="about__deco-circle about__deco-circle--right"></span>
   </div>
   <div class="about__inner container">
-    <!-- linke Spalte -->
+
     <div class="about__intro" appReveal>
       <h2 class="about__title">
         <span>{{ ts.t('ABOUT_TITLE_1') }}</span>
@@ -48,7 +42,6 @@
       </ul>
     </div>
 
-    <!-- rechte Spalte -->
     <div class="about__text" appReveal>
       <p>{{ ts.t('ABOUT_TEXT') }}</p>
       <a class="btn-primary" href="#contact">{{ ts.t('ABOUT_BTN') }}</a>

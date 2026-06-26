@@ -6,17 +6,15 @@ import { TranslationService } from '../../shared/translation.service';
 
 @Component({
   selector: 'app-footer',
-  imports: [SocialLinks, RouterLink],   // SocialLinks + routerLink fuer die Rechtsseiten
+  imports: [SocialLinks, RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
 export class Footer {
   readonly name = PROFILE.name;
-  readonly year = new Date().getFullYear();   // Copyright-Jahr bleibt automatisch aktuell
+  readonly year = new Date().getFullYear();
   readonly ts = inject(TranslationService);
 
-  // Sanft nach ganz oben scrollen. 'smooth' nutzt dieselbe weiche Bewegung
-  // wie die Nav-Links.
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

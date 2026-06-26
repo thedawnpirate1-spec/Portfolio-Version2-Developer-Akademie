@@ -1,15 +1,9 @@
-<!--
-  Sticky Header. [class.is-scrolled] wird true sobald man scrollt (header.ts)
-  -> dann blendet SCSS Hintergrund + Schatten ein. Nav-Links sind Anker auf
-  Sektions-IDs; globales scroll-behavior: smooth sorgt fuers weiche Scrollen.
--->
 <header class="header" [class.is-scrolled]="scrolled()" [class.is-menu-open]="menuOpen()">
   <div class="header__inner container">
     <a class="header__logo" href="#home" aria-label="Zum Seitenanfang" (click)="closeMenu()">
       {{ name }}<span>.</span>
     </a>
 
-    <!-- Burger Menü Button (Mobile) -->
     <button class="header__burger" aria-label="Menü umschalten" (click)="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -21,7 +15,6 @@
         <a href="#work" (click)="closeMenu()">{{ ts.t('NAV_WORK') }}</a>
       </nav>
 
-      <!-- Sprachumschalter -->
       <div class="header__lang" aria-label="Sprache wählen">
         <button type="button" (click)="ts.setLanguage('DE')" [class.is-active]="ts.currentLang() === 'DE'" [attr.aria-current]="ts.currentLang() === 'DE' ? 'true' : null">DE</button>
         <span>/</span>

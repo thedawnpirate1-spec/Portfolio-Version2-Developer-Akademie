@@ -17,11 +17,8 @@ export class Contact {
   private readonly http = inject(HttpClient);
   readonly ts = inject(TranslationService);
 
-  // Endpunkt: relativ -> liegt im Build neben index.html. Auf dem PHP-Host
-  // (z. B. deine Domain) wird send_mail.php dann tatsaechlich ausgefuehrt.
   private readonly endpoint = 'send_mail.php';
 
-  // Zustaende fuer die UI (Signals -> Template reagiert automatisch).
   readonly sending = signal(false);
   readonly sent = signal(false);
   readonly error = signal(false);
@@ -32,8 +29,7 @@ export class Contact {
     message: ['', Validators.required],
     privacy: [false, Validators.requiredTrue],
   });
-  // async/await + try/catch = der saubere "fetch mit Fehlerbehandlung"-Weg.
-  // firstValueFrom() macht aus dem HttpClient-Observable ein Promise.
+
   async submit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -56,11 +52,11 @@ export class Contact {
       }
 
       this.sent.set(true);
-      this.form.reset();          // Formular leeren -> Button wieder deaktiviert
+      this.form.reset();
     } catch {
-      this.error.set(true);       // Netz-/Serverfehler abgefangen
+      this.error.set(true);
     } finally {
-      this.sending.set(false);    // laeuft IMMER (Erfolg wie Fehler)
+      this.sending.set(false);
     }
   }
 

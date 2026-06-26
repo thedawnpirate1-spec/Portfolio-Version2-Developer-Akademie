@@ -1,23 +1,17 @@
-<!--
-  References-Sektion „Need a teamplayer?" auf blauem Verlaufs-Hintergrund.
-  Drei Testimonial-Karten (Name, Projekt, Zitat). Inhalte = Platzhalter,
-  durch echte Referenzen ersetzen (siehe REFERENCES in profile.ts).
--->
 <section class="references" id="references">
   <div class="container">
     <h2 class="references__title" appReveal>{{ ts.t('REF_TITLE') }}</h2>
     <p class="references__subtitle" appReveal>{{ ts.t('REF_SUBTITLE') }}</p>
 
     <div class="references__carousel" appReveal>
-      <!-- Pfeil zurück: nur Mobile/Tablet sichtbar (Desktop zeigt alle Karten) -->
+
       <button type="button" class="references__nav references__nav--prev"
               (click)="prev()" aria-label="Vorherige Referenz">
         <span aria-hidden="true">&#8249;</span>
       </button>
 
-      <!-- Fenster: zeigt genau eine Karte, kein Scrollbalken (overflow: hidden) -->
       <div class="references__viewport">
-        <!-- Schiene: per --index um -100% je Schritt verschoben -->
+
         <div class="references__track" [style.--index]="activeIndex()">
           @for (ref of references; track ref.name + ref.project; let i = $index) {
             <figure class="references__card">
@@ -31,14 +25,12 @@
         </div>
       </div>
 
-      <!-- Pfeil vor -->
       <button type="button" class="references__nav references__nav--next"
               (click)="next()" aria-label="Nächste Referenz">
         <span aria-hidden="true">&#8250;</span>
       </button>
     </div>
 
-    <!-- Punkte-Indikator: aktuelle Position + Direktauswahl (nur Mobile/Tablet) -->
     <div class="references__dots" aria-label="Referenz wählen">
       @for (ref of references; track ref.name + ref.project; let i = $index) {
         <button type="button" class="references__dot"

@@ -3,30 +3,27 @@
 
 .about {
   position: relative;
-  overflow: hidden;            // schneidet die angeschnittenen Deko-Kreise sauber ab
+  overflow: hidden;
   padding-block: $space-xl;
 
-  // --- dekorative Kreise (Figma solid #5988FF) ---
-  // E5/E6 sind Hero/About-Seam-Kreise des DESKTOP-Frames. Das Mobile-About-Frame
-  // (105224:2016) hat keine Ellipsen -> auf Mobile ausgeblendet.
   &__deco-circle {
     position: absolute;
     z-index: 0;
     aspect-ratio: 1;
-    // echtes Figma-Bubble-Asset (Radial-Verlauf) statt CSS-Vollkreis
+
     background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
     pointer-events: none;
-    display: none;                       // Mobile: keine About-Kreise
+    display: none;
 
     @include up($bp-tablet) { display: block; }
   }
-  // E5 (278:653): Seam Hero/About, mittig-links
+
   &__deco-circle--top {
     width: 14.3vw;
     left: 43.6%;
     top: -7vw;
   }
-  // E6 (278:654): klein, rechts
+
   &__deco-circle--right {
     width: 5.7vw;
     left: 71.8%;
@@ -34,28 +31,27 @@
   }
 
   &__inner {
-    position: relative;        // Inhalt ueber den Deko-Kreisen
+    position: relative;
     z-index: 1;
     display: grid;
     gap: $space-lg;
-    grid-template-columns: 1fr;            // Mobile: gestapelt
+    grid-template-columns: 1fr;
     align-items: center;
-    text-align: center;                    // Figma-Mobile: Inhalt zentriert
+    text-align: center;
 
     @include up($bp-desktop) {
-      grid-template-columns: 1.15fr 0.85fr;      // Desktop: Titel | Text (breiterer linker Spalte)
-      text-align: left;                    // Desktop: linksbündig
+      grid-template-columns: 1.15fr 0.85fr;
+      text-align: left;
     }
   }
 
-  // --- linke Spalte ---
   &__title {
-    font-family: $font-display;            // Baloo 2
+    font-family: $font-display;
     color: $color-primary;
-    font-weight: $fw-regular;              // Figma: Baloo Regular (NICHT bold) — war zu fett
-    line-height: 1;                        // Figma: leading none
-    letter-spacing: 0.01em;                // Figma tracking +1.21px @121px
-    font-size: clamp(4rem, 16vw, 7.5625rem); // Figma: Mobile ~64px (390) → Desktop 121px (1440)
+    font-weight: $fw-regular;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    font-size: clamp(4rem, 16vw, 7.5625rem);
 
     span { display: block; }
   }
@@ -64,7 +60,7 @@
     font-family: $font-display;
     color: $color-primary;
     text-align: center;
-    font-size: clamp(1.75rem, 4vw, 2.8125rem); // Figma: 45px
+    font-size: clamp(1.75rem, 4vw, 2.8125rem);
     margin-top: $space-md;
   }
 
@@ -73,16 +69,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;                              // Figma: 48px zwischen den Items
+    gap: 3rem;
     margin-top: $space-sm;
 
     li {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: $font-body;              // Montserrat
+      font-family: $font-body;
       font-weight: $fw-semibold;
-      font-size: 1.125rem;                  // Figma: 18px
+      font-size: 1.125rem;
       color: $color-primary;
     }
 
@@ -93,13 +89,12 @@
     }
   }
 
-  // --- rechte Spalte ---
   &__text {
-    text-align: left;        // Figma: Vorstellungstext bleibt linksbündig (auch mobil)
+    text-align: left;
 
     p {
       font-family: $font-body;
-      font-size: clamp(1rem, 2.2vw, 1.45rem); // Figma: 23px
+      font-size: clamp(1rem, 2.2vw, 1.45rem);
       line-height: 1.5;
       color: $color-text;
       margin-bottom: $space-sm;

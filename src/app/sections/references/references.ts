@@ -13,14 +13,11 @@ export class References {
   readonly references = REFERENCES;
   readonly ts = inject(TranslationService);
 
-  // Aktive Karte im Mobile-/Tablet-Karussell. Desktop zeigt alle 3 als Grid,
-  // dort wird der Index ignoriert. Per Pfeil-Buttons / Punkten wechselt man
-  // von Kommentar zu Kommentar (kein Scrollbalken mehr).
   readonly activeIndex = signal(0);
 
   private wrap(i: number): number {
     const n = this.references.length;
-    return (i % n + n) % n;                 // sauberes Umlaufen (auch bei negativ)
+    return (i % n + n) % n;
   }
 
   prev(): void {

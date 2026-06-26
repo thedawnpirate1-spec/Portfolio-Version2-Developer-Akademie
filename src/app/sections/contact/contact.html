@@ -1,10 +1,5 @@
-<!--
-  Contact-Sektion. Links: Titel + Text. Rechts: Reactive Form.
-  [formGroup] bindet das Formular aus contact.ts; formControlName verknuepft
-  jedes Feld. Der Button ist [disabled], solange das Formular ungueltig ist.
--->
 <section class="contact" id="contact">
-  <!-- dekorative Kreise (Figma E13 Seam, E11c, E14 — solid #5988FF, hinter dem Content) -->
+
   <div class="contact__deco" aria-hidden="true">
     <span class="deco-circle contact__c--e13"></span>
     <span class="deco-circle contact__c--e11"></span>
@@ -12,7 +7,7 @@
   </div>
 
   <div class="contact__inner container">
-    <!-- linke Spalte -->
+
     <div class="contact__intro" appReveal>
       <h2 class="contact__title">{{ ts.t('CONTACT_TITLE') }}</h2>
       <p class="contact__lead">{{ ts.t('CONTACT_LEAD') }}</p>
@@ -24,7 +19,6 @@
       </p>
     </div>
 
-    <!-- rechte Spalte: Formular -->
     <form class="contact__form" [formGroup]="form" (ngSubmit)="submit()" appReveal>
       <div class="contact__field">
         <input type="text" formControlName="name" [placeholder]="ts.t('CONTACT_PLACEHOLDER_NAME')" autocomplete="name" />
@@ -68,7 +62,7 @@
         <p class="contact__error">{{ ts.t('CONTACT_ERROR') }}</p>
       }
     </form>
-    <!-- Scroll-to-Top (Figma-Deco-Pfeile: arrow-normal = Ruhezustand, arrow-hover = Hover) -->
+
     <button class="contact__top" type="button" (click)="scrollToTop()" aria-label="Nach oben scrollen">
       <img class="contact__top-icon contact__top-icon--normal" src="assets/figma/deco/arrow-normal.svg" alt="" aria-hidden="true" />
       <svg class="contact__top-icon contact__top-icon--hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

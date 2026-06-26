@@ -2,7 +2,7 @@
 @use '../../../styles/mixins' as *;
 
 .footer {
-  background: $gradient-blue;             // echter Figma-Verlauf #5988FF -> #0043F0
+  background: $gradient-blue;
   color: $color-text-on-dark;
   padding-block: $space-lg;
 
@@ -12,7 +12,7 @@
     align-items: center;
     gap: $space-md;
     text-align: center;
-    position: relative;                   // For absolute positioning of top button on the left
+    position: relative;
 
     @include up($bp-tablet) {
       display: grid;
@@ -37,7 +37,7 @@
     @include up($bp-tablet) {
       grid-area: logo;
       justify-self: start;
-      margin-left: 60px;                // Leave space for the left-aligned scroll arrow!
+      margin-left: 60px;
     }
   }
 
@@ -71,9 +71,6 @@
     }
   }
 
-
-
-  // Legal-Notice-Link mit kurzem Unterstrich (wie Figma)
   &__legal {
     font-family: $font-ui;
     font-size: 1rem;

@@ -1,17 +1,6 @@
-// =============================================================================
-//  GLOBALE STYLES
-//  Wird EINMAL fuer die ganze App geladen (siehe angular.json -> styles).
-//  Reihenfolge: Tokens verfuegbar machen -> Reset -> Basis-Typografie.
-// =============================================================================
 @use 'styles/tokens' as *;
 @use 'styles/mixins' as *;
 
-// -----------------------------------------------------------------------------
-//  1) Minimaler Reset
-//  Browser bringen unterschiedliche Default-Abstaende mit. Wir setzen sie
-//  auf 0 und schalten box-sizing global auf border-box (Padding zaehlt dann
-//  in die Breite hinein -> Layouts werden viel berechenbarer).
-// -----------------------------------------------------------------------------
 *,
 *::before,
 *::after {
@@ -21,11 +10,9 @@
 }
 
 html {
-  scroll-behavior: smooth;   // sanftes Scrollen bei Anker-Links (#about ...)
+  scroll-behavior: smooth;
 }
 
-// Wer "reduzierte Bewegung" im OS aktiviert hat, soll keine Animationen sehen.
-// Barrierefreiheit: wir respektieren diese System-Einstellung global.
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,
@@ -36,9 +23,6 @@ html {
   }
 }
 
-// -----------------------------------------------------------------------------
-//  2) Basis-Typografie & Farben
-// -----------------------------------------------------------------------------
 body {
   font-family: $font-body;
   font-size: $fs-body;
@@ -46,13 +30,13 @@ body {
   line-height: 1.6;
   color: $color-text;
   background: $color-bg;
-  -webkit-font-smoothing: antialiased;   // glattere Schrift auf macOS/iOS
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
   font-family: $font-display;
   line-height: 1.1;
-  font-weight: $fw-regular;   // Figma: Baloo-Headings sind Regular (400), nicht Bold
+  font-weight: $fw-regular;
 }
 
 a {
@@ -62,7 +46,7 @@ a {
 
 img {
   display: block;
-  max-width: 100%;   // Bilder brechen nie aus ihrem Container aus
+  max-width: 100%;
 }
 
 button {
@@ -70,17 +54,10 @@ button {
   cursor: pointer;
 }
 
-// Globale Utility-Klasse: zentrierte Inhaltsspalte. Jede Sektion legt ihren
-// Inhalt in <div class="container"> – so haben alle dieselbe Breite & Raender.
 .container {
   @include container;
 }
 
-// -----------------------------------------------------------------------------
-//  Scroll-Reveal (gesteuert von der appReveal-Direktive)
-//  .reveal           = Startzustand (unsichtbar, leicht nach unten)
-//  .reveal.is-visible = Endzustand (eingeblendet) – Direktive setzt is-visible.
-// -----------------------------------------------------------------------------
 .reveal {
   @include reveal-hidden;
 }
@@ -89,53 +66,82 @@ button {
   transform: none;
 }
 
-// -----------------------------------------------------------------------------
-//  Dekorative Kreise (Figma "Ellipse 3-14")
-//  Im Figma sind es solide Kreise in #5988FF OHNE Blur/Gradient, die HINTER
-//  dem Content liegen. Wiederverwendbares Primitive: jede Sektion positioniert
-//  die Kreise per % (responsiv). Die Sektion braucht dazu:
-//    position: relative;  overflow: hidden;   (Ueberstand abschneiden wie im Frame)
-//  und ihr Content liegt ueber den Kreisen (.container ist global z-index:1).
-// -----------------------------------------------------------------------------
 .deco-circle {
   position: absolute;
-  z-index: 0;                 // hinter dem Content
-  aspect-ratio: 1;            // immer kreisrund, Breite steuert die Groesse
-  // echtes Figma-Bubble-Asset (Radial-Verlauf #5988FF -> #0043F0) statt CSS-Vollkreis
+  z-index: 0;
+  aspect-ratio: 1;
+
   background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
   pointer-events: none;
 }
 
-// Content-Spalte liegt immer ueber den dekorativen Kreisen.
 .container { position: relative; z-index: 1; }
 
-// -----------------------------------------------------------------------------
-//  Primaer-Button (Figma "Button primary s2")
-//  Umrandet + transparent; fuellt sich beim Hover blau. In About, Projekten
-//  und Kontakt wiederverwendet.
-// -----------------------------------------------------------------------------
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: $font-ui;                 // Poppins
-  font-size: 1.4375rem;                  // Figma: 23px
+  font-family: $font-ui;
+  font-size: 1.4375rem;
   color: $color-primary;
   background: transparent;
   border: 2px solid $color-primary;
   border-radius: 10px;
-  padding: 0.9375rem 1.875rem;           // Figma: 15px / 30px
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);   // Figma "s2 shadow"
-  transition: background $dur-fast $ease-out, color $dur-fast $ease-out,
-    transform $dur-fast $ease-out;
+  padding: 0.9375rem 1.875rem;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color $dur-base $ease-out, border-color $dur-base $ease-out,
+    transform $dur-fast $ease-out, box-shadow $dur-fast $ease-out;
 
-  &:hover {
-    background: $color-primary;
-    color: $color-text-on-dark;
-    transform: translateY(-2px);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(
+      115deg,
+      #{$color-primary} 0%,
+      #{$color-primary-deep} 35%,
+      #{$color-primary-deep} 40%,
+      rgba(255, 255, 255, 0.8) 42%,
+      rgba(255, 255, 255, 1) 43.5%,
+      rgba(255, 255, 255, 0) 45%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform $dur-slow $ease-out;
   }
 
-  // Deaktiviert (Figma: grau, bis das Formular gueltig ist)
+  &:hover {
+    color: $color-text-on-dark;
+    border-color: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.2);
+
+    &::before {
+      transform: translateX(0);
+    }
+  }
+
+  &:active {
+    background: $color-primary-deep;
+    border-color: $color-primary-deep;
+    color: $color-text-on-dark;
+    transform: translateY(0);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+    transition: none;
+
+    &::before {
+      transform: translateX(0);
+      opacity: 0;
+    }
+  }
+
   &:disabled {
     border-color: #bbbbbb;
     color: #bbbbbb;
@@ -143,21 +149,24 @@ button {
     box-shadow: none;
     cursor: not-allowed;
     transform: none;
+
+    &::before {
+      display: none;
+    }
   }
 }
 
-// Sekundaer-Button (Figma "Button secondary"): gefuellt blau, weisse Schrift.
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: $font-ui;                 // Poppins
-  font-size: 1.4375rem;                  // Figma: 23px
+  font-family: $font-ui;
+  font-size: 1.4375rem;
   color: $color-text-on-dark;
   background: $color-primary;
   border: 2px solid $color-primary;
   border-radius: 10px;
-  padding: 0.9375rem 1.875rem;           // Figma: 15px / 30px
+  padding: 0.9375rem 1.875rem;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
   transition: background $dur-fast $ease-out, transform $dur-fast $ease-out;
 
@@ -228,7 +237,7 @@ button {
 .legal {
   @include container;
   max-width: 820px;
-  padding-top: 140px;           // unter dem fixen Header
+  padding-top: 140px;
   padding-bottom: $space-xl;
   position: relative;
 
