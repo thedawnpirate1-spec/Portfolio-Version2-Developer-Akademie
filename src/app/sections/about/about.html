@@ -15,28 +15,34 @@
       <p class="about__iam">{{ ts.t('ABOUT_IAM') }}</p>
 
       <ul class="about__availability">
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
-          </svg>
+        <li class="about__avail" tabindex="0">
+          <span class="about__avail-icon">
+            <img class="about__avail-base" src="assets/figma/icons/Icon location.svg" alt="" aria-hidden="true" />
+            <img class="about__avail-hover" src="assets/figma/icons/icon location hover.svg" alt="" aria-hidden="true" />
+          </span>
           <span>{{ ts.t('ABOUT_LOCATED') }}</span>
+          <span class="about__stat" role="tooltip">{{ ts.t('ABOUT_LOCATED_STAT') }}</span>
         </li>
 
         @if (about.remote) {
-          <li>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2v7h14V7H5ZM2 18h20v2H2z" />
-            </svg>
+          <li class="about__avail" tabindex="0">
+            <span class="about__avail-icon">
+              <img class="about__avail-base" src="assets/figma/icons/Icon Remote.svg" alt="" aria-hidden="true" />
+              <img class="about__avail-hover" src="assets/figma/icons/Icon Remote hover.svg" alt="" aria-hidden="true" />
+            </span>
             <span>{{ ts.t('ABOUT_REMOTE') }}</span>
+            <span class="about__stat" role="tooltip">{{ ts.t('ABOUT_REMOTE_STAT') }}</span>
           </li>
         }
 
         @if (about.relocate) {
-          <li>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 4h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z" />
-            </svg>
+          <li class="about__avail" tabindex="0">
+            <span class="about__avail-icon">
+              <img class="about__avail-base" src="assets/figma/icons/icon relocate.svg" alt="" aria-hidden="true" />
+              <img class="about__avail-hover" src="assets/figma/icons/icon relocate hover.svg" alt="" aria-hidden="true" />
+            </span>
             <span>{{ ts.t('ABOUT_RELOCATE') }}</span>
+            <span class="about__stat" role="tooltip">{{ ts.t('ABOUT_RELOCATE_STAT') }}</span>
           </li>
         }
       </ul>

@@ -13,21 +13,30 @@
 
     background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
     pointer-events: none;
-    display: none;
-
-    @include up($bp-tablet) { display: block; }
   }
 
   &__deco-circle--top {
-    width: 14.3vw;
-    left: 43.6%;
-    top: -7vw;
+    width: 38vw;
+    left: 35%;
+    top: -19vw;
+
+    @include up($bp-tablet) {
+      width: 14.3vw;
+      left: 43.6%;
+      top: -7vw;
+    }
   }
 
   &__deco-circle--right {
-    width: 5.7vw;
-    left: 71.8%;
-    top: 6%;
+    width: 16vw;
+    left: 78%;
+    top: 4vw;
+
+    @include up($bp-tablet) {
+      width: 5.7vw;
+      left: 71.8%;
+      top: 6%;
+    }
   }
 
   &__inner {
@@ -81,12 +90,104 @@
       font-size: 1.125rem;
       color: $color-primary;
     }
+  }
 
-    svg {
-      width: 28px;
-      height: 28px;
-      fill: currentColor;
+  &__avail {
+    position: relative;
+    cursor: default;
+    transition: transform $dur-fast $ease-out, color $dur-fast $ease-out;
+    outline: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-3px);
+      color: $color-primary-deep;
     }
+  }
+
+  &__avail-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+  }
+
+  &__avail-base {
+    height: 38px;
+    width: auto;
+    display: block;
+    transition: opacity $dur-fast $ease-out;
+  }
+
+  // The Figma "hover" file is a larger variant of the same icon — swap it in on hover
+  &__avail-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 38px;
+    width: auto;
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
+  }
+
+  &__avail:hover &__avail-hover,
+  &__avail:focus-visible &__avail-hover {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+
+  &__avail:hover &__avail-base,
+  &__avail:focus-visible &__avail-base {
+    opacity: 0;
+  }
+
+  // Hover stat — a small tooltip with extra detail per item
+  &__stat {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translate(-50%, 6px) scale(0.96);
+    transform-origin: bottom center;
+
+    width: max-content;
+    max-width: 220px;
+    padding: 0.55rem 0.85rem;
+    border-radius: $radius-sm;
+
+    background: $color-primary-deep;
+    color: $color-text-on-dark;
+    font-family: $font-body;
+    font-weight: $fw-medium;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    white-space: normal;
+    text-align: center;
+    box-shadow: $shadow-card;
+
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+    transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
+
+    // little arrow pointing down at the item
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: $color-primary-deep;
+    }
+  }
+
+  &__avail:hover &__stat,
+  &__avail:focus-visible &__stat {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
   }
 
   &__text {
