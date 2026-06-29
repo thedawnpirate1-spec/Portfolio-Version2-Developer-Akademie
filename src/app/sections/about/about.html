@@ -16,9 +16,30 @@
 
       <ul class="about__availability">
         <li class="about__avail" tabindex="0">
-          <span class="about__avail-icon">
-            <img class="about__avail-base" src="assets/figma/icons/Icon location.svg" alt="" aria-hidden="true" />
-            <img class="about__avail-hover" src="assets/figma/icons/icon location hover.svg" alt="" aria-hidden="true" />
+          <span class="about__avail-icon about__avail-icon--location">
+            <svg class="about__avail-svg about__avail-svg--location" width="33" height="48" viewBox="0 0 33 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Location Pin Shadow -->
+              <path class="location-shadow" d="M22.9378 40C29.7553 43.6522 24.1052 47 16.5747 47C9.04423 47 3.3941 43.3478 9.75715 40" stroke="url(#paint1_radial_location)" stroke-width="2" stroke-linecap="round"/>
+              
+              <!-- Location Pin Body -->
+              <g class="location-pin-group">
+                <path class="location-pin" d="M0 16.6266C0 24.6113 9.10992 34.3381 16.3097 40C22.6278 34.7736 31.8112 26.4259 32.4724 16.6266C32.9717 9.22578 26.6685 -0.214066 16.3097 0.00369967C3.89374 0.26471 0 10.0209 0 16.6266Z" fill="url(#paint0_radial_location)"/>
+                <path class="location-dot" d="M20.0312 14.7778C19.9651 16.9256 18.2524 18.6169 16.2057 18.5555C14.1591 18.4941 12.5535 16.7032 12.6196 14.5555C12.6857 12.4078 14.3984 10.7164 16.445 10.7778C18.4917 10.8392 20.0972 12.6301 20.0312 14.7778Z" fill="#75BCE4"/>
+              </g>
+              
+              <defs>
+                <radialGradient id="paint0_radial_location" cx="0" cy="0" r="1" gradientTransform="matrix(24.12 21.1435 -17.1791 29.6861 6.43077 8.96861)" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.0625" stop-color="#5988FF"/>
+                  <stop offset="0.515625" stop-color="#5988FF"/>
+                  <stop offset="1" stop-color="#0043F0"/>
+                </radialGradient>
+                <radialGradient id="paint1_radial_location" cx="0" cy="0" r="1" gradientTransform="matrix(14.1009 3.70011 -10.0432 5.19507 10.7595 41.5695)" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.0625" stop-color="#5988FF"/>
+                  <stop offset="0.515625" stop-color="#5988FF"/>
+                  <stop offset="1" stop-color="#0043F0"/>
+                </radialGradient>
+              </defs>
+            </svg>
           </span>
           <span>{{ ts.t('ABOUT_LOCATED') }}</span>
           <span class="about__stat" role="tooltip">{{ ts.t('ABOUT_LOCATED_STAT') }}</span>
@@ -27,7 +48,7 @@
         @if (about.remote) {
           <li class="about__avail" tabindex="0">
             <span class="about__avail-icon about__avail-icon--remote">
-              <svg class="about__avail-svg" width="54" height="47" viewBox="0 0 54 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="about__avail-svg about__avail-svg--remote" width="54" height="47" viewBox="0 0 54 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Laptop Base -->
                 <path class="laptop-screen" d="M21.8611 21.8879H48.3347C49.0251 21.8879 49.5847 22.4476 49.5847 23.1379V40.176H20.6111V23.1379C20.6111 22.4476 21.1707 21.8879 21.8611 21.8879Z" fill="#1E0A7D" stroke="url(#paint0_radial_remote)" stroke-width="1.5"/>
                 <path class="laptop-keyboard" d="M16.4893 42.4932H53.5801V43.989C53.5801 45.6459 52.2369 46.989 50.5801 46.989H19.4893C17.8324 46.989 16.4893 45.6459 16.4893 43.989V42.4932Z" fill="url(#paint1_radial_remote)"/>
@@ -59,9 +80,24 @@
 
         @if (about.relocate) {
           <li class="about__avail" tabindex="0">
-            <span class="about__avail-icon">
-              <img class="about__avail-base" src="assets/figma/icons/icon relocate.svg" alt="" aria-hidden="true" />
-              <img class="about__avail-hover" src="assets/figma/icons/icon relocate hover.svg" alt="" aria-hidden="true" />
+            <span class="about__avail-icon about__avail-icon--relocate">
+              <svg class="about__avail-svg about__avail-svg--relocate" width="30" height="49" viewBox="0 0 30 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Suitcase Wheels -->
+                <ellipse cx="3.46154" cy="3.30082" rx="3.46154" ry="3.30082" transform="matrix(0.990909 0.134535 -0.169599 0.985513 3.42725 41.5383)" fill="#75BCE4"/>
+                <ellipse cx="3.46154" cy="3.30082" rx="3.46154" ry="3.30082" transform="matrix(0.990909 0.134535 -0.169599 0.985513 20.6379 41.5383)" fill="#75BCE4"/>
+                <!-- Suitcase Handle -->
+                <rect x="7.9231" y="1" width="14.1538" height="13.525" rx="1" stroke="#75BCE4" stroke-width="2"/>
+                <!-- Suitcase Body -->
+                <rect y="9.87964" width="30" height="33.8728" rx="2" fill="url(#paint0_radial_relocate)"/>
+                
+                <defs>
+                  <radialGradient id="paint0_radial_relocate" cx="0" cy="0" r="1" gradientTransform="matrix(22.2646 17.9047 -15.8576 25.1388 5.9361 17.4744)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.0625" stop-color="#5988FF"/>
+                    <stop offset="0.515625" stop-color="#5988FF"/>
+                    <stop offset="1" stop-color="#0043F0"/>
+                  </radialGradient>
+                </defs>
+              </svg>
             </span>
             <span>{{ ts.t('ABOUT_RELOCATE') }}</span>
             <span class="about__stat" role="tooltip">{{ ts.t('ABOUT_RELOCATE_STAT') }}</span>

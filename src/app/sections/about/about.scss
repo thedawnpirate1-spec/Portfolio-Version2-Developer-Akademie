@@ -144,6 +144,16 @@
       width: 44px; // fixed width to prevent any layout shifting
       overflow: visible;
     }
+
+    &--location {
+      width: 33px;
+      overflow: visible;
+    }
+
+    &--relocate {
+      width: 30px;
+      overflow: visible;
+    }
   }
 
   &__avail-svg {
@@ -151,6 +161,7 @@
     height: auto;
     overflow: visible;
 
+    // Remote (Laptop) WiFi waves animation
     .wifi-wave {
       opacity: 0.3;
       transition: opacity $dur-base $ease-out, stroke $dur-base $ease-out;
@@ -170,6 +181,41 @@
         animation: wifi-wave-3 1.2s infinite ease-in-out;
       }
     }
+
+    // Location (Pin) floating animation
+    &--location {
+      .location-pin-group {
+        transition: transform 0.3s $ease-out;
+      }
+
+      .location-shadow {
+        opacity: 0.25;
+        transform: scale(0.8);
+        transform-origin: 16.5px 40px;
+        transition: opacity 0.3s $ease-out, transform 0.3s $ease-out;
+      }
+
+      .about__avail:hover & {
+        .location-pin-group {
+          transform: translateY(-4px);
+        }
+
+        .location-shadow {
+          opacity: 0.8;
+          transform: scale(1.15);
+        }
+      }
+    }
+
+    // Relocate (Suitcase) wobble animation
+    &--relocate {
+      transform-origin: 15px 45px;
+      transition: transform 0.3s $ease-out;
+
+      .about__avail:hover & {
+        animation: relocate-wobble 0.6s ease-in-out infinite;
+      }
+    }
   }
 
   @keyframes wifi-wave-1 {
@@ -185,35 +231,10 @@
     60% { opacity: 1; transform: translate(1px, 1px); }
   }
 
-  &__avail-base {
-    height: 38px;
-    width: auto;
-    display: block;
-    transition: opacity $dur-fast $ease-out;
-  }
-
-  // The Figma "hover" file is a larger variant of the same icon — swap it in on hover
-  &__avail-hover {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 38px;
-    width: auto;
-    transform: translate(-50%, -50%) scale(0.85);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity $dur-fast $ease-out, transform $dur-base $ease-out;
-  }
-
-  &__avail:hover &__avail-hover,
-  &__avail:focus-visible &__avail-hover {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.12);
-  }
-
-  &__avail:hover &__avail-base,
-  &__avail:focus-visible &__avail-base {
-    opacity: 0;
+  @keyframes relocate-wobble {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
   }
 
   // Hover stat — a small tooltip with extra detail per item
