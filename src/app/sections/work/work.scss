@@ -14,12 +14,12 @@
   &__c--e10 { display: block; width: 40vw;  left: 85vw;   top: 35%; }
 
   @include up($bp-tablet) {
-    &__c--e7  { display: block; width: 7.6vw;  left: 45%;    top: -4%; }
-    &__c--e8  { display: block; width: 12.7vw; left: 85%;    top: 2%; }
+    &__c--e7  { display: block; width: 8vw;   left: 45%;    top: -4%; }
+    &__c--e8  { display: block; width: 13vw;  left: 85%;    top: 2%; }
     &__c--e4  { width: 28vw;   left: -12vw;  top: 15%; }
-    &__c--e10 { display: block; width: 3.5vw;  left: 2%;     top: 48%; }
+    &__c--e10 { display: block; width: 4vw;   left: 2%;     top: 48%; }
     &__c--e11 { width: 18vw;   left: -8vw;   top: 68%; }
-    &__c--e12 { width: 6.8vw;  left: 92%;    top: 88%; }
+    &__c--e12 { width: 7vw;    left: 92%;    top: 88%; }
   }
 
   &__title {
@@ -49,14 +49,6 @@
     gap: $space-lg;
     grid-template-columns: 1fr;
     align-items: center;
-    transition: transform 0.4s $ease-out, box-shadow 0.4s $ease-out;
-    border-radius: $radius-md;
-
-    &:hover {
-      @include up($bp-desktop) {
-        transform: translateY(-6px);
-      }
-    }
 
     @include up($bp-desktop) {
       grid-template-columns: 1.2fr 1fr;

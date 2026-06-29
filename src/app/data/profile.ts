@@ -64,7 +64,7 @@ export const SKILLS: Skill[] = [
   { name: 'Supabase',        icon: 'superbase' },
   { name: 'Firebase',        icon: 'firebase' },
 
-  // Tools & DevOps
+  // Tools
   { name: 'Growth mindset',  icon: 'growth-mindset', badge: true, hover: 'hover-info-grow-mindset' },
 ];
 
@@ -112,7 +112,7 @@ export const PROJECTS: Project[] = [
     tech: 'JavaScript | HTML | CSS | REST-API',
     description: 'Pokémon-Lexikon, das Daten live aus der PokéAPI lädt und katalogisiert.',
     image: 'assets/images/projects/pokedex.png',
-    github: 'https://github.com/thedawnpirate1-spec/pokeDex',
-    live: 'https://poke-dex.vercel.app',
+    github: 'https://github.com/thedawnpirate1-spec/pokemon',
+    live: 'https://poke-hkw3l47nm-thedawnpirate1-3413s-projects.vercel.app/',
   },
 ];
