@@ -6,8 +6,8 @@
   overflow: hidden;
   padding-block: $space-xl;
 
-  &__c--e14 { width: 20.3vw; left: 77.2%; top: -13%; }
-  &__c--e13 { display: none; }
+  &__c--e13 { display: block; width: 20vw; left: 78%; top: -10vw; }
+  &__c--e14 { display: block; width: 12vw; left: 92%; top: 86%; }
   &__c--e11 { display: none; }
 
   @include up($bp-tablet) {

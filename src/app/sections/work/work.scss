@@ -6,12 +6,12 @@
   overflow: hidden;
   padding-block: $space-xl;
 
-  &__c--e4  { width: 68.7vw; left: 21.8%; top: 10%; }
-  &__c--e11 { width: 39.2vw; left: 33.8%; top: 56%; }
-  &__c--e12 { width: 10vw;   left: 94.6%; top: 90%; }
+  &__c--e4  { width: 48vw;   left: -22vw;  top: 18%; }
+  &__c--e11 { width: 48vw;   left: -22vw;  top: 59%; }
+  &__c--e12 { width: 48vw;   left: 74%;    top: 80%; }
   &__c--e7  { display: none; }
-  &__c--e8  { display: none; }
-  &__c--e10 { display: none; }
+  &__c--e8  { display: block; width: 16vw;  left: 80%;   top: 1%; }
+  &__c--e10 { display: block; width: 48vw;  left: 74%;   top: 38%; }
 
   @include up($bp-tablet) {
     &__c--e7  { display: block; width: 7.6vw;  left: 37.5%;  top: -3%; }
