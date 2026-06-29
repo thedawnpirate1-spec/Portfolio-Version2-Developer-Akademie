@@ -101,7 +101,7 @@ export const PROJECTS: Project[] = [
     tech: 'JavaScript | HTML | CSS | REST-API',
     description: 'Pokémon-Lexikon, das Daten live aus der PokéAPI lädt und katalogisiert.',
     image: 'assets/images/projects/pokedex.png',
-    github: 'https://github.com/thedawnpirate1-spec/pokeDex',
+    github: 'https://github.com/thedawnpirate1-spec/pokemon',
     live: 'https://poke-dex.vercel.app',
   },
 ];
