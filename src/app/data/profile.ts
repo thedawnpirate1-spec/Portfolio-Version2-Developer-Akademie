@@ -44,16 +44,27 @@ export interface Skill {
 }
 
 export const SKILLS: Skill[] = [
+  // Frontend
   { name: 'Angular',         icon: 'angular' },
+  { name: 'Vue.js',          icon: 'vue js' },
   { name: 'TypeScript',      icon: 'typescript' },
   { name: 'JavaScript',      icon: 'javascript' },
   { name: 'HTML',            icon: 'html' },
-  { name: 'Supabase',        icon: 'supabase' },
-  { name: 'Git',             icon: 'git' },
   { name: 'CSS',             icon: 'css' },
-  { name: 'Material Design', icon: 'material-design' },
-  { name: 'REST-API',        icon: 'rest-api' },
-  { name: 'Scrum',           icon: 'scrum' },
+  { name: 'Material Design', icon: 'material des' },
+  { name: 'WordPress',       icon: 'wordpress' },
+
+  // Backend & Database
+  { name: 'Python',          icon: 'Python' },
+  { name: 'Django',          icon: 'Django' },
+  { name: 'Flask',           icon: 'Flask' },
+  { name: 'SQL',             icon: 'SQL' },
+  { name: 'PostgreSQL',      icon: 'PostgreSQL' },
+  { name: 'Redis',           icon: 'Redis' },
+  { name: 'Supabase',        icon: 'superbase' },
+  { name: 'Firebase',        icon: 'firebase' },
+
+  // Tools & DevOps
   { name: 'Growth mindset',  icon: 'growth-mindset', badge: true, hover: 'hover-info-grow-mindset' },
 ];
 
