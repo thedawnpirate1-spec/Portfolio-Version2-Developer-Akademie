@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="footer__inner container">
-    <a class="footer__logo" href="#home">{{ name }}<span>.</span></a>
+    <a class="footer__logo" routerLink="/" fragment="home">{{ name }}<span>.</span></a>
 
     <p class="footer__copy">© {{ name }} {{ year }}</p>
 
@@ -8,6 +8,8 @@
 
     <nav class="footer__legalnav" aria-label="Rechtliches">
       <a class="footer__legal" routerLink="/impressum">{{ ts.t('FOOTER_LEGAL') }}</a>
+      <span class="footer__separator">/</span>
+      <a class="footer__legal" routerLink="/datenschutz">{{ ts.t('FOOTER_PRIVACY') }}</a>
     </nav>
   </div>
 </footer>

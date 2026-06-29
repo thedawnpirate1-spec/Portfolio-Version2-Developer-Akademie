@@ -94,6 +94,39 @@
     color: #e61c40;
   }
 
+  &__error-container {
+    min-height: 22px; // Reserve space for error messages to prevent layout shifting
+    margin-top: 4px;
+  }
+
+  &__field {
+    position: relative;
+  }
+
+  &__status-icon {
+    position: absolute;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+    input ~ & {
+      top: 25px;
+      transform: translateY(-50%);
+    }
+
+    textarea ~ & {
+      top: 20px;
+    }
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
   &__privacy {
     display: flex;
     align-items: flex-start;
@@ -109,6 +142,11 @@
   .btn-primary {
     align-self: flex-start;
     margin-top: $space-sm;
+
+    @media (max-width: #{$bp-tablet - 0.02px}) {
+      width: 100%;
+      align-self: stretch;
+    }
   }
 
   &__sent {

@@ -1,13 +1,13 @@
-<svg preserveAspectRatio="xMidYMid meet" overflow="visible" style="display: block;" viewBox="0 0 57 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Angular" clip-path="url(#clip0_0_290)">
-<path id="Vector" d="M57 9.99687L54.9545 42.141L35.2677 0L57 9.99687Z" fill="var(--fill-0, white)"/>
-<path id="Vector_2" d="M43.3722 51.5697L28.5011 60L13.6278 51.5697L16.6562 44.2841H40.3438L43.3722 51.5697Z" fill="var(--fill-0, white)"/>
-<path id="Vector_3" d="M28.501 15.9896L36.2884 34.8282H20.7116L28.501 15.9896Z" fill="var(--fill-0, white)"/>
-<path id="Vector_4" d="M2.04764 42.141L0 9.99687L21.7344 0L2.04764 42.141Z" fill="var(--fill-0, white)"/>
+<svg width="71" height="75" viewBox="0 0 71 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_230_864)">
+<path d="M71 12.4961L68.452 52.6762L43.9299 0L71 12.4961Z" fill="white"/>
+<path d="M54.0251 64.462L35.5014 74.9999L16.9751 64.462L20.7473 55.355H50.2528L54.0251 64.462Z" fill="white"/>
+<path d="M35.5012 19.9871L45.2012 43.5354H25.7986L35.5012 19.9871Z" fill="white"/>
+<path d="M2.55057 52.6762L0 12.4961L27.0727 0L2.55057 52.6762Z" fill="white"/>
 </g>
 <defs>
-<clipPath id="clip0_0_290">
-<rect width="57" height="60" fill="white"/>
+<clipPath id="clip0_230_864">
+<rect width="71" height="75" fill="white"/>
 </clipPath>
 </defs>
 </svg>

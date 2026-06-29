@@ -2,8 +2,11 @@ import { Component, HostListener, inject, signal } from '@angular/core';
 import { PROFILE } from '../../data/profile';
 import { TranslationService } from '../../shared/translation.service';
 
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-header',
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })

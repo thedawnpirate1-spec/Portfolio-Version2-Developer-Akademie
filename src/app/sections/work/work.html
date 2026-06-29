@@ -19,7 +19,13 @@
       @for (project of projects; track project.title; let i = $index) {
         <article class="work__card" [class.work__card--reverse]="i % 2 === 1" appReveal>
           <div class="work__image">
-            <img [src]="project.image" [alt]="project.title + ' Screenshot'" />
+            @if (project.live) {
+              <a [href]="project.live" target="_blank" rel="noopener" class="work__image-link">
+                <img [src]="project.image" [alt]="project.title + ' Screenshot'" />
+              </a>
+            } @else {
+              <img [src]="project.image" [alt]="project.title + ' Screenshot'" />
+            }
           </div>
 
           <div class="work__info">

@@ -1,6 +1,6 @@
 <header class="header" [class.is-scrolled]="scrolled()" [class.is-menu-open]="menuOpen()">
   <div class="header__inner container">
-    <a class="header__logo" href="#home" aria-label="Zum Seitenanfang" (click)="closeMenu()">
+    <a class="header__logo" routerLink="/" fragment="home" aria-label="Zum Seitenanfang" (click)="closeMenu()">
       {{ name }}<span>.</span>
     </a>
 
@@ -10,9 +10,9 @@
 
     <div class="header__right">
       <nav class="header__nav" aria-label="Hauptnavigation">
-        <a href="#about" (click)="closeMenu()">{{ ts.t('NAV_ABOUT') }}</a>
-        <a href="#skills" (click)="closeMenu()">{{ ts.t('NAV_SKILLS') }}</a>
-        <a href="#work" (click)="closeMenu()">{{ ts.t('NAV_WORK') }}</a>
+        <a routerLink="/" fragment="about" (click)="closeMenu()">{{ ts.t('NAV_ABOUT') }}</a>
+        <a routerLink="/" fragment="skills" (click)="closeMenu()">{{ ts.t('NAV_SKILLS') }}</a>
+        <a routerLink="/" fragment="work" (click)="closeMenu()">{{ ts.t('NAV_WORK') }}</a>
       </nav>
 
       <div class="header__lang" aria-label="Sprache wählen">

@@ -83,9 +83,9 @@ export const PROJECTS: Project[] = [
     title: 'Join',
     tech: 'Angular | TypeScript | HTML | CSS | Firebase',
     description: 'Kanban-basierter Task-Manager: Aufgaben per Drag & Drop anlegen, Nutzer und Kategorien zuweisen.',
-    image: 'assets/images/projects/placeholder.svg',
-    github: '#',
-    live: '#',
+    image: 'assets/images/projects/join.png',
+    github: 'https://github.com/thedawnpirate1-spec/Join',
+    live: 'https://thedawnpirate1-spec.github.io/Join',
   },
   {
     title: 'El Pollo Loco',
@@ -101,7 +101,7 @@ export const PROJECTS: Project[] = [
     tech: 'JavaScript | HTML | CSS | REST-API',
     description: 'Pokémon-Lexikon, das Daten live aus der PokéAPI lädt und katalogisiert.',
     image: 'assets/images/projects/pokedex.png',
-    github: 'https://github.com/thedawnpirate1-spec/pokemon',
+    github: 'https://github.com/thedawnpirate1-spec/pokeDex',
     live: 'https://poke-dex.vercel.app',
   },
 ];

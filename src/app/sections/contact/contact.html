@@ -22,23 +22,80 @@
     <form class="contact__form" [formGroup]="form" (ngSubmit)="submit()" appReveal>
       <div class="contact__field">
         <input type="text" formControlName="name" [placeholder]="ts.t('CONTACT_PLACEHOLDER_NAME')" autocomplete="name" />
-        @if (form.controls.name.touched && form.controls.name.invalid) {
-          <span class="contact__error">{{ ts.t('CONTACT_ERR_NAME') }}</span>
+        @if (form.controls.name.touched) {
+          @if (form.controls.name.invalid) {
+            <span class="contact__status-icon contact__status-icon--error">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="9" stroke="#E61C40" stroke-width="2"/>
+                <path d="M10 6V11M10 13.5V14" stroke="#E61C40" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          } @else {
+            <span class="contact__status-icon contact__status-icon--success">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="9" stroke="#2DCA73" stroke-width="2"/>
+                <path d="M6 10L9 13L14 7" stroke="#2DCA73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          }
         }
+        <div class="contact__error-container">
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <span class="contact__error">{{ ts.t('CONTACT_ERR_NAME') }}</span>
+          }
+        </div>
       </div>
 
       <div class="contact__field">
         <input type="email" formControlName="email" [placeholder]="ts.t('CONTACT_PLACEHOLDER_EMAIL')" autocomplete="email" />
-        @if (form.controls.email.touched && form.controls.email.invalid) {
-          <span class="contact__error">{{ ts.t('CONTACT_ERR_EMAIL') }}</span>
+        @if (form.controls.email.touched) {
+          @if (form.controls.email.invalid) {
+            <span class="contact__status-icon contact__status-icon--error">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="9" stroke="#E61C40" stroke-width="2"/>
+                <path d="M10 6V11M10 13.5V14" stroke="#E61C40" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          } @else {
+            <span class="contact__status-icon contact__status-icon--success">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="9" stroke="#2DCA73" stroke-width="2"/>
+                <path d="M6 10L9 13L14 7" stroke="#2DCA73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          }
         }
+        <div class="contact__error-container">
+          @if (form.controls.email.touched && form.controls.email.invalid) {
+            <span class="contact__error">{{ ts.t('CONTACT_ERR_EMAIL') }}</span>
+          }
+        </div>
       </div>
 
       <div class="contact__field">
         <textarea formControlName="message" [placeholder]="ts.t('CONTACT_PLACEHOLDER_MESSAGE')" rows="5"></textarea>
-        @if (form.controls.message.touched && form.controls.message.invalid) {
-          <span class="contact__error">{{ ts.t('CONTACT_ERR_MESSAGE') }}</span>
+        @if (form.controls.message.touched) {
+          @if (form.controls.message.invalid) {
+            <span class="contact__status-icon contact__status-icon--error">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="9" stroke="#E61C40" stroke-width="2"/>
+                <path d="M10 6V11M10 13.5V14" stroke="#E61C40" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          } @else {
+            <span class="contact__status-icon contact__status-icon--success">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="9" stroke="#2DCA73" stroke-width="2"/>
+                <path d="M6 10L9 13L14 7" stroke="#2DCA73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          }
         }
+        <div class="contact__error-container">
+          @if (form.controls.message.touched && form.controls.message.invalid) {
+            <span class="contact__error">{{ ts.t('CONTACT_ERR_MESSAGE') }}</span>
+          }
+        </div>
       </div>
 
       <div class="contact__privacy">
@@ -47,9 +104,11 @@
           {{ ts.t('CONTACT_PRIVACY_1') }}<a routerLink="/datenschutz" target="_blank" rel="noopener">{{ ts.t('CONTACT_PRIVACY_LINK') }}</a>{{ ts.t('CONTACT_PRIVACY_2') }}
         </label>
       </div>
-      @if (form.controls.privacy.touched && form.controls.privacy.invalid) {
-        <span class="contact__error">{{ ts.t('CONTACT_ERR_PRIVACY') }}</span>
-      }
+      <div class="contact__error-container">
+        @if (form.controls.privacy.touched && form.controls.privacy.invalid) {
+          <span class="contact__error">{{ ts.t('CONTACT_ERR_PRIVACY') }}</span>
+        }
+      </div>
 
       <button type="submit" class="btn-primary" [disabled]="form.invalid || sending()">
         {{ sending() ? ts.t('CONTACT_BTN_SENDING') : ts.t('CONTACT_BTN') }}

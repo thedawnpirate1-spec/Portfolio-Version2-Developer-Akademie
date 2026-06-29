@@ -57,7 +57,7 @@
   &__title {
     font-family: $font-display;
     color: $color-primary;
-    font-weight: $fw-regular;
+    font-weight: $fw-bold;
     line-height: 1;
     letter-spacing: 0.01em;
     font-size: clamp(4rem, 16vw, 7.5625rem);
@@ -82,8 +82,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
+    gap: 1.5rem 3rem;
     margin-top: $space-sm;
+
+    @media (max-width: #{$bp-tablet - 0.02px}) {
+      gap: 1.25rem 1rem;
+    }
 
     li {
       display: flex;
@@ -93,19 +97,38 @@
       font-weight: $fw-semibold;
       font-size: 1.125rem;
       color: $color-primary;
+
+      @media (max-width: #{$bp-tablet - 0.02px}) {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: #{$bp-tablet - 0.02px}) {
+      li:nth-child(1) {
+        flex: 0 0 100%;
+        justify-content: center;
+      }
+      li:nth-child(2),
+      li:nth-child(3) {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
     }
   }
 
   &__avail {
     position: relative;
     cursor: default;
-    transition: transform $dur-fast $ease-out, color $dur-fast $ease-out;
+    transition: color $dur-fast $ease-out;
     outline: none;
 
     &:hover,
     &:focus-visible {
-      transform: translateY(-3px);
       color: $color-primary-deep;
+
+      .about__avail-icon {
+        transform: translateY(-3px);
+      }
     }
   }
 
@@ -115,6 +138,51 @@
     align-items: center;
     justify-content: center;
     height: 38px;
+    transition: transform $dur-fast $ease-out;
+
+    &--remote {
+      width: 44px; // fixed width to prevent any layout shifting
+      overflow: visible;
+    }
+  }
+
+  &__avail-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+
+    .wifi-wave {
+      opacity: 0.3;
+      transition: opacity $dur-base $ease-out, stroke $dur-base $ease-out;
+    }
+
+    .about__avail:hover & {
+      .wifi-wave {
+        stroke: $color-primary;
+      }
+      .wave-1 {
+        animation: wifi-wave-1 1.2s infinite ease-in-out;
+      }
+      .wave-2 {
+        animation: wifi-wave-2 1.2s infinite ease-in-out;
+      }
+      .wave-3 {
+        animation: wifi-wave-3 1.2s infinite ease-in-out;
+      }
+    }
+  }
+
+  @keyframes wifi-wave-1 {
+    0%, 100% { opacity: 0.3; transform: translate(0, 0); }
+    20% { opacity: 1; transform: translate(1px, 1px); }
+  }
+  @keyframes wifi-wave-2 {
+    0%, 100% { opacity: 0.3; transform: translate(0, 0); }
+    40% { opacity: 1; transform: translate(1px, 1px); }
+  }
+  @keyframes wifi-wave-3 {
+    0%, 100% { opacity: 0.3; transform: translate(0, 0); }
+    60% { opacity: 1; transform: translate(1px, 1px); }
   }
 
   &__avail-base {
