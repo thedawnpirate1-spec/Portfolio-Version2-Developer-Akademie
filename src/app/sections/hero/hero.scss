@@ -45,8 +45,8 @@
       background: url('assets/figma/deco/bubble.svg') center / contain no-repeat;
       width: 23%;
       aspect-ratio: 1;
-      right: 15%;
-      bottom: 5%;
+      right: -5%;
+      bottom: -4%;
       pointer-events: none;
       filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.12));
     }
@@ -74,6 +74,7 @@
     order: 0;
     align-self: center;
     padding-bottom: 6vh;
+    padding-right: 80px;
   }
 
   &__greeting {
