@@ -29,7 +29,7 @@
       display: block;
       position: absolute;
       z-index: 0;
-      background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
+      background: url('assets/figma/deco/bubble.svg') center / contain no-repeat;
       width: 90%;
       aspect-ratio: 1;
       left: 50%;
@@ -42,7 +42,7 @@
       display: block;
       position: absolute;
       z-index: 2;
-      background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
+      background: url('assets/figma/deco/bubble.svg') center / contain no-repeat;
       width: 23%;
       aspect-ratio: 1;
       right: 15%;
@@ -131,7 +131,7 @@
   &__circle--mobile {
     position: absolute;
     z-index: 0;
-    background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
+    background: url('assets/figma/deco/bubble.svg') center / contain no-repeat;
 
     width: 156.9vw;
     height: 156.9vw;
@@ -149,7 +149,7 @@
     position: absolute;
     z-index: 0;
     aspect-ratio: 1;
-    background: url('/assets/figma/deco/bubble.svg') center / contain no-repeat;
+    background: url('assets/figma/deco/bubble.svg') center / contain no-repeat;
     pointer-events: none;
   }
 

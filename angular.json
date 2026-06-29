@@ -24,6 +24,9 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "externalDependencies": [
+              "assets/*"
+            ],
             "assets": [
               {
                 "glob": "**/*",
@@ -41,6 +44,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/angular-projekts/portfolio/",
               "budgets": [
                 {
                   "type": "initial",

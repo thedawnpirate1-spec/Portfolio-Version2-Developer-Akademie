@@ -9,7 +9,7 @@
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
+  RewriteBase /angular-projekts/portfolio/
 
   # 1) Existiert die angeforderte Datei ODER ein Ordner wirklich?
   #    -> direkt ausliefern (z. B. send_mail.php, /assets/..., main.js)
