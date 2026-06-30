@@ -130,7 +130,7 @@ button {
   &:hover {
     color: $color-text-on-dark;
     border-color: $color-primary;
-    transform: translateY(-2px);
+    transform: translateY(-5px) scale(1.03);
     box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.2);
 
     &::before {
@@ -178,11 +178,12 @@ button {
   border-radius: 10px;
   padding: 0.9375rem 1.875rem;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
-  transition: background $dur-fast $ease-out, transform $dur-fast $ease-out;
+  transition: background $dur-fast $ease-out, transform $dur-fast $ease-out, box-shadow $dur-fast $ease-out;
 
   &:hover {
     background: $color-primary-dark;
-    transform: translateY(-2px);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.2);
   }
 }
 
